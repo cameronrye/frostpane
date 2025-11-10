@@ -3,108 +3,963 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Liquid Glass">
+  <meta name="description" content="Liquid Glass - A customizable liquid glass effect CSS library">
   <meta name="theme-color" content="#ffffff">
-  <title>Liquid Glass</title>
+  <title>Liquid Glass - Customizable Liquid Glass Effect Library</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="index.scss">
+  <style>
+    /* Navigation Styles */
+    .main-nav {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-tab {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-tab:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-tab.active {
+      color: var(--lg-red);
+    }
+
+    /* Section Styles */
+    .section {
+      display: none;
+      min-height: 100vh;
+      padding-top: 6rem;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section-header {
+      text-align: center;
+      color: white;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h1 {
+      font-size: 3rem;
+      margin: 0 0 1rem 0;
+      font-weight: 700;
+    }
+
+    .section-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    /* Examples Grid */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .example-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .example-title {
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .example-description {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.5;
+    }
+
+    .example-preview {
+      min-height: 150px;
+    }
+
+    .example-code {
+      position: relative;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+      margin-top: 0.5rem;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .code-label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .copy-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .copy-btn.copied {
+      background: rgba(76, 175, 80, 0.3);
+      border-color: rgba(76, 175, 80, 0.5);
+    }
+
+    pre {
+      margin: 0;
+      overflow-x: auto;
+    }
+
+    code {
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Getting Started Styles */
+    .getting-started {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .step {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .step h3 {
+      color: white;
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+    }
+
+    .step p {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin: 0 0 1rem 0;
+    }
+
+    /* Components Grid */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .component-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  </style>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav class="main-nav glass-container glass-container--rounded">
+    <div class="glass-content">
+      <button class="nav-tab active" onclick="showSection('home')">Home</button>
+      <button class="nav-tab" onclick="showSection('getting-started')">Getting Started</button>
+      <button class="nav-tab" onclick="showSection('examples')">Examples</button>
+      <button class="nav-tab" onclick="showSection('components')">Components</button>
+    </div>
+  </nav>
+
   <main>
-    <div class="container container--mobile">
-      <div class="glass-container glass-container--rounded glass-container--large">
-        <div class="glass-content">
-          <div class="player">
-            <div class="player__thumb">
-              <div class="player__img" role="img" aria-label="Album cover"></div>
-              <div class="player__legend">
-                <h3 class="player__legend__title">YEM</h3>
-                <span class="player__legend__sub-title">Phish</span>
-              </div>
-            </div>
-            <div class="player__controls">
-              <i class="fa-solid fa-backward-step" aria-label="Previous track"></i>
-              <i class="fa-solid fa-play" aria-label="Play"></i>
-              <i class="fa-solid fa-forward-step" aria-label="Next track"></i>
-            </div>
-          </div>
-        </div>
+    <!-- HOME SECTION -->
+    <section id="home" class="section active">
+      <div class="section-header">
+        <h1>Liquid Glass</h1>
+        <p>A customizable liquid glass effect CSS library</p>
       </div>
 
-      <nav class="container container--mobile container--inline">
-        <div class="glass-container glass-container--rounded glass-container--medium">
+      <div class="container container--mobile">
+        <div class="glass-container glass-container--rounded glass-container--large">
           <div class="glass-content">
-            <div class="glass-item glass-item--active">
-              <i class="fa-solid fa-house" aria-label="Home"></i>
-              Home
-            </div>
-            <div class="glass-item">
-              <i class="fa-solid fa-layer-group" aria-label="New"></i>
-              New
-            </div>
-            <div class="glass-item">
-              <i class="fa-solid fa-wifi" aria-label="Wifi"></i>
-              Wifi
-            </div>
-            <div class="glass-item">
-              <i class="fa-solid fa-music" aria-label="Library"></i>
-              Library
+            <div class="player">
+              <div class="player__thumb">
+                <div class="player__img" role="img" aria-label="Album cover"></div>
+                <div class="player__legend">
+                  <h3 class="player__legend__title">YEM</h3>
+                  <span class="player__legend__sub-title">Phish</span>
+                </div>
+              </div>
+              <div class="player__controls">
+                <i class="fa-solid fa-backward-step" aria-label="Previous track"></i>
+                <i class="fa-solid fa-play" aria-label="Play"></i>
+                <i class="fa-solid fa-forward-step" aria-label="Next track"></i>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="glass-container glass-container--rounded glass-container--small">
-          <div class="glass-content glass-content--alone">
-            <div class="glass-item">
-              <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+        <nav class="container container--mobile container--inline">
+          <div class="glass-container glass-container--rounded glass-container--medium">
+            <div class="glass-content">
+              <div class="glass-item glass-item--active">
+                <i class="fa-solid fa-house" aria-label="Home"></i>
+                Home
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-layer-group" aria-label="New"></i>
+                New
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-wifi" aria-label="Wifi"></i>
+                Wifi
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-music" aria-label="Library"></i>
+                Library
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
-    </div>
 
-    <section class="container container--small">
-      <div class="glass-container glass-container--small">
-        <div class="glass-content">
-          <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
-          Search
+          <div class="glass-container glass-container--rounded glass-container--small">
+            <div class="glass-content glass-content--alone">
+              <div class="glass-item">
+                <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <section class="container container--small">
+        <div class="glass-container glass-container--small">
+          <div class="glass-content">
+            <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+            Search
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="glass-container">
+          <div class="glass-content">
+            <a class="glass-content__link" href="#" aria-label="Open Finder">
+              <i class="fa-solid fa-folder"></i>
+            </a>
+            <a class="glass-content__link" href="#" aria-label="Open Maps">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </a>
+            <a class="glass-content__link" href="#" aria-label="Open Messages">
+              <i class="fa-solid fa-message"></i>
+            </a>
+            <a class="glass-content__link" href="#" aria-label="Open Safari">
+              <i class="fa-solid fa-compass"></i>
+            </a>
+            <a class="glass-content__link" href="#" aria-label="Open Books">
+              <i class="fa-solid fa-book"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- GETTING STARTED SECTION -->
+    <section id="getting-started" class="section">
+      <div class="section-header">
+        <h1>Getting Started</h1>
+        <p>Start using Liquid Glass in minutes</p>
+      </div>
+
+      <div class="getting-started">
+        <div class="step">
+          <h3>1. Include the Stylesheet</h3>
+          <p>Add the Liquid Glass stylesheet to your HTML:</p>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;link rel="stylesheet" href="index.scss"&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>2. Add the SVG Filter (Optional)</h3>
+          <p>For the lens distortion effect, include this SVG filter in your HTML:</p>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" style="display: none;"&gt;
+  &lt;filter id="lensFilter"&gt;
+    &lt;feComponentTransfer in="SourceAlpha" result="alpha"&gt;
+      &lt;feFuncA type="identity" /&gt;
+    &lt;/feComponentTransfer&gt;
+    &lt;feGaussianBlur in="alpha" stdDeviation="50" result="blur" /&gt;
+    &lt;feDisplacementMap in="SourceGraphic" in2="blur" scale="50"
+                       xChannelSelector="A" yChannelSelector="A" /&gt;
+  &lt;/filter&gt;
+&lt;/svg&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>3. Create Your First Glass Element</h3>
+          <p>Use the basic glass container structure:</p>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div class="glass-container"&gt;
+  &lt;div class="glass-content"&gt;
+    Hello, Glass!
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>4. Customize with CSS Variables</h3>
+          <p>Override CSS custom properties to customize the effect:</p>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.my-custom-glass {
+  --lg-backdrop-blur: 8px;
+  --lg-bg-color: rgba(0, 0, 0, 0.3);
+  --lg-border-radius: 1rem;
+}</code></pre>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="container">
-      <div class="glass-container">
-        <div class="glass-content">
-          <a class="glass-content__link" href="#" aria-label="Open Finder">
-            <i class="fa-solid fa-folder"></i>
-          </a>
-          <a class="glass-content__link" href="#" aria-label="Open Maps">
-            <i class="fa-solid fa-map-location-dot"></i>
-          </a>
-          <a class="glass-content__link" href="#" aria-label="Open Messages">
-            <i class="fa-solid fa-message"></i>
-          </a>
-          <a class="glass-content__link" href="#" aria-label="Open Safari">
-            <i class="fa-solid fa-compass"></i>
-          </a>
-          <a class="glass-content__link" href="#" aria-label="Open Books">
-            <i class="fa-solid fa-book"></i>
-          </a>
+    <!-- EXAMPLES SECTION -->
+    <section id="examples" class="section">
+      <div class="section-header">
+        <h1>Examples</h1>
+        <p>Explore different glass effect variations</p>
+      </div>
+
+      <div class="examples-grid">
+        <!-- Example 1: Dark Glass -->
+        <div class="example-item">
+          <h3 class="example-title">Dark Glass</h3>
+          <p class="example-description">A darker glass effect perfect for dark mode interfaces.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded" style="--lg-bg-color: rgba(0, 0, 0, 0.4); --lg-highlight: rgba(255, 255, 255, 0.3); --lg-backdrop-blur: 8px;">
+              <div class="glass-content">
+                <i class="fa-solid fa-moon"></i>
+                <span>Dark Mode</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.dark-glass {
+  --lg-bg-color: rgba(0, 0, 0, 0.4);
+  --lg-highlight: rgba(255, 255, 255, 0.3);
+  --lg-backdrop-blur: 8px;
+}</code></pre>
+          </div>
         </div>
 
-        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
-          <filter id="lensFilter" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
-            <feComponentTransfer in="SourceAlpha" result="alpha">
-              <feFuncA type="identity" />
-            </feComponentTransfer>
+        <!-- Example 2: Strong Blur -->
+        <div class="example-item">
+          <h3 class="example-title">Strong Blur</h3>
+          <p class="example-description">Enhanced blur for a more pronounced frosted effect.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded" style="--lg-backdrop-blur: 12px; --lg-filter-saturate: 150%;">
+              <div class="glass-content">
+                <i class="fa-solid fa-eye-dropper"></i>
+                <span>Enhanced Blur</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.strong-blur {
+  --lg-backdrop-blur: 12px;
+  --lg-filter-saturate: 150%;
+}</code></pre>
+          </div>
+        </div>
 
-            <feGaussianBlur in="alpha" stdDeviation="50" result="blur" />
+        <!-- Example 3: Elevated Shadow -->
+        <div class="example-item">
+          <h3 class="example-title">Elevated Shadow</h3>
+          <p class="example-description">Deeper shadows create a floating effect.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded" style="--lg-shadow-offset-y: 12px; --lg-shadow-blur-primary: 12px; --lg-shadow-blur-secondary: 30px;">
+              <div class="glass-content">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Floating Effect</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.elevated-glass {
+  --lg-shadow-offset-y: 12px;
+  --lg-shadow-blur-primary: 12px;
+  --lg-shadow-blur-secondary: 30px;
+}</code></pre>
+          </div>
+        </div>
 
-            <feDisplacementMap in="SourceGraphic" in2="blur" scale="50" xChannelSelector="A" yChannelSelector="A" />
-          </filter>
-        </svg>
+        <!-- Example 4: Minimal Glass -->
+        <div class="example-item">
+          <h3 class="example-title">Minimal Glass</h3>
+          <p class="example-description">Subtle effect with reduced blur and transparency.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded" style="--lg-backdrop-blur: 2px; --lg-bg-color: rgba(255, 255, 255, 0.15); --lg-shadow-blur-primary: 4px;">
+              <div class="glass-content">
+                <i class="fa-solid fa-feather"></i>
+                <span>Subtle Effect</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.minimal-glass {
+  --lg-backdrop-blur: 2px;
+  --lg-bg-color: rgba(255, 255, 255, 0.15);
+  --lg-shadow-blur-primary: 4px;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Example 5: Colored Glass -->
+        <div class="example-item">
+          <h3 class="example-title">Colored Glass</h3>
+          <p class="example-description">Add color tints to create unique glass effects.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded" style="--lg-bg-color: rgba(102, 126, 234, 0.3); --lg-highlight: rgba(255, 255, 255, 0.5); --lg-filter-saturate: 140%;">
+              <div class="glass-content">
+                <i class="fa-solid fa-palette"></i>
+                <span>Blue Tint</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.colored-glass {
+  --lg-bg-color: rgba(102, 126, 234, 0.3);
+  --lg-highlight: rgba(255, 255, 255, 0.5);
+  --lg-filter-saturate: 140%;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Example 6: Frosted Glass -->
+        <div class="example-item">
+          <h3 class="example-title">Frosted Glass</h3>
+          <p class="example-description">Heavy frost effect with maximum blur.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded" style="--lg-backdrop-blur: 16px; --lg-bg-color: rgba(255, 255, 255, 0.35); --lg-filter-brightness: 1.2;">
+              <div class="glass-content">
+                <i class="fa-solid fa-snowflake"></i>
+                <span>Heavy Frost</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.frosted-glass {
+  --lg-backdrop-blur: 16px;
+  --lg-bg-color: rgba(255, 255, 255, 0.35);
+  --lg-filter-brightness: 1.2;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Example 7: Sharp Corners -->
+        <div class="example-item">
+          <h3 class="example-title">Sharp Corners</h3>
+          <p class="example-description">Angular design with minimal border radius.</p>
+          <div class="example-preview">
+            <div class="glass-container" style="--lg-border-radius: 0.5rem; --lg-backdrop-blur: 6px; --lg-shadow-blur-primary: 8px;">
+              <div class="glass-content">
+                <i class="fa-solid fa-square"></i>
+                <span>Angular Design</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.sharp-glass {
+  --lg-border-radius: 0.5rem;
+  --lg-backdrop-blur: 6px;
+  --lg-shadow-blur-primary: 8px;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Example 8: Pill Shape -->
+        <div class="example-item">
+          <h3 class="example-title">Pill Shape</h3>
+          <p class="example-description">Fully rounded pill-shaped glass elements.</p>
+          <div class="example-preview">
+            <div class="glass-container" style="--lg-border-radius: 50px; --lg-backdrop-blur: 6px;">
+              <div class="glass-content">
+                <i class="fa-solid fa-capsules"></i>
+                <span>Rounded Pill</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.pill-glass {
+  --lg-border-radius: 50px;
+  --lg-backdrop-blur: 6px;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Example 9: Snappy Animations -->
+        <div class="example-item">
+          <h3 class="example-title">Snappy Animations</h3>
+          <p class="example-description">Fast, responsive animations for interactive elements.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded interactive-scale--fast">
+              <div class="glass-content">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Fast Response</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">CSS</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.snappy-glass {
+  --lg-transition-duration: 0.15s;
+  --lg-transition-timing: ease-out;
+  --lg-hover-scale: 1.05;
+}</code></pre>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML (Using Utility Class)</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div class="glass-container interactive-scale--fast"&gt;
+  &lt;div class="glass-content"&gt;
+    Hover me!
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Example 10: Login Form -->
+        <div class="example-item">
+          <h3 class="example-title">Login Form</h3>
+          <p class="example-description">Glass card with form inputs for authentication.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded" style="padding: 2rem; max-width: 350px;">
+              <div class="glass-content" style="flex-direction: column; align-items: stretch;">
+                <h3 style="margin: 0 0 1.5rem 0; text-align: center;">Sign In</h3>
+                <input type="email" placeholder="Email" style="padding: 0.75rem; margin-bottom: 1rem; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white;">
+                <input type="password" placeholder="Password" style="padding: 0.75rem; margin-bottom: 1.5rem; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white;">
+                <button style="padding: 0.75rem; border-radius: 0.5rem; border: none; background: var(--lg-red); color: white; cursor: pointer; font-weight: 600;">Login</button>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div class="glass-container glass-container--rounded"&gt;
+  &lt;div class="glass-content" style="flex-direction: column;"&gt;
+    &lt;h3&gt;Sign In&lt;/h3&gt;
+    &lt;input type="email" placeholder="Email"&gt;
+    &lt;input type="password" placeholder="Password"&gt;
+    &lt;button&gt;Login&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Example 11: Notification Toast -->
+        <div class="example-item">
+          <h3 class="example-title">Notification Toast</h3>
+          <p class="example-description">Small glass notification for alerts and messages.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded" style="max-width: 300px;">
+              <div class="glass-content" style="gap: 0.75rem;">
+                <i class="fa-solid fa-check-circle" style="color: #4CAF50; font-size: 1.5rem;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; margin-bottom: 0.25rem;">Success!</div>
+                  <div style="font-size: 0.9rem; opacity: 0.8;">Your changes have been saved.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div class="glass-container glass-container--rounded"&gt;
+  &lt;div class="glass-content"&gt;
+    &lt;i class="fa-solid fa-check-circle"&gt;&lt;/i&gt;
+    &lt;div&gt;
+      &lt;div&gt;Success!&lt;/div&gt;
+      &lt;div&gt;Your changes have been saved.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Example 12: Card Grid -->
+        <div class="example-item">
+          <h3 class="example-title">Card Grid</h3>
+          <p class="example-description">Multiple glass cards in a grid layout.</p>
+          <div class="example-preview">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+              <div class="glass-container glass-container--rounded">
+                <div class="glass-content" style="flex-direction: column; padding: 1.5rem;">
+                  <i class="fa-solid fa-chart-line" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                  <div style="font-weight: 600;">Analytics</div>
+                </div>
+              </div>
+              <div class="glass-container glass-container--rounded">
+                <div class="glass-content" style="flex-direction: column; padding: 1.5rem;">
+                  <i class="fa-solid fa-users" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                  <div style="font-weight: 600;">Users</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;"&gt;
+  &lt;div class="glass-container glass-container--rounded"&gt;
+    &lt;div class="glass-content"&gt;
+      &lt;i class="fa-solid fa-chart-line"&gt;&lt;/i&gt;
+      &lt;div&gt;Analytics&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- More cards... --&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS SECTION -->
+    <section id="components" class="section">
+      <div class="section-header">
+        <h1>Components</h1>
+        <p>Pre-built component patterns</p>
+      </div>
+
+      <div class="components-grid">
+        <!-- Component 1: Music Player -->
+        <div class="component-item">
+          <h3 class="example-title">Music Player</h3>
+          <p class="example-description">A complete music player widget with album art and controls.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded glass-container--large">
+              <div class="glass-content">
+                <div class="player">
+                  <div class="player__thumb">
+                    <div class="player__img" role="img" aria-label="Album cover"></div>
+                    <div class="player__legend">
+                      <h3 class="player__legend__title">YEM</h3>
+                      <span class="player__legend__sub-title">Phish</span>
+                    </div>
+                  </div>
+                  <div class="player__controls">
+                    <i class="fa-solid fa-backward-step" aria-label="Previous track"></i>
+                    <i class="fa-solid fa-play" aria-label="Play"></i>
+                    <i class="fa-solid fa-forward-step" aria-label="Next track"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div class="glass-container glass-container--rounded glass-container--large"&gt;
+  &lt;div class="glass-content"&gt;
+    &lt;div class="player"&gt;
+      &lt;div class="player__thumb"&gt;
+        &lt;div class="player__img"&gt;&lt;/div&gt;
+        &lt;div class="player__legend"&gt;
+          &lt;h3 class="player__legend__title"&gt;YEM&lt;/h3&gt;
+          &lt;span class="player__legend__sub-title"&gt;Phish&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="player__controls"&gt;
+        &lt;i class="fa-solid fa-backward-step"&gt;&lt;/i&gt;
+        &lt;i class="fa-solid fa-play"&gt;&lt;/i&gt;
+        &lt;i class="fa-solid fa-forward-step"&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Component 2: Navigation Bar -->
+        <div class="component-item">
+          <h3 class="example-title">Navigation Bar</h3>
+          <p class="example-description">Horizontal navigation with icons and labels.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--rounded glass-container--medium">
+              <div class="glass-content">
+                <div class="glass-item glass-item--active">
+                  <i class="fa-solid fa-house" aria-label="Home"></i>
+                  Home
+                </div>
+                <div class="glass-item">
+                  <i class="fa-solid fa-layer-group" aria-label="New"></i>
+                  New
+                </div>
+                <div class="glass-item">
+                  <i class="fa-solid fa-wifi" aria-label="Wifi"></i>
+                  Wifi
+                </div>
+                <div class="glass-item">
+                  <i class="fa-solid fa-music" aria-label="Library"></i>
+                  Library
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div class="glass-container glass-container--rounded glass-container--medium"&gt;
+  &lt;div class="glass-content"&gt;
+    &lt;div class="glass-item glass-item--active"&gt;
+      &lt;i class="fa-solid fa-house"&gt;&lt;/i&gt;
+      Home
+    &lt;/div&gt;
+    &lt;div class="glass-item"&gt;
+      &lt;i class="fa-solid fa-layer-group"&gt;&lt;/i&gt;
+      New
+    &lt;/div&gt;
+    &lt;!-- More items... --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Component 3: Icon Dock with Lens Effect -->
+        <div class="component-item">
+          <h3 class="example-title">Icon Dock (with Lens Filter)</h3>
+          <p class="example-description">macOS-style dock with SVG lens distortion effect.</p>
+          <div class="example-preview">
+            <div class="glass-container">
+              <div class="glass-content">
+                <a class="glass-content__link" href="#" aria-label="Open Finder">
+                  <i class="fa-solid fa-folder"></i>
+                </a>
+                <a class="glass-content__link" href="#" aria-label="Open Maps">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                </a>
+                <a class="glass-content__link" href="#" aria-label="Open Messages">
+                  <i class="fa-solid fa-message"></i>
+                </a>
+                <a class="glass-content__link" href="#" aria-label="Open Safari">
+                  <i class="fa-solid fa-compass"></i>
+                </a>
+                <a class="glass-content__link" href="#" aria-label="Open Books">
+                  <i class="fa-solid fa-book"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div class="glass-container"&gt;
+  &lt;div class="glass-content"&gt;
+    &lt;a class="glass-content__link" href="#"&gt;
+      &lt;i class="fa-solid fa-folder"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;a class="glass-content__link" href="#"&gt;
+      &lt;i class="fa-solid fa-map-location-dot"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;!-- More icons... --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Required SVG Filter --&gt;
+&lt;svg xmlns="http://www.w3.org/2000/svg" style="display: none;"&gt;
+  &lt;filter id="lensFilter"&gt;
+    &lt;feComponentTransfer in="SourceAlpha" result="alpha"&gt;
+      &lt;feFuncA type="identity" /&gt;
+    &lt;/feComponentTransfer&gt;
+    &lt;feGaussianBlur in="alpha" stdDeviation="50" result="blur" /&gt;
+    &lt;feDisplacementMap in="SourceGraphic" in2="blur" scale="50"
+                       xChannelSelector="A" yChannelSelector="A" /&gt;
+  &lt;/filter&gt;
+&lt;/svg&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Component 4: Search Button -->
+        <div class="component-item">
+          <h3 class="example-title">Search Button</h3>
+          <p class="example-description">Compact search button with icon and label.</p>
+          <div class="example-preview">
+            <div class="glass-container glass-container--small">
+              <div class="glass-content">
+                <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+                Search
+              </div>
+            </div>
+          </div>
+          <div class="example-code">
+            <div class="code-header">
+              <span class="code-label">HTML</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;div class="glass-container glass-container--small"&gt;
+  &lt;div class="glass-content"&gt;
+    &lt;i class="fa-solid fa-magnifying-glass"&gt;&lt;/i&gt;
+    Search
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- SVG Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
+    <filter id="lensFilter" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feComponentTransfer in="SourceAlpha" result="alpha">
+        <feFuncA type="identity" />
+      </feComponentTransfer>
+      <feGaussianBlur in="alpha" stdDeviation="50" result="blur" />
+      <feDisplacementMap in="SourceGraphic" in2="blur" scale="50" xChannelSelector="A" yChannelSelector="A" />
+    </filter>
+  </svg>
+
+  <script>
+    // Tab navigation
+    function showSection(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Remove active class from all tabs
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // Show selected section
+      document.getElementById(sectionId).classList.add('active');
+
+      // Add active class to clicked tab
+      event.target.classList.add('active');
+    }
+
+    // Copy code functionality
+    function copyCode(button) {
+      const codeBlock = button.closest('.example-code').querySelector('code');
+      const text = codeBlock.textContent;
+
+      navigator.clipboard.writeText(text).then(() => {
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+
+        setTimeout(() => {
+          button.textContent = 'Copy';
+          button.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 </html>

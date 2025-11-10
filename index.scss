@@ -99,7 +99,6 @@ body {
   justify-content: center;
   font-family: sans-serif;
   position: relative;
-  overflow: hidden;
 
   // Animated background using pseudo-element with GPU-accelerated transform
   &::before {
