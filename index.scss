@@ -48,6 +48,47 @@
   --lg-transition-slow: 0.3s;
 }
 
+// Utility Classes
+// Interactive scale animation for hover/active states
+.interactive-scale {
+  cursor: pointer;
+  transition: transform var(--lg-transition-medium) ease-out;
+
+  &:hover {
+    transform: scale(var(--lg-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--lg-active-scale));
+  }
+}
+
+// Fast variant
+.interactive-scale--fast {
+  transition: transform var(--lg-transition-fast) ease-out;
+
+  &:hover {
+    transform: scale(var(--lg-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--lg-active-scale));
+  }
+}
+
+// Slow variant
+.interactive-scale--slow {
+  transition: transform var(--lg-transition-slow) ease-out;
+
+  &:hover {
+    transform: scale(var(--lg-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--lg-active-scale));
+  }
+}
+
 body {
   margin: 0;
   padding: 2rem 0;
@@ -162,6 +203,7 @@ body {
 
 .glass-container--medium {
   flex: 1 1 auto;
+  max-width: 600px;
 }
 
 .glass-container--small {
