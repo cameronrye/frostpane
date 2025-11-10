@@ -1,0 +1,330 @@
+:root {
+  // Color variables
+  --lg-bg-color: rgba(255, 255, 255, 0.25);
+  --lg-highlight: rgba(255, 255, 255, 0.75);
+  --lg-text: #ffffff;
+  --lg-red: #fb4268;
+  --lg-grey: #444739;
+
+  // Glass effect - Border radius
+  --lg-border-radius: 2rem;
+  --lg-border-radius-rounded: 3rem;
+  --lg-border-radius-small: 0.5rem;
+
+  // Glass effect - Shadows
+  --lg-shadow-color-primary: rgba(0, 0, 0, 0.2);
+  --lg-shadow-color-secondary: rgba(0, 0, 0, 0.1);
+  --lg-shadow-blur-primary: 6px;
+  --lg-shadow-blur-secondary: 20px;
+  --lg-shadow-offset-x: 0;
+  --lg-shadow-offset-y: 6px;
+
+  // Glass effect - Backdrop filter
+  --lg-backdrop-blur: 4px;
+
+  // Glass effect - Filter effects
+  --lg-filter-saturate: 120%;
+  --lg-filter-brightness: 1.15;
+
+  // Glass effect - Inset highlights
+  --lg-inset-highlight-offset: 1px;
+  --lg-inset-highlight-blur: 0;
+  --lg-inset-glow-blur: 5px;
+
+  // Glass effect - Transitions
+  --lg-transition-duration: 0.4s;
+  --lg-transition-timing: cubic-bezier(0.175, 0.885, 0.32, 2.2);
+
+  // Content spacing
+  --lg-content-padding-x: 28px;
+  --lg-content-padding-y: 12px;
+  --lg-content-gap: 1rem;
+
+  // Interactive elements
+  --lg-hover-scale: 1.1;
+  --lg-active-scale: 0.95;
+  --lg-transition-fast: 0.2s;
+  --lg-transition-medium: 0.25s;
+  --lg-transition-slow: 0.3s;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 0;
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  position: relative;
+  overflow: hidden;
+
+  // Animated background using pseudo-element with GPU-accelerated transform
+  &::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    animation: bg-move 15s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+@keyframes bg-move {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  50% {
+    transform: translate(-25%, 0%);
+  }
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container--mobile {
+  min-width: 32rem;
+}
+
+.container--small {
+  max-width: 10rem;
+  margin: 5rem 1rem 1rem;
+
+  i {
+    color: white;
+  }
+}
+
+.container--inline {
+  display: flex;
+  flex-direction: row;
+}
+
+.glass-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: var(--lg-border-radius);
+  overflow: hidden;
+  flex: 1 1 auto;
+  box-shadow: var(--lg-shadow-offset-x) var(--lg-shadow-offset-y) var(--lg-shadow-blur-primary) var(--lg-shadow-color-primary),
+              var(--lg-shadow-offset-x) var(--lg-shadow-offset-x) var(--lg-shadow-blur-secondary) var(--lg-shadow-color-secondary);
+  color: var(--lg-text);
+  transition: transform var(--lg-transition-duration) var(--lg-transition-timing),
+              opacity var(--lg-transition-duration) var(--lg-transition-timing),
+              box-shadow var(--lg-transition-duration) var(--lg-transition-timing);
+
+  // Glass filter layer - backdrop blur and SVG filter effects
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 0;
+    backdrop-filter: blur(var(--lg-backdrop-blur));
+    filter: url(#lensFilter) saturate(var(--lg-filter-saturate)) brightness(var(--lg-filter-brightness));
+  }
+
+  // Glass overlay + specular layer - background tint and highlights
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 1;
+    background: var(--lg-bg-color);
+    box-shadow: inset var(--lg-inset-highlight-offset) var(--lg-inset-highlight-offset) var(--lg-inset-highlight-blur) var(--lg-highlight),
+                inset 0 0 var(--lg-inset-glow-blur) var(--lg-highlight);
+  }
+}
+
+.glass-container--rounded {
+  border-radius: var(--lg-border-radius-rounded);
+}
+
+.glass-container--large {
+  flex: 1 1 auto;
+}
+
+.glass-container--medium {
+  flex: 1 1 auto;
+}
+
+.glass-container--small {
+  flex: 0 1 auto;
+}
+
+// Legacy classes - no longer needed with pseudo-element approach
+// Kept for reference only - these are now implemented as ::before and ::after on .glass-container
+// .glass-filter,
+// .glass-overlay,
+// .glass-specular {
+//   position: absolute;
+//   inset: 0;
+//   border-radius: inherit;
+// }
+//
+// .glass-filter {
+//   z-index: 0;
+//   backdrop-filter: blur(4px);
+//   filter: url(#lensFilter) saturate(120%) brightness(1.15);
+// }
+//
+// .glass-overlay {
+//   z-index: 1;
+//   background: var(--lg-bg-color);
+// }
+//
+// .glass-specular {
+//   z-index: 2;
+//   box-shadow: inset 1px 1px 0 var(--lg-highlight),
+//     inset 0 0 5px var(--lg-highlight);
+// }
+
+.glass-content {
+  position: relative;
+  z-index: 2; // Above ::before (0) and ::after (1)
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: space-around;
+  padding: var(--lg-content-padding-y) var(--lg-content-padding-x);
+  gap: var(--lg-content-gap);
+  flex-wrap: wrap;
+}
+
+.glass-content__link {
+  margin-bottom: -1px;
+  margin-top: 6px;
+  transition: transform var(--lg-transition-fast) ease-out;
+
+  i {
+    font-size: 78px;
+    color: var(--lg-text);
+  }
+
+  &:hover {
+    transform: scale(var(--lg-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--lg-active-scale));
+  }
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.player__thumb {
+  display: flex;
+  align-items: center;
+}
+
+.player__img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: var(--lg-border-radius-small);
+  margin-right: 1rem;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  transition: transform var(--lg-transition-medium) ease-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(var(--lg-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--lg-active-scale));
+  }
+}
+
+.player__legend {
+  color: black;
+}
+
+.player__legend__title,
+.player__legend__sub-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.player__legend__sub-title {
+  opacity: 0.6;
+}
+
+.player__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--lg-content-gap);
+
+  i {
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform var(--lg-transition-fast) ease-out;
+
+    &:hover {
+      transform: scale(var(--lg-hover-scale));
+    }
+
+    &:active {
+      transform: scale(var(--lg-active-scale));
+    }
+  }
+}
+
+.glass-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--lg-grey);
+  transition: color var(--lg-transition-slow) ease;
+  cursor: pointer;
+}
+
+.glass-item i {
+  color: var(--lg-grey);
+  font-size: 50px;
+  margin-bottom: 0.25rem;
+  filter: drop-shadow(0 0 3px rgba(255 255 255 / 0.25));
+  transition: transform var(--lg-transition-medium) ease-out;
+
+  &:hover {
+    transform: scale(var(--lg-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--lg-active-scale));
+  }
+}
+
+.glass-item--active {
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--lg-red);
+  margin: -8px -40px;
+  padding: 0.5rem 2.5rem;
+  border-radius: var(--lg-border-radius-rounded);
+}
+
+.glass-item--active i {
+  color: var(--lg-red);
+}
