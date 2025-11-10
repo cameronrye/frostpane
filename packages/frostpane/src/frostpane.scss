@@ -1,91 +1,91 @@
 :root {
   // Color variables
-  --lg-bg-color: rgba(255, 255, 255, 0.25);
-  --lg-highlight: rgba(255, 255, 255, 0.75);
-  --lg-text: #ffffff;
-  --lg-red: #fb4268;
-  --lg-grey: #444739;
+  --fp-bg-color: rgba(255, 255, 255, 0.25);
+  --fp-highlight: rgba(255, 255, 255, 0.75);
+  --fp-text: #ffffff;
+  --fp-red: #fb4268;
+  --fp-grey: #444739;
 
   // Glass effect - Border radius
-  --lg-border-radius: 2rem;
-  --lg-border-radius-rounded: 3rem;
-  --lg-border-radius-small: 0.5rem;
+  --fp-border-radius: 2rem;
+  --fp-border-radius-rounded: 3rem;
+  --fp-border-radius-small: 0.5rem;
 
   // Glass effect - Shadows
-  --lg-shadow-color-primary: rgba(0, 0, 0, 0.2);
-  --lg-shadow-color-secondary: rgba(0, 0, 0, 0.1);
-  --lg-shadow-blur-primary: 6px;
-  --lg-shadow-blur-secondary: 20px;
-  --lg-shadow-offset-x: 0;
-  --lg-shadow-offset-y: 6px;
+  --fp-shadow-color-primary: rgba(0, 0, 0, 0.2);
+  --fp-shadow-color-secondary: rgba(0, 0, 0, 0.1);
+  --fp-shadow-blur-primary: 6px;
+  --fp-shadow-blur-secondary: 20px;
+  --fp-shadow-offset-x: 0;
+  --fp-shadow-offset-y: 6px;
 
   // Glass effect - Backdrop filter
-  --lg-backdrop-blur: 4px;
+  --fp-backdrop-blur: 4px;
 
   // Glass effect - Filter effects
-  --lg-filter-saturate: 120%;
-  --lg-filter-brightness: 1.15;
+  --fp-filter-saturate: 120%;
+  --fp-filter-brightness: 1.15;
 
   // Glass effect - Inset highlights
-  --lg-inset-highlight-offset: 1px;
-  --lg-inset-highlight-blur: 0;
-  --lg-inset-glow-blur: 5px;
+  --fp-inset-highlight-offset: 1px;
+  --fp-inset-highlight-blur: 0;
+  --fp-inset-glow-blur: 5px;
 
   // Glass effect - Transitions
-  --lg-transition-duration: 0.4s;
-  --lg-transition-timing: cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  --fp-transition-duration: 0.4s;
+  --fp-transition-timing: cubic-bezier(0.175, 0.885, 0.32, 2.2);
 
   // Content spacing
-  --lg-content-padding-x: 28px;
-  --lg-content-padding-y: 12px;
-  --lg-content-gap: 1rem;
+  --fp-content-padding-x: 28px;
+  --fp-content-padding-y: 12px;
+  --fp-content-gap: 1rem;
 
   // Interactive elements
-  --lg-hover-scale: 1.1;
-  --lg-active-scale: 0.95;
-  --lg-transition-fast: 0.2s;
-  --lg-transition-medium: 0.25s;
-  --lg-transition-slow: 0.3s;
+  --fp-hover-scale: 1.1;
+  --fp-active-scale: 0.95;
+  --fp-transition-fast: 0.2s;
+  --fp-transition-medium: 0.25s;
+  --fp-transition-slow: 0.3s;
 }
 
 // Utility Classes
 // Interactive scale animation for hover/active states
 .interactive-scale {
   cursor: pointer;
-  transition: transform var(--lg-transition-medium) ease-out;
+  transition: transform var(--fp-transition-medium) ease-out;
 
   &:hover {
-    transform: scale(var(--lg-hover-scale));
+    transform: scale(var(--fp-hover-scale));
   }
 
   &:active {
-    transform: scale(var(--lg-active-scale));
+    transform: scale(var(--fp-active-scale));
   }
 }
 
 // Fast variant
 .interactive-scale--fast {
-  transition: transform var(--lg-transition-fast) ease-out;
+  transition: transform var(--fp-transition-fast) ease-out;
 
   &:hover {
-    transform: scale(var(--lg-hover-scale));
+    transform: scale(var(--fp-hover-scale));
   }
 
   &:active {
-    transform: scale(var(--lg-active-scale));
+    transform: scale(var(--fp-active-scale));
   }
 }
 
 // Slow variant
 .interactive-scale--slow {
-  transition: transform var(--lg-transition-slow) ease-out;
+  transition: transform var(--fp-transition-slow) ease-out;
 
   &:hover {
-    transform: scale(var(--lg-hover-scale));
+    transform: scale(var(--fp-hover-scale));
   }
 
   &:active {
-    transform: scale(var(--lg-active-scale));
+    transform: scale(var(--fp-active-scale));
   }
 }
 
@@ -158,15 +158,15 @@ body {
   display: flex;
   align-items: center;
   background: transparent;
-  border-radius: var(--lg-border-radius);
+  border-radius: var(--fp-border-radius);
   overflow: hidden;
   flex: 1 1 auto;
-  box-shadow: var(--lg-shadow-offset-x) var(--lg-shadow-offset-y) var(--lg-shadow-blur-primary) var(--lg-shadow-color-primary),
-              var(--lg-shadow-offset-x) var(--lg-shadow-offset-x) var(--lg-shadow-blur-secondary) var(--lg-shadow-color-secondary);
-  color: var(--lg-text);
-  transition: transform var(--lg-transition-duration) var(--lg-transition-timing),
-              opacity var(--lg-transition-duration) var(--lg-transition-timing),
-              box-shadow var(--lg-transition-duration) var(--lg-transition-timing);
+  box-shadow: var(--fp-shadow-offset-x) var(--fp-shadow-offset-y) var(--fp-shadow-blur-primary) var(--fp-shadow-color-primary),
+              var(--fp-shadow-offset-x) var(--fp-shadow-offset-x) var(--fp-shadow-blur-secondary) var(--fp-shadow-color-secondary);
+  color: var(--fp-text);
+  transition: transform var(--fp-transition-duration) var(--fp-transition-timing),
+              opacity var(--fp-transition-duration) var(--fp-transition-timing),
+              box-shadow var(--fp-transition-duration) var(--fp-transition-timing);
 
   // Glass filter layer - backdrop blur and SVG filter effects
   &::before {
@@ -175,8 +175,8 @@ body {
     inset: 0;
     border-radius: inherit;
     z-index: 0;
-    backdrop-filter: blur(var(--lg-backdrop-blur));
-    filter: url(#lensFilter) saturate(var(--lg-filter-saturate)) brightness(var(--lg-filter-brightness));
+    backdrop-filter: blur(var(--fp-backdrop-blur));
+    filter: url(#lensFilter) saturate(var(--fp-filter-saturate)) brightness(var(--fp-filter-brightness));
   }
 
   // Glass overlay + specular layer - background tint and highlights
@@ -186,14 +186,14 @@ body {
     inset: 0;
     border-radius: inherit;
     z-index: 1;
-    background: var(--lg-bg-color);
-    box-shadow: inset var(--lg-inset-highlight-offset) var(--lg-inset-highlight-offset) var(--lg-inset-highlight-blur) var(--lg-highlight),
-                inset 0 0 var(--lg-inset-glow-blur) var(--lg-highlight);
+    background: var(--fp-bg-color);
+    box-shadow: inset var(--fp-inset-highlight-offset) var(--fp-inset-highlight-offset) var(--fp-inset-highlight-blur) var(--fp-highlight),
+                inset 0 0 var(--fp-inset-glow-blur) var(--fp-highlight);
   }
 }
 
 .glass-container--rounded {
-  border-radius: var(--lg-border-radius-rounded);
+  border-radius: var(--fp-border-radius-rounded);
 }
 
 .glass-container--large {
@@ -227,13 +227,13 @@ body {
 //
 // .glass-overlay {
 //   z-index: 1;
-//   background: var(--lg-bg-color);
+//   background: var(--fp-bg-color);
 // }
 //
 // .glass-specular {
 //   z-index: 2;
-//   box-shadow: inset 1px 1px 0 var(--lg-highlight),
-//     inset 0 0 5px var(--lg-highlight);
+//   box-shadow: inset 1px 1px 0 var(--fp-highlight),
+//     inset 0 0 5px var(--fp-highlight);
 // }
 
 .glass-content {
@@ -243,27 +243,27 @@ body {
   flex: 1 1 auto;
   align-items: center;
   justify-content: space-around;
-  padding: var(--lg-content-padding-y) var(--lg-content-padding-x);
-  gap: var(--lg-content-gap);
+  padding: var(--fp-content-padding-y) var(--fp-content-padding-x);
+  gap: var(--fp-content-gap);
   flex-wrap: wrap;
 }
 
 .glass-content__link {
   margin-bottom: -1px;
   margin-top: 6px;
-  transition: transform var(--lg-transition-fast) ease-out;
+  transition: transform var(--fp-transition-fast) ease-out;
 
   i {
     font-size: 78px;
-    color: var(--lg-text);
+    color: var(--fp-text);
   }
 
   &:hover {
-    transform: scale(var(--lg-hover-scale));
+    transform: scale(var(--fp-hover-scale));
   }
 
   &:active {
-    transform: scale(var(--lg-active-scale));
+    transform: scale(var(--fp-active-scale));
   }
 }
 
@@ -282,18 +282,18 @@ body {
 .player__img {
   width: 5rem;
   height: 5rem;
-  border-radius: var(--lg-border-radius-small);
+  border-radius: var(--fp-border-radius-small);
   margin-right: 1rem;
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  transition: transform var(--lg-transition-medium) ease-out;
+  transition: transform var(--fp-transition-medium) ease-out;
   cursor: pointer;
 
   &:hover {
-    transform: scale(var(--lg-hover-scale));
+    transform: scale(var(--fp-hover-scale));
   }
 
   &:active {
-    transform: scale(var(--lg-active-scale));
+    transform: scale(var(--fp-active-scale));
   }
 }
 
@@ -314,20 +314,20 @@ body {
 .player__controls {
   display: flex;
   align-items: center;
-  gap: var(--lg-content-gap);
+  gap: var(--fp-content-gap);
 
   i {
     color: black;
     font-size: 24px;
     cursor: pointer;
-    transition: transform var(--lg-transition-fast) ease-out;
+    transition: transform var(--fp-transition-fast) ease-out;
 
     &:hover {
-      transform: scale(var(--lg-hover-scale));
+      transform: scale(var(--fp-hover-scale));
     }
 
     &:active {
-      transform: scale(var(--lg-active-scale));
+      transform: scale(var(--fp-active-scale));
     }
   }
 }
@@ -337,35 +337,35 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: var(--lg-grey);
-  transition: color var(--lg-transition-slow) ease;
+  color: var(--fp-grey);
+  transition: color var(--fp-transition-slow) ease;
   cursor: pointer;
 }
 
 .glass-item i {
-  color: var(--lg-grey);
+  color: var(--fp-grey);
   font-size: 50px;
   margin-bottom: 0.25rem;
   filter: drop-shadow(0 0 3px rgba(255 255 255 / 0.25));
-  transition: transform var(--lg-transition-medium) ease-out;
+  transition: transform var(--fp-transition-medium) ease-out;
 
   &:hover {
-    transform: scale(var(--lg-hover-scale));
+    transform: scale(var(--fp-hover-scale));
   }
 
   &:active {
-    transform: scale(var(--lg-active-scale));
+    transform: scale(var(--fp-active-scale));
   }
 }
 
 .glass-item--active {
   background: rgba(0, 0, 0, 0.25);
-  color: var(--lg-red);
+  color: var(--fp-red);
   margin: -8px -40px;
   padding: 0.5rem 2.5rem;
-  border-radius: var(--lg-border-radius-rounded);
+  border-radius: var(--fp-border-radius-rounded);
 }
 
 .glass-item--active i {
-  color: var(--lg-red);
+  color: var(--fp-red);
 }

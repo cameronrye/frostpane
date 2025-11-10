@@ -1,0 +1,52 @@
+{
+  "name": "@frostpane/core",
+  "version": "1.0.0",
+  "description": "A customizable frosted glass effect CSS library with backdrop blur and modern aesthetics",
+  "main": "dist/frostpane.css",
+  "style": "dist/frostpane.css",
+  "sass": "src/frostpane.scss",
+  "exports": {
+    ".": {
+      "sass": "./src/frostpane.scss",
+      "style": "./dist/frostpane.css",
+      "default": "./dist/frostpane.css"
+    },
+    "./scss": "./src/frostpane.scss",
+    "./css": "./dist/frostpane.css"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "sass src/frostpane.scss dist/frostpane.css --style=compressed --no-source-map",
+    "build:dev": "sass src/frostpane.scss dist/frostpane.css --no-source-map",
+    "watch": "sass src/frostpane.scss dist/frostpane.css --watch --no-source-map",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "css",
+    "scss",
+    "sass",
+    "glass",
+    "glassmorphism",
+    "frostpane",
+    "frosted-glass",
+    "ui",
+    "design",
+    "backdrop-filter",
+    "blur"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cameronrye/liquid-glass.git",
+    "directory": "packages/frostpane"
+  },
+  "devDependencies": {
+    "sass": "^1.93.3"
+  }
+}
+

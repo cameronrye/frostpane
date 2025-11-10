@@ -1,77 +1,263 @@
-# Glass Effect Customization Guide
+<div align="center">
+  <img src="logo.svg" alt="Frostpane Logo" width="400">
+</div>
 
-This document explains how to customize the parameterized glass effect system using CSS custom properties.
+<br>
 
-## Overview
+A customizable, modern CSS/SCSS library for creating beautiful frosted glass effects with backdrop blur, highlights, and smooth animations. Perfect for creating glassmorphic UI components with macOS-style aesthetics.
 
-All hard-coded values have been replaced with CSS custom properties (CSS variables), making the glass effect highly configurable and reusable.
+## ✨ Features
 
-## Available Custom Properties
+- 🎨 **Highly Customizable** - 30+ CSS custom properties for complete control
+- 🔧 **Framework Agnostic** - Works with any JavaScript framework or vanilla HTML
+- 📦 **Multiple Import Options** - Use SCSS source or compiled CSS
+- 🎭 **Built-in Variants** - Rounded corners, different sizes, and more
+- ⚡ **Performance Optimized** - Efficient transitions and GPU-accelerated effects
+- 🎯 **Zero Dependencies** - Pure CSS/SCSS implementation
+- 📱 **Responsive** - Works seamlessly across all screen sizes
+
+## 🚀 Quick Start
+
+### For Users (Using the Library)
+
+#### Installation
+
+```bash
+npm install @frostpane/core
+```
+
+#### Basic Usage
+
+**Option 1: Import SCSS (Recommended for customization)**
+
+```javascript
+import '@frostpane/core/scss';
+```
+
+**Option 2: Import Compiled CSS**
+
+```javascript
+import '@frostpane/core/css';
+```
+
+**Option 3: Link in HTML**
+
+```html
+<link rel="stylesheet" href="node_modules/@frostpane/core/dist/frostpane.css">
+```
+
+#### HTML Structure
+
+```html
+<div class="glass-container">
+  <div class="glass-content">
+    Your content here
+  </div>
+</div>
+```
+
+#### With Modifiers
+
+```html
+<!-- Rounded corners -->
+<div class="glass-container glass-container--rounded">
+  <div class="glass-content">Rounded glass effect</div>
+</div>
+
+<!-- Small size -->
+<div class="glass-container glass-container--small">
+  <div class="glass-content">Small glass element</div>
+</div>
+```
+
+## 🛠️ Development (For Contributors)
+
+### Prerequisites
+
+- Node.js (v16 or higher recommended)
+- npm (v7 or higher for workspace support)
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/cameronrye/frostpane.git
+cd frostpane
+
+# Install all dependencies
+npm install
+```
+
+### Development Workflow
+
+```bash
+# Start the development server (runs example site)
+npm run dev
+```
+
+Open http://localhost:5173 in your browser. Changes to the library or example site will hot-reload automatically.
+
+### Making Changes
+
+**To modify the library:**
+- Edit `packages/frostpane/src/frostpane.scss`
+- Changes automatically reload in the example site (no rebuild needed)
+
+**To modify the example site:**
+- Edit `packages/example/index.html` or other example files
+- Changes automatically reload in the browser
+
+### Building
+
+```bash
+# Build all packages
+npm run build
+
+# Build only the library
+npm run build:lib
+
+# Build only the example site
+npm run build:example
+
+# Preview the built example site
+npm run preview
+```
+
+## 📁 Project Structure
+
+This is a monorepo using npm workspaces with two packages:
+
+```
+frostpane/
+├── packages/
+│   ├── frostpane/             # @frostpane/core - The publishable library
+│   │   ├── src/
+│   │   │   └── frostpane.scss
+│   │   ├── dist/
+│   │   │   └── frostpane.css
+│   │   ├── package.json
+│   │   └── README.md
+│   └── example/               # @frostpane/example - Demo site
+│       ├── index.html
+│       ├── main.js
+│       ├── vite.config.js
+│       ├── package.json
+│       └── README.md
+├── package.json               # Root workspace configuration
+└── README.md                  # This file
+```
+
+### Package Overview
+
+- **@frostpane/core** - The standalone, publishable CSS/SCSS library
+- **@frostpane/example** - Demo site that showcases the library (private, not published)
+
+The example package depends on the core library via workspace reference, demonstrating real-world usage.
+
+## 📚 Usage Examples
+
+### Custom Blur Effect
+
+```html
+<div class="glass-container" style="--fp-backdrop-blur: 12px;">
+  <div class="glass-content">
+    Stronger blur effect
+  </div>
+</div>
+```
+
+### Dark Glass Theme
+
+```css
+.dark-glass {
+  --fp-bg-color: rgba(0, 0, 0, 0.4);
+  --fp-highlight: rgba(255, 255, 255, 0.3);
+  --fp-backdrop-blur: 8px;
+}
+```
+
+### Elevated Card
+
+```css
+.elevated-glass {
+  --fp-shadow-offset-y: 12px;
+  --fp-shadow-blur-primary: 12px;
+  --fp-shadow-blur-secondary: 30px;
+}
+```
+
+---
+
+## 🎨 Customization Guide
+
+The glass effect is fully customizable using CSS custom properties (CSS variables). Override any of these properties to create your own unique glass effects.
+
+### Available Custom Properties
 
 ### Color Variables
 ```css
---lg-bg-color: rgba(255, 255, 255, 0.25);      /* Glass background tint */
---lg-highlight: rgba(255, 255, 255, 0.75);     /* Glass highlight/specular color */
---lg-text: #ffffff;                             /* Text color */
---lg-red: #fb4268;                              /* Accent color (red) */
---lg-grey: #444739;                             /* Secondary text color */
+--fp-bg-color: rgba(255, 255, 255, 0.25);      /* Glass background tint */
+--fp-highlight: rgba(255, 255, 255, 0.75);     /* Glass highlight/specular color */
+--fp-text: #ffffff;                             /* Text color */
+--fp-red: #fb4268;                              /* Accent color (red) */
+--fp-grey: #444739;                             /* Secondary text color */
 ```
 
 ### Border Radius
 ```css
---lg-border-radius: 2rem;                       /* Default border radius */
---lg-border-radius-rounded: 3rem;               /* Rounded variant */
---lg-border-radius-small: 0.5rem;               /* Small elements */
+--fp-border-radius: 2rem;                       /* Default border radius */
+--fp-border-radius-rounded: 3rem;               /* Rounded variant */
+--fp-border-radius-small: 0.5rem;               /* Small elements */
 ```
 
 ### Shadows
 ```css
---lg-shadow-color-primary: rgba(0, 0, 0, 0.2);  /* Primary shadow color */
---lg-shadow-color-secondary: rgba(0, 0, 0, 0.1);/* Secondary shadow color */
---lg-shadow-blur-primary: 6px;                  /* Primary shadow blur */
---lg-shadow-blur-secondary: 20px;               /* Secondary shadow blur */
---lg-shadow-offset-x: 0;                        /* Horizontal shadow offset */
---lg-shadow-offset-y: 6px;                      /* Vertical shadow offset */
+--fp-shadow-color-primary: rgba(0, 0, 0, 0.2);  /* Primary shadow color */
+--fp-shadow-color-secondary: rgba(0, 0, 0, 0.1);/* Secondary shadow color */
+--fp-shadow-blur-primary: 6px;                  /* Primary shadow blur */
+--fp-shadow-blur-secondary: 20px;               /* Secondary shadow blur */
+--fp-shadow-offset-x: 0;                        /* Horizontal shadow offset */
+--fp-shadow-offset-y: 6px;                      /* Vertical shadow offset */
 ```
 
 ### Backdrop Filter
 ```css
---lg-backdrop-blur: 4px;                        /* Backdrop blur amount */
+--fp-backdrop-blur: 4px;                        /* Backdrop blur amount */
 ```
 
 ### Filter Effects
 ```css
---lg-filter-saturate: 120%;                     /* Color saturation */
---lg-filter-brightness: 1.15;                   /* Brightness adjustment */
+--fp-filter-saturate: 120%;                     /* Color saturation */
+--fp-filter-brightness: 1.15;                   /* Brightness adjustment */
 ```
 
 ### Inset Highlights
 ```css
---lg-inset-highlight-offset: 1px;               /* Highlight position offset */
---lg-inset-highlight-blur: 0;                   /* Highlight blur amount */
---lg-inset-glow-blur: 5px;                      /* Inner glow blur */
+--fp-inset-highlight-offset: 1px;               /* Highlight position offset */
+--fp-inset-highlight-blur: 0;                   /* Highlight blur amount */
+--fp-inset-glow-blur: 5px;                      /* Inner glow blur */
 ```
 
 ### Transitions
 ```css
---lg-transition-duration: 0.4s;                 /* Main transition duration */
---lg-transition-timing: cubic-bezier(0.175, 0.885, 0.32, 2.2); /* Timing function */
---lg-transition-fast: 0.2s;                     /* Fast interactions */
---lg-transition-medium: 0.25s;                  /* Medium interactions */
---lg-transition-slow: 0.3s;                     /* Slow interactions */
+--fp-transition-duration: 0.4s;                 /* Main transition duration */
+--fp-transition-timing: cubic-bezier(0.175, 0.885, 0.32, 2.2); /* Timing function */
+--fp-transition-fast: 0.2s;                     /* Fast interactions */
+--fp-transition-medium: 0.25s;                  /* Medium interactions */
+--fp-transition-slow: 0.3s;                     /* Slow interactions */
 ```
 
 ### Content Spacing
 ```css
---lg-content-padding-x: 28px;                   /* Horizontal padding */
---lg-content-padding-y: 12px;                   /* Vertical padding */
---lg-content-gap: 1rem;                         /* Gap between elements */
+--fp-content-padding-x: 28px;                   /* Horizontal padding */
+--fp-content-padding-y: 12px;                   /* Vertical padding */
+--fp-content-gap: 1rem;                         /* Gap between elements */
 ```
 
 ### Interactive Elements
 ```css
---lg-hover-scale: 1.1;                          /* Scale on hover */
---lg-active-scale: 0.95;                        /* Scale on active/click */
+--fp-hover-scale: 1.1;                          /* Scale on hover */
+--fp-active-scale: 0.95;                        /* Scale on active/click */
 ```
 
 ## Usage Examples
@@ -79,41 +265,41 @@ All hard-coded values have been replaced with CSS custom properties (CSS variabl
 ### Example 1: Create a Darker Glass Effect
 ```css
 .dark-glass {
-  --lg-bg-color: rgba(0, 0, 0, 0.4);
-  --lg-highlight: rgba(255, 255, 255, 0.3);
-  --lg-backdrop-blur: 8px;
+  --fp-bg-color: rgba(0, 0, 0, 0.4);
+  --fp-highlight: rgba(255, 255, 255, 0.3);
+  --fp-backdrop-blur: 8px;
 }
 ```
 
 ### Example 2: Increase Blur for Stronger Effect
 ```css
 .strong-blur {
-  --lg-backdrop-blur: 12px;
-  --lg-filter-saturate: 150%;
+  --fp-backdrop-blur: 12px;
+  --fp-filter-saturate: 150%;
 }
 ```
 
 ### Example 3: Customize Shadows
 ```css
 .elevated-glass {
-  --lg-shadow-offset-y: 12px;
-  --lg-shadow-blur-primary: 12px;
-  --lg-shadow-blur-secondary: 30px;
+  --fp-shadow-offset-y: 12px;
+  --fp-shadow-blur-primary: 12px;
+  --fp-shadow-blur-secondary: 30px;
 }
 ```
 
 ### Example 4: Faster Animations
 ```css
 .snappy-glass {
-  --lg-transition-duration: 0.2s;
-  --lg-transition-timing: ease-out;
+  --fp-transition-duration: 0.2s;
+  --fp-transition-timing: ease-out;
 }
 ```
 
 ### Example 5: Larger Border Radius
 ```css
 .pill-glass {
-  --lg-border-radius: 50px;
+  --fp-border-radius: 50px;
 }
 ```
 
@@ -121,7 +307,7 @@ All hard-coded values have been replaced with CSS custom properties (CSS variabl
 
 ### Method 1: Override in HTML
 ```html
-<div class="glass-container" style="--lg-backdrop-blur: 8px; --lg-bg-color: rgba(0, 0, 0, 0.3);">
+<div class="glass-container" style="--fp-backdrop-blur: 8px; --fp-bg-color: rgba(0, 0, 0, 0.3);">
   <!-- content -->
 </div>
 ```
@@ -129,25 +315,110 @@ All hard-coded values have been replaced with CSS custom properties (CSS variabl
 ### Method 2: Create Custom Classes
 ```css
 .glass-container.custom-variant {
-  --lg-backdrop-blur: 8px;
-  --lg-bg-color: rgba(0, 0, 0, 0.3);
+  --fp-backdrop-blur: 8px;
+  --fp-bg-color: rgba(0, 0, 0, 0.3);
 }
 ```
 
 ### Method 3: Override at Root Level
 ```css
 :root {
-  --lg-backdrop-blur: 8px;
-  --lg-bg-color: rgba(0, 0, 0, 0.3);
+  --fp-backdrop-blur: 8px;
+  --fp-bg-color: rgba(0, 0, 0, 0.3);
 }
 ```
 
-## Benefits
+### Benefits of CSS Custom Properties
 
-1. **Easy Customization**: Change values without modifying the core CSS
-2. **Consistency**: Use the same variables across multiple components
-3. **Theming**: Create multiple themes by overriding variables
-4. **Maintainability**: Update values in one place
-5. **Performance**: Specific transition properties prevent unnecessary recalculations
-6. **Flexibility**: Mix and match properties for different effects
+- **Easy Customization** - Change values without modifying the core CSS
+- **Consistency** - Use the same variables across multiple components
+- **Theming** - Create multiple themes by overriding variables
+- **Maintainability** - Update values in one place
+- **Performance** - Specific transition properties prevent unnecessary recalculations
+- **Flexibility** - Mix and match properties for different effects
 
+## 📜 Available Scripts
+
+### Root Level
+
+```bash
+npm run dev              # Run example site in development mode
+npm run build            # Build all packages
+npm run build:lib        # Build library only
+npm run build:example    # Build example site only
+npm run preview          # Preview built example site
+```
+
+### Library Package (`packages/frostpane/`)
+
+```bash
+npm run build            # Compile SCSS to CSS
+npm run watch            # Watch and rebuild on changes
+```
+
+### Example Package (`packages/example/`)
+
+```bash
+npm run dev              # Start Vite dev server
+npm run build            # Build example site
+npm run preview          # Preview built site
+```
+
+## 📦 Publishing
+
+The `@frostpane/core` library can be published to npm:
+
+```bash
+cd packages/frostpane
+npm run build
+npm publish --access public
+```
+
+The `prepublishOnly` script ensures the library is built before publishing.
+
+## 🏗️ Monorepo Architecture
+
+This project uses **npm workspaces** for monorepo management, providing:
+
+- **Separation of Concerns** - Core library is independent from demo site
+- **Reusability** - Library can be published and used in other projects
+- **Simplified Development** - Both packages can be developed and tested together
+- **Dependency Management** - Shared dependencies are hoisted to the root
+
+### Dependency Flow
+
+```
+Root (frostpane-monorepo)
+├── @frostpane/core
+│   └── devDependencies: sass
+└── @frostpane/example
+    ├── dependencies: @frostpane/core (workspace:*)
+    └── devDependencies: vite
+```
+
+The example package depends on the core library through a workspace reference, which npm automatically resolves to the local package during development.
+
+## 📖 Documentation
+
+- **Library Documentation**: [packages/frostpane/README.md](packages/frostpane/README.md)
+- **Example Site**: [packages/example/README.md](packages/example/README.md)
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how to get started:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Make your changes
+4. Test your changes: `npm run dev` and `npm run build`
+5. Commit your changes: `git commit -am 'Add new feature'`
+6. Push to the branch: `git push origin feature/my-feature`
+7. Submit a pull request
+
+## 📄 License
+
+MIT
+
+## 🙏 Acknowledgments
+
+Inspired by modern glassmorphic design trends and macOS UI aesthetics.

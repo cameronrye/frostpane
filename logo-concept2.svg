@@ -1,0 +1,30 @@
+<!-- CONCEPT 2: Crystalline Frost Pattern -->
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea" />
+      <stop offset="50%" style="stop-color:#764ba2" />
+      <stop offset="100%" style="stop-color:#4facfe" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Geometric crystal/frost pattern -->
+  <g transform="translate(50, 60)">
+    <!-- Center hexagon -->
+    <polygon points="0,-20 17.32,-10 17.32,10 0,20 -17.32,10 -17.32,-10" fill="url(#grad2)" opacity="0.8"/>
+    
+    <!-- Surrounding smaller crystals -->
+    <polygon points="0,-35 8.66,-30 8.66,-25 0,-20 -8.66,-25 -8.66,-30" fill="#667eea" opacity="0.6"/>
+    <polygon points="25,-10 33.66,-5 33.66,0 25,5 16.34,0 16.34,-5" fill="#4facfe" opacity="0.6"/>
+    <polygon points="25,10 33.66,15 33.66,20 25,25 16.34,20 16.34,15" fill="#764ba2" opacity="0.6"/>
+    <polygon points="0,35 8.66,30 8.66,25 0,20 -8.66,25 -8.66,30" fill="#667eea" opacity="0.6"/>
+    <polygon points="-25,10 -16.34,15 -16.34,20 -25,25 -33.66,20 -33.66,15" fill="#4facfe" opacity="0.6"/>
+    <polygon points="-25,-10 -16.34,-5 -16.34,0 -25,5 -33.66,0 -33.66,-5" fill="#764ba2" opacity="0.6"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="120" y="70" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="url(#grad2)">
+    Frostpane
+  </text>
+</svg>
+

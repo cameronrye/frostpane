@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Liquid Glass - A customizable liquid glass effect CSS library">
+  <meta name="description" content="Frostpane - A customizable frosted glass effect CSS library with backdrop blur">
   <meta name="theme-color" content="#ffffff">
-  <title>Liquid Glass - Customizable Liquid Glass Effect Library</title>
+  <title>Frostpane - Customizable Frosted Glass Effect Library</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="index.scss">
+  <script type="module" src="/main.js"></script>
   <style>
     /* Navigation Styles */
     .main-nav {
       position: fixed;
       top: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
       z-index: 1000;
       display: flex;
       gap: 0.5rem;
@@ -36,7 +35,7 @@
     }
 
     .nav-tab.active {
-      color: var(--lg-red);
+      color: var(--fp-red);
     }
 
     /* Section Styles */
@@ -218,8 +217,8 @@
     <!-- HOME SECTION -->
     <section id="home" class="section active">
       <div class="section-header">
-        <h1>Liquid Glass</h1>
-        <p>A customizable liquid glass effect CSS library</p>
+        <img src="/logo.svg" alt="Frostpane Logo" style="max-width: 400px; width: 100%; margin-bottom: 2rem;">
+        <p>A customizable frosted glass effect CSS library</p>
       </div>
 
       <div class="container container--mobile">
@@ -322,7 +321,7 @@
               <span class="code-label">HTML</span>
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
-            <pre><code>&lt;link rel="stylesheet" href="index.scss"&gt;</code></pre>
+            <pre><code>&lt;link rel="stylesheet" href="liquid-glass.scss"&gt;</code></pre>
           </div>
         </div>
 

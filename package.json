@@ -1,16 +1,21 @@
 {
-  "name": "liquid-glass",
+  "name": "frostpane-monorepo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Frostpane monorepo containing the core library and example site",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "npm run dev --workspace=packages/example",
+    "build": "npm run build --workspaces --if-present",
+    "build:lib": "npm run build --workspace=packages/frostpane",
+    "build:example": "npm run build --workspace=packages/example",
+    "preview": "npm run preview --workspace=packages/example"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
   "devDependencies": {
     "sass": "^1.93.3",
