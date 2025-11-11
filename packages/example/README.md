@@ -1,6 +1,6 @@
 # Frostpane Example Site
 
-This is the demo/example site for the Frostpane library. It showcases various use cases and customization options.
+This is the example site for the Frostpane library. It showcases various use cases and customization options.
 
 ## Running the Example
 

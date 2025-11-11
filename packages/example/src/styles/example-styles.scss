@@ -1,10 +1,239 @@
 // ============================================================================
-// Demo-Specific Styles for Frostpane Example Site
-// These styles are NOT part of the library - they're for the demo only
+// Example Site Styles for Frostpane
+// These styles are NOT part of the library - they're for the example site only
 // ============================================================================
 
 // Import the core library
-@use '@frostpane/core/scss';
+@use '../../../frostpane/src/frostpane.scss' as *;
+
+// ============================================================================
+// Navigation Styles
+// ============================================================================
+
+.main-nav {
+  position: fixed;
+  top: 2rem;
+  z-index: 1000;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-tab {
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fp-highlight);
+    outline-offset: 2px;
+  }
+
+  &.active {
+    color: var(--fp-red);
+  }
+}
+
+// ============================================================================
+// Section Styles
+// ============================================================================
+
+.section {
+  display: none;
+  min-height: 100vh;
+  padding-top: 6rem;
+
+  &.active {
+    display: block;
+  }
+}
+
+.section-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 3rem;
+
+  h1 {
+    font-size: 3rem;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  .logo-img {
+    max-width: 400px;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+// ============================================================================
+// Examples Grid
+// ============================================================================
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include breakpoint-sm {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 2rem;
+  }
+}
+
+.example-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.example-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.example-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.example-preview {
+  min-height: 150px;
+}
+
+.example-code {
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  margin-top: 0.5rem;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.code-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+
+  &.copied {
+    background: rgba(76, 175, 80, 0.3);
+    border-color: rgba(76, 175, 80, 0.5);
+  }
+}
+
+pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+code {
+  color: #e0e0e0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+// ============================================================================
+// Getting Started Styles
+// ============================================================================
+
+.getting-started {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.step {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+
+  h3 {
+    color: white;
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+  }
+}
+
+// ============================================================================
+// Components Grid
+// ============================================================================
+
+.components-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include breakpoint-sm {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    padding: 2rem;
+  }
+}
+
+.component-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
 // ============================================================================
 // Body and Background
@@ -62,11 +291,11 @@ body {
 
 .container--mobile {
   width: 100%;
-  max-width: 32rem;
+  max-width: 100%;
   padding: 0 var(--fp-space-md);
 
-  @media (max-width: 640px) {
-    max-width: 100%;
+  @include breakpoint-sm {
+    max-width: 32rem;
   }
 }
 

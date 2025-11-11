@@ -1,0 +1,262 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import ExampleItem from '../components/ExampleItem.astro';
+import ComponentItem from '../components/ComponentItem.astro';
+import { examples } from '../data/examples';
+import { components } from '../data/components';
+---
+
+<Layout title="Frostpane - Customizable Frosted Glass Effect Library">
+  <Navigation />
+
+  <main>
+    <!-- HOME SECTION -->
+    <section id="home" class="section active">
+      <div class="section-header">
+        <img src="/logo.svg" alt="Frostpane Logo" class="logo-img">
+        <p>A customizable frosted glass effect CSS library</p>
+      </div>
+
+      <div class="container container--mobile">
+        <div class="glass-container glass-container--rounded glass-container--large">
+          <div class="glass-content">
+            <div class="player">
+              <div class="player__thumb">
+                <div class="player__img" role="img" aria-label="Album cover"></div>
+                <div class="player__legend">
+                  <h3 class="player__legend__title">YEM</h3>
+                  <span class="player__legend__sub-title">Phish</span>
+                </div>
+              </div>
+              <div class="player__controls">
+                <i class="fa-solid fa-backward-step" aria-label="Previous track"></i>
+                <i class="fa-solid fa-play" aria-label="Play"></i>
+                <i class="fa-solid fa-forward-step" aria-label="Next track"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="container container--mobile container--inline">
+          <div class="glass-container glass-container--rounded glass-container--medium">
+            <div class="glass-content">
+              <div class="glass-item glass-item--active">
+                <i class="fa-solid fa-house" aria-label="Home"></i>
+                Home
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-layer-group" aria-label="New"></i>
+                New
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-wifi" aria-label="Wifi"></i>
+                Wifi
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-music" aria-label="Library"></i>
+                Library
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-container glass-container--rounded glass-container--small">
+            <div class="glass-content glass-content--alone">
+              <div class="glass-item">
+                <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <section class="container container--small">
+        <div class="glass-container glass-container--small">
+          <div class="glass-content">
+            <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+            Search
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- GETTING STARTED SECTION -->
+    <section id="getting-started" class="section">
+      <div class="section-header">
+        <h1>Getting Started</h1>
+        <p>Quick guide to using Frostpane</p>
+      </div>
+
+      <div class="getting-started">
+        <div class="step">
+          <h3>1. Installation</h3>
+          <p>Install Frostpane via npm:</p>
+          <div class="example-code">
+            <pre><code>npm install @frostpane/core</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>2. Import the CSS</h3>
+          <p>Add Frostpane to your project:</p>
+          <div class="example-code">
+            <pre><code>&lt;link rel="stylesheet" href="node_modules/@frostpane/core/dist/frostpane.css"&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>3. Use the Components</h3>
+          <p>Start building with glass containers:</p>
+          <div class="example-code">
+            <pre><code>&lt;div class="glass-container glass-container--rounded"&gt;
+  &lt;div class="glass-content"&gt;
+    Your content here
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>4. Customize with CSS Variables</h3>
+          <p>Override default styles using CSS custom properties:</p>
+          <div class="example-code">
+            <pre><code set:html={`.my-glass {
+  --fp-bg-color: rgba(0, 0, 0, 0.4);
+  --fp-backdrop-blur: 12px;
+  --fp-border-radius: 1rem;
+}`}></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXAMPLES SECTION -->
+    <section id="examples" class="section">
+      <div class="section-header">
+        <h1>Examples</h1>
+        <p>Explore different glass effect variations</p>
+      </div>
+
+      <div class="examples-grid">
+        {examples.map((example) => <ExampleItem {...example} />)}
+      </div>
+    </section>
+
+    <!-- COMPONENTS SECTION -->
+    <section id="components" class="section">
+      <div class="section-header">
+        <h1>Components</h1>
+        <p>Pre-built component patterns</p>
+      </div>
+
+      <div class="components-grid">
+        <!-- Music Player Component -->
+        <ComponentItem
+          title="Music Player"
+          description="A complete music player widget with album art and controls."
+          htmlCode={components[0].htmlCode}
+        >
+          <div class="glass-container glass-container--rounded glass-container--large">
+            <div class="glass-content">
+              <div class="player">
+                <div class="player__thumb">
+                  <div class="player__img" role="img" aria-label="Album cover"></div>
+                  <div class="player__legend">
+                    <h3 class="player__legend__title">YEM</h3>
+                    <span class="player__legend__sub-title">Phish</span>
+                  </div>
+                </div>
+                <div class="player__controls">
+                  <i class="fa-solid fa-backward-step" aria-label="Previous track"></i>
+                  <i class="fa-solid fa-play" aria-label="Play"></i>
+                  <i class="fa-solid fa-forward-step" aria-label="Next track"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Navigation Bar Component -->
+        <ComponentItem
+          title="Navigation Bar"
+          description="Horizontal navigation with icons and labels."
+          htmlCode={components[1].htmlCode}
+        >
+          <div class="glass-container glass-container--rounded glass-container--medium">
+            <div class="glass-content">
+              <div class="glass-item glass-item--active">
+                <i class="fa-solid fa-house" aria-label="Home"></i>
+                Home
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-layer-group" aria-label="New"></i>
+                New
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-wifi" aria-label="Wifi"></i>
+                Wifi
+              </div>
+              <div class="glass-item">
+                <i class="fa-solid fa-music" aria-label="Library"></i>
+                Library
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Icon Dock Component -->
+        <ComponentItem
+          title="Icon Dock (with Lens Filter)"
+          description="macOS-style dock with SVG lens distortion effect."
+          htmlCode={components[2].htmlCode}
+        >
+          <div class="glass-container">
+            <div class="glass-content">
+              <a class="glass-content__link" href="#" aria-label="Open Finder">
+                <i class="fa-solid fa-folder"></i>
+              </a>
+              <a class="glass-content__link" href="#" aria-label="Open Maps">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </a>
+              <a class="glass-content__link" href="#" aria-label="Open Messages">
+                <i class="fa-solid fa-message"></i>
+              </a>
+              <a class="glass-content__link" href="#" aria-label="Open Safari">
+                <i class="fa-solid fa-compass"></i>
+              </a>
+              <a class="glass-content__link" href="#" aria-label="Open Books">
+                <i class="fa-solid fa-book"></i>
+              </a>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Search Button Component -->
+        <ComponentItem
+          title="Search Button"
+          description="Compact search button with icon and label."
+          htmlCode={components[3].htmlCode}
+        >
+          <div class="glass-container glass-container--small">
+            <div class="glass-content">
+              <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+              Search
+            </div>
+          </div>
+        </ComponentItem>
+      </div>
+    </section>
+  </main>
+
+  <!-- SVG Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
+    <filter id="lensFilter" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+      <feComponentTransfer in="SourceAlpha" result="alpha">
+        <feFuncA type="identity" />
+      </feComponentTransfer>
+      <feGaussianBlur in="alpha" stdDeviation="50" result="blur" />
+      <feDisplacementMap in="SourceGraphic" in2="blur" scale="50" xChannelSelector="A" yChannelSelector="A" />
+    </filter>
+  </svg>
+</Layout>
+

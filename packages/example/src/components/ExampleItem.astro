@@ -1,0 +1,29 @@
+---
+import CodeBlock from './CodeBlock.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  label: string;
+  cssCode: string;
+  customStyles?: string;
+}
+
+const { title, description, icon, label, cssCode, customStyles = '' } = Astro.props;
+---
+
+<div class="example-item">
+  <h3 class="example-title">{title}</h3>
+  <p class="example-description">{description}</p>
+  <div class="example-preview">
+    <div class="glass-container glass-container--rounded" style={customStyles}>
+      <div class="glass-content">
+        <i class={icon}></i>
+        <span>{label}</span>
+      </div>
+    </div>
+  </div>
+  <CodeBlock code={cssCode} label="CSS" />
+</div>
+

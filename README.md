@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.svg" alt="Frostpane Logo" width="400">
+  <img src="packages/example/public/logo.svg" alt="Frostpane Logo" width="400">
 </div>
 
 <br>
@@ -137,7 +137,7 @@ frostpane/
 │   │   │   └── frostpane.css
 │   │   ├── package.json
 │   │   └── README.md
-│   └── example/               # @frostpane/example - Demo site
+│   └── example/               # @frostpane/example - Example site
 │       ├── index.html
 │       ├── main.js
 │       ├── vite.config.js
@@ -150,7 +150,7 @@ frostpane/
 ### Package Overview
 
 - **@frostpane/core** - The standalone, publishable CSS/SCSS library
-- **@frostpane/example** - Demo site that showcases the library (private, not published)
+- **@frostpane/example** - Example site that showcases the library (private, not published)
 
 The example package depends on the core library via workspace reference, demonstrating real-world usage.
 
@@ -380,7 +380,7 @@ The `prepublishOnly` script ensures the library is built before publishing.
 
 This project uses **npm workspaces** for monorepo management, providing:
 
-- **Separation of Concerns** - Core library is independent from demo site
+- **Separation of Concerns** - Core library is independent from example site
 - **Reusability** - Library can be published and used in other projects
 - **Simplified Development** - Both packages can be developed and tested together
 - **Dependency Management** - Shared dependencies are hoisted to the root

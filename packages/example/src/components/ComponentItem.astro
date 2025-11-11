@@ -1,0 +1,21 @@
+---
+import CodeBlock from './CodeBlock.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  htmlCode: string;
+}
+
+const { title, description, htmlCode } = Astro.props;
+---
+
+<div class="component-item">
+  <h3 class="example-title">{title}</h3>
+  <p class="example-description">{description}</p>
+  <div class="example-preview">
+    <slot />
+  </div>
+  <CodeBlock code={htmlCode} label="HTML" />
+</div>
+

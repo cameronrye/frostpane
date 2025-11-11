@@ -1,19 +1,19 @@
 {
   "name": "@frostpane/example",
   "version": "1.0.0",
-  "description": "Example/demo site for the Frostpane library",
+  "description": "Example site for the Frostpane library",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
     "@frostpane/core": "*"
   },
   "devDependencies": {
-    "vite": "^7.2.2"
+    "astro": "^5.15.5",
+    "sass": "^1.93.3"
   }
 }
-
