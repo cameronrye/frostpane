@@ -3,42 +3,48 @@ const navItems = [
   { id: 'home', label: 'Home' },
   { id: 'getting-started', label: 'Getting Started' },
   { id: 'examples', label: 'Examples' },
-  { id: 'components', label: 'Components' }
+  { id: 'components', label: 'Components' },
 ];
 ---
 
 <nav class="main-nav glass-container glass-container--rounded">
   <div class="glass-content">
-    {navItems.map((item, index) => <button class={`nav-tab ${index === 0 ? 'active' : ''}`} data-section={item.id}>{item.label}</button>)}
+    {
+      navItems.map((item, index) => (
+        <button class={`nav-tab ${index === 0 ? 'active' : ''}`} data-section={item.id}>
+          {item.label}
+        </button>
+      ))
+    }
   </div>
 </nav>
 
 <script>
   function showSection(sectionId: string) {
     // Hide all sections
-    document.querySelectorAll('.section').forEach(section => {
+    document.querySelectorAll('.section').forEach((section) => {
       section.classList.remove('active');
     });
-    
+
     // Show selected section
     const targetSection = document.getElementById(sectionId);
     if (targetSection) {
       targetSection.classList.add('active');
     }
-    
+
     // Update active nav tab
-    document.querySelectorAll('.nav-tab').forEach(tab => {
+    document.querySelectorAll('.nav-tab').forEach((tab) => {
       tab.classList.remove('active');
     });
-    
+
     const activeTab = document.querySelector(`[data-section="${sectionId}"]`);
     if (activeTab) {
       activeTab.classList.add('active');
     }
   }
-  
+
   // Add event listeners to nav tabs
-  document.querySelectorAll('.nav-tab').forEach(tab => {
+  document.querySelectorAll('.nav-tab').forEach((tab) => {
     tab.addEventListener('click', (e) => {
       const target = e.currentTarget as HTMLElement;
       const sectionId = target.getAttribute('data-section');
@@ -48,4 +54,3 @@ const navItems = [
     });
   });
 </script>
-

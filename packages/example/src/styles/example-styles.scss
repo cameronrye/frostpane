@@ -4,7 +4,7 @@
 // ============================================================================
 
 // Import the core library
-@use '../../../frostpane/src/frostpane.scss' as *;
+@use "../../../frostpane/src/frostpane.scss" as *;
 
 // ============================================================================
 // Navigation Styles
@@ -66,7 +66,7 @@
 
   h1 {
     font-size: 3rem;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
     font-weight: 700;
   }
 
@@ -85,7 +85,7 @@
   .tagline {
     font-size: 1.75rem;
     font-weight: 600;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
     color: white;
   }
 
@@ -140,7 +140,7 @@
   color: white;
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.75rem;
 }
 
 .feature-description {
@@ -159,14 +159,14 @@
   font-size: 2rem;
   font-weight: 600;
   text-align: center;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.5rem;
 }
 
 .demo-section-subtitle {
   color: rgba(255, 255, 255, 0.85);
   font-size: 1.1rem;
   text-align: center;
-  margin: 0 0 3rem 0;
+  margin: 0 0 3rem;
 }
 
 .demo-grid {
@@ -253,13 +253,13 @@
   color: white;
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.5rem;
 }
 
 .example-description {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   line-height: 1.5;
   min-height: 3em; // Ensure consistent height for descriptions
 }
@@ -329,7 +329,7 @@ pre {
 
 code {
   color: #e0e0e0;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -353,14 +353,14 @@ code {
 
   h3 {
     color: white;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
     font-size: 1.5rem;
   }
 
   p {
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
   }
 }
 
@@ -416,14 +416,21 @@ body {
 
   // Animated background using pseudo-element with GPU-accelerated transform
   &::before {
-    content: '';
+    content: "";
     position: fixed;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
     z-index: -1;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background: linear-gradient(
+      135deg,
+      #667eea 0%,
+      #764ba2 25%,
+      #f093fb 50%,
+      #4facfe 75%,
+      #00f2fe 100%
+    );
     animation: bg-move 15s ease-in-out infinite alternate;
     will-change: transform;
   }
@@ -433,9 +440,11 @@ body {
   0% {
     transform: translate(0%, 0%);
   }
+
   50% {
     transform: translate(-25%, 0%);
   }
+
   100% {
     transform: translate(0%, 0%);
   }
@@ -447,9 +456,8 @@ body {
 
 .container {
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   gap: 1.5rem;
-  flex-wrap: wrap;
   justify-content: center;
   width: 100%;
 }
@@ -501,8 +509,9 @@ body {
   border-radius: var(--fp-border-radius-small);
   margin-right: var(--fp-space-md);
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  transition: transform var(--fp-transition-medium) ease-out,
-              outline-offset 0.2s ease;
+  transition:
+    transform var(--fp-transition-medium) ease-out,
+    outline-offset 0.2s ease;
   cursor: pointer;
 
   &:hover {
@@ -526,7 +535,7 @@ body {
   min-width: 0;
 }
 
-.player__legend__title {
+.player__legend-title {
   margin: 0;
   font-size: var(--fp-text-base);
   font-weight: 600;
@@ -535,7 +544,7 @@ body {
   white-space: nowrap;
 }
 
-.player__legend__sub-title {
+.player__legend-sub-title {
   margin: 0;
   font-size: var(--fp-text-sm);
   color: var(--fp-text-muted);
@@ -553,8 +562,9 @@ body {
     color: var(--fp-text-on-glass);
     font-size: var(--fp-icon-sm);
     cursor: pointer;
-    transition: transform var(--fp-transition-fast) ease-out,
-                outline-offset 0.2s ease;
+    transition:
+      transform var(--fp-transition-fast) ease-out,
+      outline-offset 0.2s ease;
     padding: var(--fp-space-xs);
     border-radius: var(--fp-border-radius-small);
 
@@ -584,8 +594,9 @@ body {
   align-items: center;
   text-align: center;
   color: var(--fp-grey);
-  transition: color var(--fp-transition-slow) ease,
-              outline-offset 0.2s ease;
+  transition:
+    color var(--fp-transition-slow) ease,
+    outline-offset 0.2s ease;
   cursor: pointer;
   padding: var(--fp-space-sm) var(--fp-space-md);
   border-radius: var(--fp-border-radius-rounded);
@@ -600,7 +611,7 @@ body {
   color: var(--fp-grey);
   font-size: var(--fp-icon-lg);
   margin-bottom: var(--fp-space-xs);
-  filter: drop-shadow(0 0 3px rgba(255 255 255 / 0.25));
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.25));
   transition: transform var(--fp-transition-medium) ease-out;
 
   &:hover {
@@ -656,7 +667,6 @@ body {
   padding: 0.5rem 1.5rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border-radius: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.9);
@@ -673,13 +683,18 @@ body {
 }
 
 @keyframes heartbeat {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
-  10%, 30% {
+
+  10%,
+  30% {
     transform: scale(1.1);
   }
-  20%, 40% {
+
+  20%,
+  40% {
     transform: scale(1);
   }
 }
@@ -701,4 +716,3 @@ body {
     border-radius: 2px;
   }
 }
-

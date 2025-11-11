@@ -1,0 +1,13 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+*.css.map
+
+# Package files
+package-lock.json
+
+# Logs
+*.log
+
