@@ -28,10 +28,17 @@
       font-size: 1rem;
       font-weight: 500;
       transition: all 0.3s ease;
+      border-radius: 0.5rem;
     }
 
     .nav-tab:hover {
       transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-tab:focus-visible {
+      outline: 2px solid var(--fp-highlight);
+      outline-offset: 2px;
     }
 
     .nav-tab.active {
@@ -70,11 +77,18 @@
     /* Examples Grid */
     .examples-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: 1fr;
       gap: 2rem;
-      padding: 2rem;
+      padding: 1rem;
       max-width: 1400px;
       margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .examples-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        padding: 2rem;
+      }
     }
 
     .example-item {
@@ -188,11 +202,18 @@
     /* Components Grid */
     .components-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: 1fr;
       gap: 3rem;
-      padding: 2rem;
+      padding: 1rem;
       max-width: 1400px;
       margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .components-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        padding: 2rem;
+      }
     }
 
     .component-item {
@@ -309,13 +330,13 @@
     <section id="getting-started" class="section">
       <div class="section-header">
         <h1>Getting Started</h1>
-        <p>Start using Liquid Glass in minutes</p>
+        <p>Start using Frostpane in minutes</p>
       </div>
 
       <div class="getting-started">
         <div class="step">
           <h3>1. Include the Stylesheet</h3>
-          <p>Add the Liquid Glass stylesheet to your HTML:</p>
+          <p>Add the Frostpane stylesheet to your HTML:</p>
           <div class="example-code">
             <div class="code-header">
               <span class="code-label">HTML</span>
@@ -371,9 +392,9 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.my-custom-glass {
-  --lg-backdrop-blur: 8px;
-  --lg-bg-color: rgba(0, 0, 0, 0.3);
-  --lg-border-radius: 1rem;
+  --fp-backdrop-blur: 8px;
+  --fp-bg-color: rgba(0, 0, 0, 0.3);
+  --fp-border-radius: 1rem;
 }</code></pre>
           </div>
         </div>
@@ -393,7 +414,7 @@
           <h3 class="example-title">Dark Glass</h3>
           <p class="example-description">A darker glass effect perfect for dark mode interfaces.</p>
           <div class="example-preview">
-            <div class="glass-container glass-container--rounded" style="--lg-bg-color: rgba(0, 0, 0, 0.4); --lg-highlight: rgba(255, 255, 255, 0.3); --lg-backdrop-blur: 8px;">
+            <div class="glass-container glass-container--rounded" style="--fp-bg-color: rgba(0, 0, 0, 0.4); --fp-highlight: rgba(255, 255, 255, 0.3); --fp-backdrop-blur: 8px;">
               <div class="glass-content">
                 <i class="fa-solid fa-moon"></i>
                 <span>Dark Mode</span>
@@ -406,9 +427,9 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.dark-glass {
-  --lg-bg-color: rgba(0, 0, 0, 0.4);
-  --lg-highlight: rgba(255, 255, 255, 0.3);
-  --lg-backdrop-blur: 8px;
+  --fp-bg-color: rgba(0, 0, 0, 0.4);
+  --fp-highlight: rgba(255, 255, 255, 0.3);
+  --fp-backdrop-blur: 8px;
 }</code></pre>
           </div>
         </div>
@@ -418,7 +439,7 @@
           <h3 class="example-title">Strong Blur</h3>
           <p class="example-description">Enhanced blur for a more pronounced frosted effect.</p>
           <div class="example-preview">
-            <div class="glass-container glass-container--rounded" style="--lg-backdrop-blur: 12px; --lg-filter-saturate: 150%;">
+            <div class="glass-container glass-container--rounded" style="--fp-backdrop-blur: 12px; --fp-filter-saturate: 150%;">
               <div class="glass-content">
                 <i class="fa-solid fa-eye-dropper"></i>
                 <span>Enhanced Blur</span>
@@ -431,8 +452,8 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.strong-blur {
-  --lg-backdrop-blur: 12px;
-  --lg-filter-saturate: 150%;
+  --fp-backdrop-blur: 12px;
+  --fp-filter-saturate: 150%;
 }</code></pre>
           </div>
         </div>
@@ -442,7 +463,7 @@
           <h3 class="example-title">Elevated Shadow</h3>
           <p class="example-description">Deeper shadows create a floating effect.</p>
           <div class="example-preview">
-            <div class="glass-container glass-container--rounded" style="--lg-shadow-offset-y: 12px; --lg-shadow-blur-primary: 12px; --lg-shadow-blur-secondary: 30px;">
+            <div class="glass-container glass-container--rounded" style="--fp-shadow-offset-y: 12px; --fp-shadow-blur-primary: 12px; --fp-shadow-blur-secondary: 30px;">
               <div class="glass-content">
                 <i class="fa-solid fa-layer-group"></i>
                 <span>Floating Effect</span>
@@ -455,9 +476,9 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.elevated-glass {
-  --lg-shadow-offset-y: 12px;
-  --lg-shadow-blur-primary: 12px;
-  --lg-shadow-blur-secondary: 30px;
+  --fp-shadow-offset-y: 12px;
+  --fp-shadow-blur-primary: 12px;
+  --fp-shadow-blur-secondary: 30px;
 }</code></pre>
           </div>
         </div>
@@ -467,7 +488,7 @@
           <h3 class="example-title">Minimal Glass</h3>
           <p class="example-description">Subtle effect with reduced blur and transparency.</p>
           <div class="example-preview">
-            <div class="glass-container glass-container--rounded" style="--lg-backdrop-blur: 2px; --lg-bg-color: rgba(255, 255, 255, 0.15); --lg-shadow-blur-primary: 4px;">
+            <div class="glass-container glass-container--rounded" style="--fp-backdrop-blur: 2px; --fp-bg-color: rgba(255, 255, 255, 0.15); --fp-shadow-blur-primary: 4px;">
               <div class="glass-content">
                 <i class="fa-solid fa-feather"></i>
                 <span>Subtle Effect</span>
@@ -480,9 +501,9 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.minimal-glass {
-  --lg-backdrop-blur: 2px;
-  --lg-bg-color: rgba(255, 255, 255, 0.15);
-  --lg-shadow-blur-primary: 4px;
+  --fp-backdrop-blur: 2px;
+  --fp-bg-color: rgba(255, 255, 255, 0.15);
+  --fp-shadow-blur-primary: 4px;
 }</code></pre>
           </div>
         </div>
@@ -492,7 +513,7 @@
           <h3 class="example-title">Colored Glass</h3>
           <p class="example-description">Add color tints to create unique glass effects.</p>
           <div class="example-preview">
-            <div class="glass-container glass-container--rounded" style="--lg-bg-color: rgba(102, 126, 234, 0.3); --lg-highlight: rgba(255, 255, 255, 0.5); --lg-filter-saturate: 140%;">
+            <div class="glass-container glass-container--rounded" style="--fp-bg-color: rgba(102, 126, 234, 0.3); --fp-highlight: rgba(255, 255, 255, 0.5); --fp-filter-saturate: 140%;">
               <div class="glass-content">
                 <i class="fa-solid fa-palette"></i>
                 <span>Blue Tint</span>
@@ -505,9 +526,9 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.colored-glass {
-  --lg-bg-color: rgba(102, 126, 234, 0.3);
-  --lg-highlight: rgba(255, 255, 255, 0.5);
-  --lg-filter-saturate: 140%;
+  --fp-bg-color: rgba(102, 126, 234, 0.3);
+  --fp-highlight: rgba(255, 255, 255, 0.5);
+  --fp-filter-saturate: 140%;
 }</code></pre>
           </div>
         </div>
@@ -517,7 +538,7 @@
           <h3 class="example-title">Frosted Glass</h3>
           <p class="example-description">Heavy frost effect with maximum blur.</p>
           <div class="example-preview">
-            <div class="glass-container glass-container--rounded" style="--lg-backdrop-blur: 16px; --lg-bg-color: rgba(255, 255, 255, 0.35); --lg-filter-brightness: 1.2;">
+            <div class="glass-container glass-container--rounded" style="--fp-backdrop-blur: 16px; --fp-bg-color: rgba(255, 255, 255, 0.35); --fp-filter-brightness: 1.2;">
               <div class="glass-content">
                 <i class="fa-solid fa-snowflake"></i>
                 <span>Heavy Frost</span>
@@ -530,9 +551,9 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.frosted-glass {
-  --lg-backdrop-blur: 16px;
-  --lg-bg-color: rgba(255, 255, 255, 0.35);
-  --lg-filter-brightness: 1.2;
+  --fp-backdrop-blur: 16px;
+  --fp-bg-color: rgba(255, 255, 255, 0.35);
+  --fp-filter-brightness: 1.2;
 }</code></pre>
           </div>
         </div>
@@ -542,7 +563,7 @@
           <h3 class="example-title">Sharp Corners</h3>
           <p class="example-description">Angular design with minimal border radius.</p>
           <div class="example-preview">
-            <div class="glass-container" style="--lg-border-radius: 0.5rem; --lg-backdrop-blur: 6px; --lg-shadow-blur-primary: 8px;">
+            <div class="glass-container" style="--fp-border-radius: 0.5rem; --fp-backdrop-blur: 6px; --fp-shadow-blur-primary: 8px;">
               <div class="glass-content">
                 <i class="fa-solid fa-square"></i>
                 <span>Angular Design</span>
@@ -555,9 +576,9 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.sharp-glass {
-  --lg-border-radius: 0.5rem;
-  --lg-backdrop-blur: 6px;
-  --lg-shadow-blur-primary: 8px;
+  --fp-border-radius: 0.5rem;
+  --fp-backdrop-blur: 6px;
+  --fp-shadow-blur-primary: 8px;
 }</code></pre>
           </div>
         </div>
@@ -567,7 +588,7 @@
           <h3 class="example-title">Pill Shape</h3>
           <p class="example-description">Fully rounded pill-shaped glass elements.</p>
           <div class="example-preview">
-            <div class="glass-container" style="--lg-border-radius: 50px; --lg-backdrop-blur: 6px;">
+            <div class="glass-container" style="--fp-border-radius: 50px; --fp-backdrop-blur: 6px;">
               <div class="glass-content">
                 <i class="fa-solid fa-capsules"></i>
                 <span>Rounded Pill</span>
@@ -580,8 +601,8 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.pill-glass {
-  --lg-border-radius: 50px;
-  --lg-backdrop-blur: 6px;
+  --fp-border-radius: 50px;
+  --fp-backdrop-blur: 6px;
 }</code></pre>
           </div>
         </div>
@@ -604,9 +625,9 @@
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>.snappy-glass {
-  --lg-transition-duration: 0.15s;
-  --lg-transition-timing: ease-out;
-  --lg-hover-scale: 1.05;
+  --fp-transition-duration: 0.15s;
+  --fp-transition-timing: ease-out;
+  --fp-hover-scale: 1.05;
 }</code></pre>
           </div>
           <div class="example-code">
@@ -629,10 +650,10 @@
           <div class="example-preview">
             <div class="glass-container glass-container--rounded" style="padding: 2rem; max-width: 350px;">
               <div class="glass-content" style="flex-direction: column; align-items: stretch;">
-                <h3 style="margin: 0 0 1.5rem 0; text-align: center;">Sign In</h3>
-                <input type="email" placeholder="Email" style="padding: 0.75rem; margin-bottom: 1rem; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white;">
-                <input type="password" placeholder="Password" style="padding: 0.75rem; margin-bottom: 1.5rem; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white;">
-                <button style="padding: 0.75rem; border-radius: 0.5rem; border: none; background: var(--lg-red); color: white; cursor: pointer; font-weight: 600;">Login</button>
+                <h3 style="margin: 0 0 1.5rem 0; text-align: center; color: white;">Sign In</h3>
+                <input type="email" placeholder="Email" class="glass-input" style="margin-bottom: 1rem;">
+                <input type="password" placeholder="Password" class="glass-input" style="margin-bottom: 1.5rem;">
+                <button class="glass-button">Login</button>
               </div>
             </div>
           </div>
@@ -644,9 +665,9 @@
             <pre><code>&lt;div class="glass-container glass-container--rounded"&gt;
   &lt;div class="glass-content" style="flex-direction: column;"&gt;
     &lt;h3&gt;Sign In&lt;/h3&gt;
-    &lt;input type="email" placeholder="Email"&gt;
-    &lt;input type="password" placeholder="Password"&gt;
-    &lt;button&gt;Login&lt;/button&gt;
+    &lt;input type="email" placeholder="Email" class="glass-input"&gt;
+    &lt;input type="password" placeholder="Password" class="glass-input"&gt;
+    &lt;button class="glass-button"&gt;Login&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </div>

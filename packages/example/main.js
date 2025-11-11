@@ -1,3 +1,3 @@
-// Import the Frostpane library
-import '@frostpane/core/scss';
+// Import the demo styles (which includes the Frostpane library)
+import './demo-styles.scss';
 

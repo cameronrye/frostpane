@@ -1,0 +1,238 @@
+// ============================================================================
+// Demo-Specific Styles for Frostpane Example Site
+// These styles are NOT part of the library - they're for the demo only
+// ============================================================================
+
+// Import the core library
+@use '@frostpane/core/scss';
+
+// ============================================================================
+// Body and Background
+// ============================================================================
+
+body {
+  margin: 0;
+  padding: 2rem 0;
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  position: relative;
+
+  // Animated background using pseudo-element with GPU-accelerated transform
+  &::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    animation: bg-move 15s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+@keyframes bg-move {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  50% {
+    transform: translate(-25%, 0%);
+  }
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+// ============================================================================
+// Layout Containers (Demo-specific)
+// ============================================================================
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container--mobile {
+  width: 100%;
+  max-width: 32rem;
+  padding: 0 var(--fp-space-md);
+
+  @media (max-width: 640px) {
+    max-width: 100%;
+  }
+}
+
+.container--small {
+  max-width: 10rem;
+  margin: 5rem 1rem 1rem;
+
+  i {
+    color: white;
+  }
+}
+
+.container--inline {
+  display: flex;
+  flex-direction: row;
+}
+
+// ============================================================================
+// Music Player Component (Demo)
+// ============================================================================
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.player__thumb {
+  display: flex;
+  align-items: center;
+}
+
+.player__img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: var(--fp-border-radius-small);
+  margin-right: var(--fp-space-md);
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  transition: transform var(--fp-transition-medium) ease-out,
+              outline-offset 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(var(--fp-hover-scale));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fp-highlight);
+    outline-offset: 4px;
+    transform: scale(var(--fp-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--fp-active-scale));
+  }
+}
+
+.player__legend {
+  color: var(--fp-text-on-glass);
+  max-width: 200px;
+  min-width: 0;
+}
+
+.player__legend__title {
+  margin: 0;
+  font-size: var(--fp-text-base);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player__legend__sub-title {
+  margin: 0;
+  font-size: var(--fp-text-sm);
+  color: var(--fp-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--fp-content-gap);
+
+  i {
+    color: var(--fp-text-on-glass);
+    font-size: var(--fp-icon-sm);
+    cursor: pointer;
+    transition: transform var(--fp-transition-fast) ease-out,
+                outline-offset 0.2s ease;
+    padding: var(--fp-space-xs);
+    border-radius: var(--fp-border-radius-small);
+
+    &:hover {
+      transform: scale(var(--fp-hover-scale));
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--fp-highlight);
+      outline-offset: 2px;
+      transform: scale(var(--fp-hover-scale));
+    }
+
+    &:active {
+      transform: scale(var(--fp-active-scale));
+    }
+  }
+}
+
+// ============================================================================
+// Glass Item Component (Demo - Navigation Items)
+// ============================================================================
+
+.glass-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--fp-grey);
+  transition: color var(--fp-transition-slow) ease,
+              outline-offset 0.2s ease;
+  cursor: pointer;
+  padding: var(--fp-space-sm) var(--fp-space-md);
+  border-radius: var(--fp-border-radius-rounded);
+
+  &:focus-visible {
+    outline: 2px solid var(--fp-highlight);
+    outline-offset: 2px;
+  }
+}
+
+.glass-item i {
+  color: var(--fp-grey);
+  font-size: var(--fp-icon-lg);
+  margin-bottom: var(--fp-space-xs);
+  filter: drop-shadow(0 0 3px rgba(255 255 255 / 0.25));
+  transition: transform var(--fp-transition-medium) ease-out;
+
+  &:hover {
+    transform: scale(var(--fp-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--fp-active-scale));
+  }
+}
+
+.glass-item--active {
+  position: relative;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--fp-red);
+  padding: var(--fp-space-sm) var(--fp-space-lg);
+}
+
+.glass-item--active i {
+  color: var(--fp-red);
+}
+
+// ============================================================================
+// Content Modifier for Single Items
+// ============================================================================
+
+.glass-content--alone {
+  justify-content: center;
+}
+

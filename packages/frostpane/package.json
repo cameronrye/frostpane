@@ -30,19 +30,19 @@
     "scss",
     "sass",
     "glass",
-    "glassmorphism",
-    "frostpane",
     "frosted-glass",
+    "frostpane",
+    "glass-effect",
     "ui",
     "design",
     "backdrop-filter",
     "blur"
   ],
-  "author": "",
+  "author": "Cameron Rye <c@meron.io>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cameronrye/liquid-glass.git",
+    "url": "https://github.com/cameronrye/frostpane.git",
     "directory": "packages/frostpane"
   },
   "devDependencies": {

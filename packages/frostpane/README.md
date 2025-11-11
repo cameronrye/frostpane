@@ -126,17 +126,42 @@ All aspects of the glass effect can be customized using CSS custom properties:
 
 ### Content Classes
 - `.glass-content`: Content wrapper (required inside glass-container)
-- `.glass-content--alone`: Single item content
 - `.glass-content__link`: Interactive link with hover effects
 
-### Item Classes
-- `.glass-item`: Individual item within glass content
-- `.glass-item--active`: Active state for items
+### Form Components
+- `.glass-input`: Styled input field with glass effect
+- `.glass-button`: Primary button with glass styling
+- `.glass-button--secondary`: Secondary button variant
+- `.glass-button--outline`: Outline button variant
 
 ### Utility Classes
 - `.interactive-scale`: Standard interactive scale animation
 - `.interactive-scale--fast`: Fast scale animation
 - `.interactive-scale--slow`: Slow scale animation
+
+## Form Components Usage
+
+### Glass Input
+
+```html
+<input type="text" class="glass-input" placeholder="Enter text...">
+```
+
+### Glass Buttons
+
+```html
+<!-- Primary button -->
+<button class="glass-button">Click Me</button>
+
+<!-- Secondary button -->
+<button class="glass-button glass-button--secondary">Secondary</button>
+
+<!-- Outline button -->
+<button class="glass-button glass-button--outline">Outline</button>
+
+<!-- Disabled button -->
+<button class="glass-button" disabled>Disabled</button>
+```
 
 ## License
 

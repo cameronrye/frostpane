@@ -4,7 +4,7 @@
 
 <br>
 
-A customizable, modern CSS/SCSS library for creating beautiful frosted glass effects with backdrop blur, highlights, and smooth animations. Perfect for creating glassmorphic UI components with macOS-style aesthetics.
+A customizable, modern CSS/SCSS library for creating beautiful frosted glass effects with backdrop blur, highlights, and smooth animations. Perfect for creating frosted glass UI components with macOS-style aesthetics.
 
 ## ✨ Features
 
