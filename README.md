@@ -4,7 +4,20 @@
 
 <br>
 
+<div align="center">
+
+[![npm version](https://img.shields.io/npm/v/@frostpane/core.svg?style=flat-square)](https://www.npmjs.com/package/@frostpane/core)
+[![npm downloads](https://img.shields.io/npm/dm/@frostpane/core.svg?style=flat-square)](https://www.npmjs.com/package/@frostpane/core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![CI](https://img.shields.io/github/actions/workflow/status/cameronrye/frostpane/ci.yml?branch=main&style=flat-square)](https://github.com/cameronrye/frostpane/actions)
+
+</div>
+
+<br>
+
 A customizable, modern CSS/SCSS library for creating beautiful frosted glass effects with backdrop blur, highlights, and smooth animations. Perfect for creating frosted glass UI components with macOS-style aesthetics.
+
+**[View Demo](https://cameronrye.github.io/frostpane)** | **[Documentation](#-customization-guide)** | **[Examples](#-usage-examples)**
 
 ## ✨ Features
 

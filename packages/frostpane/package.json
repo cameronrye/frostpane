@@ -33,10 +33,14 @@
     "frosted-glass",
     "frostpane",
     "glass-effect",
+    "glassmorphism",
     "ui",
     "design",
+    "design-system",
     "backdrop-filter",
-    "blur"
+    "blur",
+    "ui-components",
+    "css-library"
   ],
   "author": "Cameron Rye <c@meron.io>",
   "license": "MIT",
@@ -45,6 +49,10 @@
     "url": "https://github.com/cameronrye/frostpane.git",
     "directory": "packages/frostpane"
   },
+  "bugs": {
+    "url": "https://github.com/cameronrye/frostpane/issues"
+  },
+  "homepage": "https://cameronrye.github.io/frostpane",
   "devDependencies": {
     "sass": "^1.93.3"
   }

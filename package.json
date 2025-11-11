@@ -13,9 +13,28 @@
     "build:example": "npm run build --workspace=packages/example",
     "preview": "npm run preview --workspace=packages/example"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "css",
+    "scss",
+    "sass",
+    "glass",
+    "frosted-glass",
+    "glassmorphism",
+    "ui",
+    "design-system",
+    "backdrop-filter",
+    "blur"
+  ],
+  "author": "Cameron Rye <c@meron.io>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cameronrye/frostpane.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cameronrye/frostpane/issues"
+  },
+  "homepage": "https://cameronrye.github.io/frostpane",
   "type": "module",
   "devDependencies": {
     "sass": "^1.93.3",
