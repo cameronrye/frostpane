@@ -54,7 +54,7 @@ jobs:
 
     - name: Upload test results
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: playwright-report-${{ matrix.node-version }}
         path: playwright-report/
@@ -62,7 +62,7 @@ jobs:
 
     - name: Upload test coverage
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: test-coverage-${{ matrix.node-version }}
         path: playwright-report/
