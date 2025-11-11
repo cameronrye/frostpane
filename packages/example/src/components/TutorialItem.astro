@@ -1,0 +1,317 @@
+---
+import type { TutorialStep } from '../data/tutorials';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  estimatedTime: string;
+  category?: string;
+  icon: string;
+  steps: TutorialStep[];
+  finalCode: string;
+  tags?: string[];
+}
+
+const { title, description, difficulty, estimatedTime, category, icon, steps, finalCode, tags } =
+  Astro.props;
+
+const difficultyColors = {
+  beginner: 'success',
+  intermediate: 'warning',
+  advanced: 'danger',
+};
+---
+
+<div
+  class="tutorial-item"
+  data-title={title.toLowerCase()}
+  data-description={description.toLowerCase()}
+  data-category={category?.toLowerCase() || ''}
+  data-tags={tags?.join(',').toLowerCase() || ''}
+>
+  <div class="tutorial-item__header glass-container glass-container--rounded">
+    <div class="glass-content">
+      <div class="tutorial-item__icon">
+        <i class={icon} aria-hidden="true"></i>
+      </div>
+      <div class="tutorial-item__info">
+        <h3 class="tutorial-item__title">{title}</h3>
+        <p class="tutorial-item__description">{description}</p>
+        <div class="tutorial-item__meta">
+          <span class={`glass-badge glass-badge--${difficultyColors[difficulty]}`}>
+            {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+          </span>
+          <span class="tutorial-item__time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            {estimatedTime}
+          </span>
+          {
+            category && (
+              <span class="tutorial-item__category">
+                <i class="fa-solid fa-tag" aria-hidden="true" />
+                {category}
+              </span>
+            )
+          }
+        </div>
+      </div>
+      <button
+        class="tutorial-item__toggle glass-btn glass-btn--secondary"
+        aria-label="Toggle tutorial steps"
+      >
+        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="tutorial-item__content" style="display: none;">
+    <div class="tutorial-item__steps">
+      {
+        steps.map((step, index) => (
+          <div class="tutorial-step glass-container glass-container--rounded">
+            <div class="glass-content glass-content--column">
+              <div class="tutorial-step__header">
+                <span class="tutorial-step__number">{index + 1}</span>
+                <h4 class="tutorial-step__title">{step.title}</h4>
+              </div>
+              <p class="tutorial-step__description">{step.description}</p>
+              {step.code && (
+                <div class="tutorial-step__code">
+                  <div class="code-header">
+                    <span class="code-language">Code</span>
+                    <button
+                      class="glass-btn glass-btn--small copy-btn"
+                      data-code={step.code}
+                      aria-label="Copy code"
+                    >
+                      <i class="fa-solid fa-copy" aria-hidden="true" />
+                      Copy
+                    </button>
+                  </div>
+                  <pre>
+                    <code>{step.code}</code>
+                  </pre>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="tutorial-item__final glass-container glass-container--rounded">
+      <div class="glass-content glass-content--column">
+        <div class="tutorial-item__final-header">
+          <h4>
+            <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+            Final Result
+          </h4>
+          <button
+            class="glass-btn glass-btn--primary copy-btn"
+            data-code={finalCode}
+            aria-label="Copy final code"
+          >
+            <i class="fa-solid fa-copy" aria-hidden="true"></i>
+            Copy Final Code
+          </button>
+        </div>
+        <div class="tutorial-step__code">
+          <pre><code>{finalCode}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tutorial-item {
+    margin-bottom: 2rem;
+  }
+
+  .tutorial-item__header {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .tutorial-item__header:hover {
+    transform: translateY(-2px);
+  }
+
+  .tutorial-item__header .glass-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .tutorial-item__icon {
+    font-size: 2rem;
+    color: var(--fp-accent-color, #60a5fa);
+    flex-shrink: 0;
+  }
+
+  .tutorial-item__info {
+    flex: 1;
+  }
+
+  .tutorial-item__title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .tutorial-item__description {
+    margin: 0 0 1rem 0;
+    opacity: 0.9;
+  }
+
+  .tutorial-item__meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .tutorial-item__time,
+  .tutorial-item__category {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .tutorial-item__toggle {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .tutorial-item__toggle.active {
+    transform: rotate(180deg);
+  }
+
+  .tutorial-item__content {
+    margin-top: 1rem;
+  }
+
+  .tutorial-item__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .tutorial-step {
+    transition: all 0.3s ease;
+  }
+
+  .tutorial-step:hover {
+    transform: translateX(5px);
+  }
+
+  .tutorial-step__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tutorial-step__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--fp-accent-color, #60a5fa);
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .tutorial-step__title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .tutorial-step__description {
+    margin: 0 0 1rem 0;
+    opacity: 0.9;
+  }
+
+  .tutorial-step__code {
+    margin-top: 1rem;
+  }
+
+  .code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px 8px 0 0;
+  }
+
+  .code-language {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  pre {
+    margin: 0;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 8px 8px;
+    overflow-x: auto;
+  }
+
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #e5e7eb;
+  }
+
+  .tutorial-item__final {
+    margin-top: 1.5rem;
+  }
+
+  .tutorial-item__final-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .tutorial-item__final-header h4 {
+    margin: 0;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--fp-success-color, #10b981);
+  }
+
+  @media (max-width: 768px) {
+    .tutorial-item__header .glass-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .tutorial-item__toggle {
+      align-self: flex-end;
+    }
+
+    .tutorial-item__final-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style>

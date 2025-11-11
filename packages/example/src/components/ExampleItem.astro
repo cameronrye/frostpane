@@ -24,5 +24,79 @@ const { title, description, icon, label, cssCode, customStyles = '' } = Astro.pr
       </div>
     </div>
   </div>
+  <div class="example-actions">
+    <button
+      class="glass-btn glass-btn--small try-live-btn"
+      data-title={title}
+      data-description={description}
+      data-css={cssCode}
+      data-styles={customStyles}
+      data-icon={icon}
+      data-label={label}
+      data-sandbox="codesandbox"
+      aria-label="Try in CodeSandbox"
+    >
+      <i class="fa-solid fa-play" aria-hidden="true"></i>
+      Try in CodeSandbox
+    </button>
+    <button
+      class="glass-btn glass-btn--small try-live-btn"
+      data-title={title}
+      data-description={description}
+      data-css={cssCode}
+      data-styles={customStyles}
+      data-icon={icon}
+      data-label={label}
+      data-sandbox="codepen"
+      aria-label="Try in CodePen"
+    >
+      <i class="fa-brands fa-codepen" aria-hidden="true"></i>
+      Try in CodePen
+    </button>
+  </div>
   <CodeBlock code={cssCode} label="CSS" />
 </div>
+
+<script>
+  import { openInCodeSandbox, openInCodePen } from '../utils/sandboxUtils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.try-live-btn');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const btn = e.currentTarget as HTMLElement;
+        const config = {
+          title: btn.dataset.title || '',
+          description: btn.dataset.description || '',
+          cssCode: btn.dataset.css || '',
+          customStyles: btn.dataset.styles || '',
+          icon: btn.dataset.icon || '',
+          label: btn.dataset.label || '',
+        };
+
+        const sandbox = btn.dataset.sandbox;
+        if (sandbox === 'codesandbox') {
+          openInCodeSandbox(config);
+        } else if (sandbox === 'codepen') {
+          openInCodePen(config);
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .example-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .try-live-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+</style>
