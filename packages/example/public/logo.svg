@@ -1,33 +1,130 @@
-<!-- Layered Glass Sheets Logo -->
+<!-- Frostpane Logo - Glassmorphism Design -->
 <svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad3a" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.7" />
-      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.7" />
+    <!-- Glassmorphism color gradients aligned with design system -->
+    <linearGradient id="glassGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.35" />
+      <stop offset="100%" style="stop-color:#818cf8;stop-opacity:0.25" />
     </linearGradient>
-    <linearGradient id="grad3b" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#764ba2;stop-opacity:0.6" />
-      <stop offset="100%" style="stop-color:#4facfe;stop-opacity:0.6" />
+    <linearGradient id="glassGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#818cf8;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#fb4268;stop-opacity:0.2" />
     </linearGradient>
-    <linearGradient id="grad3c" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:0.5" />
-      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:0.5" />
+    <linearGradient id="glassGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fb4268;stop-opacity:0.25" />
+      <stop offset="100%" style="stop-color:#fc5c7d;stop-opacity:0.15" />
     </linearGradient>
-    <filter id="textShadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+
+    <!-- Highlight gradients for glass specular effect -->
+    <linearGradient id="highlight1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.75" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.1" />
+    </linearGradient>
+    <linearGradient id="highlight2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.7" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.25" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="highlight3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.65" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
+
+    <!-- Blur filter for frosted glass effect -->
+    <filter id="glassBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" />
+      <feColorMatrix type="saturate" values="1.2" />
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="1.15" />
+        <feFuncG type="linear" slope="1.15" />
+        <feFuncB type="linear" slope="1.15" />
+      </feComponentTransfer>
     </filter>
+
+    <!-- Shadow filters -->
+    <filter id="glassShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+      <feOffset dx="0" dy="3" result="offsetblur" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="textShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+      <feOffset dx="0" dy="2" result="offsetblur" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Glass gradient for text - less tinted, more transparent -->
+    <linearGradient id="textGlassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="50%" style="stop-color:#667eea;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#818cf8;stop-opacity:0.2" />
+    </linearGradient>
+
+    <!-- Text highlight gradient -->
+    <linearGradient id="textHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.1" />
+    </linearGradient>
+
+    <!-- Strong white highlight for top edge -->
+    <linearGradient id="textEdgeHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#ffffff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
   </defs>
 
-  <!-- Three overlapping glass panes -->
-  <rect x="15" y="35" width="55" height="55" rx="12" fill="url(#grad3a)" stroke="#ffffff" stroke-width="1.5"/>
-  <rect x="30" y="30" width="55" height="55" rx="12" fill="url(#grad3b)" stroke="#ffffff" stroke-width="1.5"/>
-  <rect x="45" y="25" width="55" height="55" rx="12" fill="url(#grad3c)" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- Glass pane 1 (back) -->
+  <g filter="url(#glassShadow)">
+    <rect x="15" y="35" width="55" height="55" rx="12" fill="url(#glassGrad1)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.4"/>
+    <rect x="15" y="35" width="55" height="28" rx="12" fill="url(#highlight1)" style="mix-blend-mode: overlay;" />
+  </g>
 
-  <!-- Text with white stroke for contrast -->
-  <text x="120" y="70" font-family="Arial, sans-serif" font-size="42" font-weight="700"
-        fill="#667eea" stroke="#ffffff" stroke-width="3" paint-order="stroke fill"
-        filter="url(#textShadow)">
-    Frostpane
-  </text>
+  <!-- Glass pane 2 (middle) -->
+  <g filter="url(#glassShadow)">
+    <rect x="30" y="30" width="55" height="55" rx="12" fill="url(#glassGrad2)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.5"/>
+    <rect x="30" y="30" width="55" height="28" rx="12" fill="url(#highlight2)" style="mix-blend-mode: overlay;" />
+  </g>
+
+  <!-- Glass pane 3 (front) -->
+  <g filter="url(#glassShadow)">
+    <rect x="45" y="25" width="55" height="55" rx="12" fill="url(#glassGrad3)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6"/>
+    <rect x="45" y="25" width="55" height="28" rx="12" fill="url(#highlight3)" style="mix-blend-mode: overlay;" />
+  </g>
+
+  <!-- Text with Impact and glass effect -->
+  <g filter="url(#textShadow)">
+    <!-- Base text with glass gradient -->
+    <text x="120" y="78" font-family="Impact, 'Arial Black', sans-serif" font-size="56" font-weight="400"
+          fill="url(#textGlassGrad)" stroke="#ffffff" stroke-width="1" stroke-opacity="0.6" letter-spacing="1">
+      FrostPane
+    </text>
+    <!-- Main highlight overlay for glass effect -->
+    <text x="120" y="78" font-family="Impact, 'Arial Black', sans-serif" font-size="56" font-weight="400"
+          fill="url(#textHighlight)" style="mix-blend-mode: screen;" letter-spacing="1">
+      FrostPane
+    </text>
+    <!-- Strong edge highlight for extra pop -->
+    <text x="120" y="78" font-family="Impact, 'Arial Black', sans-serif" font-size="56" font-weight="400"
+          fill="url(#textEdgeHighlight)" style="mix-blend-mode: screen;" letter-spacing="1">
+      FrostPane
+    </text>
+  </g>
 </svg>
 
