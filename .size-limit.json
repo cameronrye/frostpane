@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Frostpane CSS (gzipped)",
+    "path": "packages/frostpane/dist/frostpane.css",
+    "limit": "10 KB"
+  }
+]

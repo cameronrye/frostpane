@@ -7,9 +7,10 @@ export interface Component {
 
 export const components: Component[] = [
   {
-    id: "music-player",
-    title: "Music Player",
-    description: "A sleek music player widget featuring album artwork, track information, and playback controls. Perfect for music apps and media interfaces.",
+    id: 'music-player',
+    title: 'Music Player',
+    description:
+      'A sleek music player widget featuring album artwork, track information, and playback controls. Perfect for music apps and media interfaces.',
     htmlCode: `<div class="glass-container glass-container--rounded glass-container--large">
   <div class="glass-content">
     <div class="player">
@@ -27,12 +28,13 @@ export const components: Component[] = [
       </div>
     </div>
   </div>
-</div>`
+</div>`,
   },
   {
-    id: "navigation-bar",
-    title: "Navigation Bar",
-    description: "Elegant horizontal navigation with smooth hover effects. Includes icon and text labels for clear wayfinding in your application.",
+    id: 'navigation-bar',
+    title: 'Navigation Bar',
+    description:
+      'Elegant horizontal navigation with smooth hover effects. Includes icon and text labels for clear wayfinding in your application.',
     htmlCode: `<div class="glass-container glass-container--rounded glass-container--medium">
   <div class="glass-content">
     <div class="glass-item glass-item--active">
@@ -52,12 +54,13 @@ export const components: Component[] = [
       Profile
     </div>
   </div>
-</div>`
+</div>`,
   },
   {
-    id: "icon-dock",
-    title: "Icon Dock (with Lens Filter)",
-    description: "macOS-inspired application dock with SVG lens distortion effect. Features smooth hover animations and magnification for an enhanced user experience.",
+    id: 'icon-dock',
+    title: 'Icon Dock (with Lens Filter)',
+    description:
+      'macOS-inspired application dock with SVG lens distortion effect. Features smooth hover animations and magnification for an enhanced user experience.',
     htmlCode: `<div class="glass-container">
   <div class="glass-content">
     <a class="glass-content__link" href="#">
@@ -88,12 +91,13 @@ export const components: Component[] = [
     <feDisplacementMap in="SourceGraphic" in2="blur" scale="50"
                        xChannelSelector="A" yChannelSelector="A" />
   </filter>
-</svg>`
+</svg>`,
   },
   {
-    id: "action-buttons",
-    title: "Action Buttons",
-    description: "Versatile glass buttons perfect for search, notifications, settings, and other common actions. Compact design with clear iconography.",
+    id: 'action-buttons',
+    title: 'Action Buttons',
+    description:
+      'Versatile glass buttons perfect for search, notifications, settings, and other common actions. Compact design with clear iconography.',
     htmlCode: `<div class="glass-container glass-container--small">
   <div class="glass-content">
     <i class="fa-solid fa-magnifying-glass"></i>
@@ -113,7 +117,6 @@ export const components: Component[] = [
     <i class="fa-solid fa-download"></i>
     Download
   </div>
-</div>`
-  }
+</div>`,
+  },
 ];
-
