@@ -1,5 +1,6 @@
 ---
 import '../styles/example-styles.scss';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
@@ -22,6 +23,7 @@ const { title, description = "A customizable frosted glass effect CSS library wi
 </head>
 <body>
   <slot />
+  <Footer />
 </body>
 </html>
 

@@ -15,69 +15,130 @@ import { components } from '../data/components';
     <section id="home" class="section active">
       <div class="section-header">
         <img src="/logo.svg" alt="Frostpane Logo" class="logo-img">
-        <p>A customizable frosted glass effect CSS library</p>
+        <h2 class="tagline">Beautiful frosted glass effects for modern web interfaces</h2>
+        <p class="description">
+          Create stunning glassmorphic UI components with customizable blur, transparency, and shadows.
+          Built with pure CSS, fully responsive, and ready to use in any project.
+        </p>
       </div>
 
-      <div class="container container--mobile">
-        <div class="glass-container glass-container--rounded glass-container--large">
-          <div class="glass-content">
-            <div class="player">
-              <div class="player__thumb">
-                <div class="player__img" role="img" aria-label="Album cover"></div>
-                <div class="player__legend">
-                  <h3 class="player__legend__title">YEM</h3>
-                  <span class="player__legend__sub-title">Phish</span>
+      <div class="demo-showcase">
+        <!-- Feature Highlights -->
+        <div class="feature-cards">
+          <div class="glass-container glass-container--rounded glass-container--medium">
+            <div class="glass-content glass-content--column">
+              <i class="fa-solid fa-wand-magic-sparkles feature-icon" aria-hidden="true"></i>
+              <h3 class="feature-title">Easy to Customize</h3>
+              <p class="feature-description">
+                Fine-tune every aspect using CSS variables. Adjust blur intensity, colors, shadows, and more.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-container glass-container--rounded glass-container--medium">
+            <div class="glass-content glass-content--column">
+              <i class="fa-solid fa-mobile-screen-button feature-icon" aria-hidden="true"></i>
+              <h3 class="feature-title">Fully Responsive</h3>
+              <p class="feature-description">
+                Works seamlessly across all devices and screen sizes with built-in responsive utilities.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-container glass-container--rounded glass-container--medium">
+            <div class="glass-content glass-content--column">
+              <i class="fa-solid fa-bolt feature-icon" aria-hidden="true"></i>
+              <h3 class="feature-title">Performance First</h3>
+              <p class="feature-description">
+                Optimized for smooth animations and GPU-accelerated effects without compromising speed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Demo Components -->
+        <div class="demo-components">
+          <h3 class="demo-section-title">Interactive Components</h3>
+          <p class="demo-section-subtitle">See Frostpane in action with these interactive examples</p>
+
+          <div class="demo-grid">
+            <!-- Music Player Demo -->
+            <div class="demo-item">
+              <div class="demo-item-label">Music Player Widget</div>
+              <div class="glass-container glass-container--rounded glass-container--large">
+                <div class="glass-content">
+                  <div class="player">
+                    <div class="player__thumb">
+                      <div class="player__img" role="img" aria-label="Album cover for Midnight Dreams"></div>
+                      <div class="player__legend">
+                        <h3 class="player__legend__title">Midnight Dreams</h3>
+                        <span class="player__legend__sub-title">Luna & The Echoes</span>
+                      </div>
+                    </div>
+                    <div class="player__controls">
+                      <i class="fa-solid fa-backward-step" aria-label="Previous track"></i>
+                      <i class="fa-solid fa-play" aria-label="Play"></i>
+                      <i class="fa-solid fa-forward-step" aria-label="Next track"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="player__controls">
-                <i class="fa-solid fa-backward-step" aria-label="Previous track"></i>
-                <i class="fa-solid fa-play" aria-label="Play"></i>
-                <i class="fa-solid fa-forward-step" aria-label="Next track"></i>
+            </div>
+
+            <!-- Navigation Bar Demo -->
+            <div class="demo-item">
+              <div class="demo-item-label">Navigation Bar</div>
+              <div class="glass-container glass-container--rounded glass-container--medium">
+                <div class="glass-content">
+                  <div class="glass-item glass-item--active">
+                    <i class="fa-solid fa-house" aria-label="Home"></i>
+                    Home
+                  </div>
+                  <div class="glass-item">
+                    <i class="fa-solid fa-compass" aria-label="Explore"></i>
+                    Explore
+                  </div>
+                  <div class="glass-item">
+                    <i class="fa-solid fa-heart" aria-label="Favorites"></i>
+                    Favorites
+                  </div>
+                  <div class="glass-item">
+                    <i class="fa-solid fa-user" aria-label="Profile"></i>
+                    Profile
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons Demo -->
+            <div class="demo-item demo-item--full">
+              <div class="demo-item-label">Action Buttons</div>
+              <div class="action-buttons-showcase">
+                <div class="glass-container glass-container--rounded glass-container--small">
+                  <div class="glass-content">
+                    <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+                    Search
+                  </div>
+                </div>
+
+                <div class="glass-container glass-container--rounded glass-container--small">
+                  <div class="glass-content">
+                    <i class="fa-solid fa-bell" aria-label="Notifications"></i>
+                    Notifications
+                  </div>
+                </div>
+
+                <div class="glass-container glass-container--rounded glass-container--small">
+                  <div class="glass-content">
+                    <i class="fa-solid fa-gear" aria-label="Settings"></i>
+                    Settings
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <nav class="container container--mobile container--inline">
-          <div class="glass-container glass-container--rounded glass-container--medium">
-            <div class="glass-content">
-              <div class="glass-item glass-item--active">
-                <i class="fa-solid fa-house" aria-label="Home"></i>
-                Home
-              </div>
-              <div class="glass-item">
-                <i class="fa-solid fa-layer-group" aria-label="New"></i>
-                New
-              </div>
-              <div class="glass-item">
-                <i class="fa-solid fa-wifi" aria-label="Wifi"></i>
-                Wifi
-              </div>
-              <div class="glass-item">
-                <i class="fa-solid fa-music" aria-label="Library"></i>
-                Library
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-container glass-container--rounded glass-container--small">
-            <div class="glass-content glass-content--alone">
-              <div class="glass-item">
-                <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
-              </div>
-            </div>
-          </div>
-        </nav>
       </div>
-
-      <section class="container container--small">
-        <div class="glass-container glass-container--small">
-          <div class="glass-content">
-            <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
-            Search
-          </div>
-        </div>
-      </section>
     </section>
 
     <!-- GETTING STARTED SECTION -->
@@ -153,17 +214,17 @@ import { components } from '../data/components';
         <!-- Music Player Component -->
         <ComponentItem
           title="Music Player"
-          description="A complete music player widget with album art and controls."
+          description="A sleek music player widget featuring album artwork, track information, and playback controls. Perfect for music apps and media interfaces."
           htmlCode={components[0].htmlCode}
         >
           <div class="glass-container glass-container--rounded glass-container--large">
             <div class="glass-content">
               <div class="player">
                 <div class="player__thumb">
-                  <div class="player__img" role="img" aria-label="Album cover"></div>
+                  <div class="player__img" role="img" aria-label="Album cover for Cosmic Journey"></div>
                   <div class="player__legend">
-                    <h3 class="player__legend__title">YEM</h3>
-                    <span class="player__legend__sub-title">Phish</span>
+                    <h3 class="player__legend__title">Cosmic Journey</h3>
+                    <span class="player__legend__sub-title">Stellar Waves</span>
                   </div>
                 </div>
                 <div class="player__controls">
@@ -179,7 +240,7 @@ import { components } from '../data/components';
         <!-- Navigation Bar Component -->
         <ComponentItem
           title="Navigation Bar"
-          description="Horizontal navigation with icons and labels."
+          description="Elegant horizontal navigation with smooth hover effects. Includes icon and text labels for clear wayfinding in your application."
           htmlCode={components[1].htmlCode}
         >
           <div class="glass-container glass-container--rounded glass-container--medium">
@@ -189,16 +250,16 @@ import { components } from '../data/components';
                 Home
               </div>
               <div class="glass-item">
-                <i class="fa-solid fa-layer-group" aria-label="New"></i>
-                New
+                <i class="fa-solid fa-compass" aria-label="Explore"></i>
+                Explore
               </div>
               <div class="glass-item">
-                <i class="fa-solid fa-wifi" aria-label="Wifi"></i>
-                Wifi
+                <i class="fa-solid fa-heart" aria-label="Favorites"></i>
+                Favorites
               </div>
               <div class="glass-item">
-                <i class="fa-solid fa-music" aria-label="Library"></i>
-                Library
+                <i class="fa-solid fa-user" aria-label="Profile"></i>
+                Profile
               </div>
             </div>
           </div>
@@ -207,7 +268,7 @@ import { components } from '../data/components';
         <!-- Icon Dock Component -->
         <ComponentItem
           title="Icon Dock (with Lens Filter)"
-          description="macOS-style dock with SVG lens distortion effect."
+          description="macOS-inspired application dock with SVG lens distortion effect. Features smooth hover animations and magnification for an enhanced user experience."
           htmlCode={components[2].htmlCode}
         >
           <div class="glass-container">
@@ -233,14 +294,28 @@ import { components } from '../data/components';
 
         <!-- Search Button Component -->
         <ComponentItem
-          title="Search Button"
-          description="Compact search button with icon and label."
+          title="Action Buttons"
+          description="Versatile glass buttons perfect for search, notifications, settings, and other common actions. Compact design with clear iconography."
           htmlCode={components[3].htmlCode}
         >
-          <div class="glass-container glass-container--small">
-            <div class="glass-content">
-              <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
-              Search
+          <div class="component-button-group">
+            <div class="glass-container glass-container--small">
+              <div class="glass-content">
+                <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+                Search
+              </div>
+            </div>
+            <div class="glass-container glass-container--small">
+              <div class="glass-content">
+                <i class="fa-solid fa-bell" aria-label="Notifications"></i>
+                Alerts
+              </div>
+            </div>
+            <div class="glass-container glass-container--small">
+              <div class="glass-content">
+                <i class="fa-solid fa-download" aria-label="Download"></i>
+                Download
+              </div>
             </div>
           </div>
         </ComponentItem>

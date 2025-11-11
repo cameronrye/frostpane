@@ -9,15 +9,15 @@ export const components: Component[] = [
   {
     id: "music-player",
     title: "Music Player",
-    description: "A complete music player widget with album art and controls.",
+    description: "A sleek music player widget featuring album artwork, track information, and playback controls. Perfect for music apps and media interfaces.",
     htmlCode: `<div class="glass-container glass-container--rounded glass-container--large">
   <div class="glass-content">
     <div class="player">
       <div class="player__thumb">
         <div class="player__img"></div>
         <div class="player__legend">
-          <h3 class="player__legend__title">YEM</h3>
-          <span class="player__legend__sub-title">Phish</span>
+          <h3 class="player__legend__title">Cosmic Journey</h3>
+          <span class="player__legend__sub-title">Stellar Waves</span>
         </div>
       </div>
       <div class="player__controls">
@@ -32,7 +32,7 @@ export const components: Component[] = [
   {
     id: "navigation-bar",
     title: "Navigation Bar",
-    description: "Horizontal navigation with icons and labels.",
+    description: "Elegant horizontal navigation with smooth hover effects. Includes icon and text labels for clear wayfinding in your application.",
     htmlCode: `<div class="glass-container glass-container--rounded glass-container--medium">
   <div class="glass-content">
     <div class="glass-item glass-item--active">
@@ -40,17 +40,24 @@ export const components: Component[] = [
       Home
     </div>
     <div class="glass-item">
-      <i class="fa-solid fa-layer-group"></i>
-      New
+      <i class="fa-solid fa-compass"></i>
+      Explore
     </div>
-    <!-- More items... -->
+    <div class="glass-item">
+      <i class="fa-solid fa-heart"></i>
+      Favorites
+    </div>
+    <div class="glass-item">
+      <i class="fa-solid fa-user"></i>
+      Profile
+    </div>
   </div>
 </div>`
   },
   {
     id: "icon-dock",
     title: "Icon Dock (with Lens Filter)",
-    description: "macOS-style dock with SVG lens distortion effect.",
+    description: "macOS-inspired application dock with SVG lens distortion effect. Features smooth hover animations and magnification for an enhanced user experience.",
     htmlCode: `<div class="glass-container">
   <div class="glass-content">
     <a class="glass-content__link" href="#">
@@ -59,7 +66,15 @@ export const components: Component[] = [
     <a class="glass-content__link" href="#">
       <i class="fa-solid fa-map-location-dot"></i>
     </a>
-    <!-- More icons... -->
+    <a class="glass-content__link" href="#">
+      <i class="fa-solid fa-message"></i>
+    </a>
+    <a class="glass-content__link" href="#">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+    <a class="glass-content__link" href="#">
+      <i class="fa-solid fa-book"></i>
+    </a>
   </div>
 </div>
 
@@ -76,13 +91,27 @@ export const components: Component[] = [
 </svg>`
   },
   {
-    id: "search-button",
-    title: "Search Button",
-    description: "Compact search button with icon and label.",
+    id: "action-buttons",
+    title: "Action Buttons",
+    description: "Versatile glass buttons perfect for search, notifications, settings, and other common actions. Compact design with clear iconography.",
     htmlCode: `<div class="glass-container glass-container--small">
   <div class="glass-content">
     <i class="fa-solid fa-magnifying-glass"></i>
     Search
+  </div>
+</div>
+
+<div class="glass-container glass-container--small">
+  <div class="glass-content">
+    <i class="fa-solid fa-bell"></i>
+    Alerts
+  </div>
+</div>
+
+<div class="glass-container glass-container--small">
+  <div class="glass-content">
+    <i class="fa-solid fa-download"></i>
+    Download
   </div>
 </div>`
   }
