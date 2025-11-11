@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  type: 'info' | 'warning' | 'tip';
+}
+
+const { title, description, icon, type } = Astro.props;
+
+const typeClass = {
+  info: 'compat-note--info',
+  warning: 'compat-note--warning',
+  tip: 'compat-note--tip',
+}[type];
+---
+
+<div class={`compat-note ${typeClass}`}>
+  <div class="compat-note__header">
+    <i class={`${icon} compat-note__icon`} aria-hidden="true"></i>
+    <h4 class="compat-note__title">{title}</h4>
+  </div>
+  <p class="compat-note__description">{description}</p>
+</div>

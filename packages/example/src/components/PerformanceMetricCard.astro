@@ -1,0 +1,101 @@
+---
+interface Props {
+  name: string;
+  value: string;
+  description: string;
+  icon: string;
+  category: 'speed' | 'size' | 'quality';
+}
+
+const { name, value, description, icon, category } = Astro.props;
+
+const categoryColors = {
+  speed: 'primary',
+  size: 'success',
+  quality: 'warning',
+};
+---
+
+<div class="metric-card glass-container glass-container--rounded">
+  <div class="glass-content">
+    <div class="metric-card__icon">
+      <i class={icon} aria-hidden="true"></i>
+    </div>
+    <div class="metric-card__content">
+      <h3 class="metric-card__name">{name}</h3>
+      <div class={`metric-card__value metric-card__value--${categoryColors[category]}`}>
+        {value}
+      </div>
+      <p class="metric-card__description">{description}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .metric-card {
+    transition: all 0.3s ease;
+  }
+
+  .metric-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .metric-card .glass-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .metric-card__icon {
+    font-size: 2.5rem;
+    color: var(--fp-accent-color, #60a5fa);
+  }
+
+  .metric-card__content {
+    width: 100%;
+  }
+
+  .metric-card__name {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .metric-card__value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+  }
+
+  .metric-card__value--primary {
+    color: var(--fp-primary-color, #3b82f6);
+  }
+
+  .metric-card__value--success {
+    color: var(--fp-success-color, #10b981);
+  }
+
+  .metric-card__value--warning {
+    color: var(--fp-warning-color, #f59e0b);
+  }
+
+  .metric-card__description {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .metric-card .glass-content {
+      padding: 1.5rem 1rem;
+    }
+
+    .metric-card__value {
+      font-size: 1.75rem;
+    }
+  }
+</style>

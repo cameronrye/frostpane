@@ -1,0 +1,83 @@
+---
+interface Props {
+  name: string;
+  icon: string;
+  description: string;
+  installCommand: string;
+  codeExample: string;
+  notes?: string;
+}
+
+const { name, icon, description, installCommand, codeExample, notes } = Astro.props;
+---
+
+<div class="integration-card glass-container glass-container--rounded glass-container--large">
+  <div class="glass-content glass-content--column">
+    <div class="integration-card__header">
+      <i class={`${icon} integration-card__icon`} aria-hidden="true"></i>
+      <h3 class="integration-card__title">{name}</h3>
+    </div>
+
+    <p class="integration-card__description">{description}</p>
+
+    <div class="integration-card__install">
+      <div class="integration-card__label">Installation</div>
+      <div class="integration-card__command">
+        <code>{installCommand}</code>
+        <button
+          class="integration-card__copy-btn"
+          data-copy={installCommand}
+          aria-label={`Copy ${name} installation command`}
+        >
+          <i class="fa-solid fa-copy"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="integration-card__code">
+      <div class="integration-card__label">Usage Example</div>
+      <div class="integration-card__code-block">
+        <pre><code>{codeExample}</code></pre>
+        <button
+          class="integration-card__copy-btn integration-card__copy-btn--code"
+          data-copy={codeExample}
+          aria-label={`Copy ${name} code example`}
+        >
+          <i class="fa-solid fa-copy"></i>
+        </button>
+      </div>
+    </div>
+
+    {
+      notes && (
+        <div class="integration-card__notes">
+          <i class="fa-solid fa-circle-info" aria-hidden="true" />
+          <span>{notes}</span>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  // Copy to clipboard functionality
+  document.querySelectorAll('.integration-card__copy-btn').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const textToCopy = button.getAttribute('data-copy');
+      if (textToCopy) {
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          const icon = button.querySelector('i');
+          if (icon) {
+            icon.className = 'fa-solid fa-check';
+            setTimeout(() => {
+              icon.className = 'fa-solid fa-copy';
+            }, 2000);
+          }
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      }
+    });
+  });
+</script>

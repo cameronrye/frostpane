@@ -118,6 +118,44 @@ export default [
       'no-console': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
+  }, // Example site TypeScript files - Browser environment
+  {
+    files: ['packages/example/src/**/*.ts'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        console: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        HTMLElement: 'readonly',
+        Element: 'readonly',
+        URL: 'readonly',
+        Blob: 'readonly',
+        btoa: 'readonly',
+        atob: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...tsPlugin.configs.recommended.rules,
+      'no-console': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
+    },
   }, // Astro files
   {
     files: ['**/*.astro'],

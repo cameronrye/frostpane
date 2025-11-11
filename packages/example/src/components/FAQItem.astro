@@ -1,0 +1,40 @@
+---
+import CodeBlock from './CodeBlock.astro';
+
+interface Props {
+  question: string;
+  answer: string;
+  category: 'general' | 'performance' | 'compatibility' | 'customization' | 'accessibility';
+  code?: string;
+}
+
+const { question, answer, category, code } = Astro.props;
+
+const categoryIcon = {
+  general: 'fa-solid fa-circle-question',
+  performance: 'fa-solid fa-gauge-high',
+  compatibility: 'fa-solid fa-browser',
+  customization: 'fa-solid fa-palette',
+  accessibility: 'fa-solid fa-universal-access',
+}[category];
+
+const categoryLabel = {
+  general: 'General',
+  performance: 'Performance',
+  compatibility: 'Compatibility',
+  customization: 'Customization',
+  accessibility: 'Accessibility',
+}[category];
+---
+
+<div class="faq-item">
+  <div class="faq-item__header">
+    <h3 class="faq-item__question">{question}</h3>
+    <span class="faq-item__category">
+      <i class={`${categoryIcon} faq-item__category-icon`} aria-hidden="true"></i>
+      {categoryLabel}
+    </span>
+  </div>
+  <p class="faq-item__answer">{answer}</p>
+  {code && <CodeBlock code={code} label="Example" />}
+</div>

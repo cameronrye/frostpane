@@ -1,0 +1,221 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  dos: string[];
+  donts: string[];
+  example?: string;
+  category: 'design' | 'performance' | 'accessibility' | 'ux';
+  icon: string;
+}
+
+const { title, description, dos, donts, example, category, icon } = Astro.props;
+
+const categoryColors = {
+  design: 'primary',
+  performance: 'success',
+  accessibility: 'info',
+  ux: 'warning',
+};
+---
+
+<div class="practice-card glass-container glass-container--rounded">
+  <div class="glass-content glass-content--column">
+    <div class="practice-card__header">
+      <div class="practice-card__icon">
+        <i class={icon} aria-hidden="true"></i>
+      </div>
+      <div class="practice-card__title-group">
+        <h3 class="practice-card__title">{title}</h3>
+        <span class={`glass-badge glass-badge--${categoryColors[category]}`}>
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </span>
+      </div>
+    </div>
+    <p class="practice-card__description">{description}</p>
+
+    <div class="practice-card__lists">
+      <div class="practice-card__list practice-card__list--do">
+        <h4>
+          <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+          Do
+        </h4>
+        <ul>
+          {dos.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <div class="practice-card__list practice-card__list--dont">
+        <h4>
+          <i class="fa-solid fa-times-circle" aria-hidden="true"></i>
+          Don't
+        </h4>
+        <ul>
+          {donts.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    {
+      example && (
+        <div class="practice-card__example">
+          <div class="code-header">
+            <span class="code-language">Example</span>
+            <button
+              class="glass-btn glass-btn--small copy-btn"
+              data-code={example}
+              aria-label="Copy code"
+            >
+              <i class="fa-solid fa-copy" aria-hidden="true" />
+              Copy
+            </button>
+          </div>
+          <pre>
+            <code>{example}</code>
+          </pre>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .practice-card {
+    transition: all 0.3s ease;
+  }
+
+  .practice-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .practice-card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .practice-card__icon {
+    font-size: 1.75rem;
+    color: var(--fp-accent-color, #60a5fa);
+    flex-shrink: 0;
+  }
+
+  .practice-card__title-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .practice-card__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .practice-card__description {
+    margin: 0 0 1.5rem 0;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .practice-card__lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .practice-card__list h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .practice-card__list--do h4 {
+    color: var(--fp-success-color, #10b981);
+  }
+
+  .practice-card__list--dont h4 {
+    color: var(--fp-danger-color, #ef4444);
+  }
+
+  .practice-card__list ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style: none;
+  }
+
+  .practice-card__list--do ul li::before {
+    content: '✓';
+    color: var(--fp-success-color, #10b981);
+    font-weight: bold;
+    display: inline-block;
+    width: 1.25rem;
+    margin-left: -1.25rem;
+  }
+
+  .practice-card__list--dont ul li::before {
+    content: '✗';
+    color: var(--fp-danger-color, #ef4444);
+    font-weight: bold;
+    display: inline-block;
+    width: 1.25rem;
+    margin-left: -1.25rem;
+  }
+
+  .practice-card__list ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .practice-card__example {
+    margin-top: 1.5rem;
+  }
+
+  .code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px 8px 0 0;
+  }
+
+  .code-language {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  pre {
+    margin: 0;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 8px 8px;
+    overflow-x: auto;
+  }
+
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #e5e7eb;
+  }
+
+  @media (max-width: 768px) {
+    .practice-card__lists {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .practice-card__header {
+      flex-direction: column;
+    }
+  }
+</style>
