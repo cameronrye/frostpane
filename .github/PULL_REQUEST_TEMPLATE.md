@@ -17,9 +17,9 @@ Please delete options that are not relevant.
 
 ## Changes Made
 
-- 
-- 
-- 
+-
+-
+-
 
 ## How Has This Been Tested?
 
@@ -44,4 +44,3 @@ Please describe the tests you ran to verify your changes.
 ## Screenshots (if applicable)
 
 Add screenshots to help explain your changes.
-

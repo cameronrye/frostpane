@@ -13,7 +13,7 @@ npm install @frostpane/core
 ### Using the compiled CSS
 
 ```html
-<link rel="stylesheet" href="node_modules/@frostpane/core/dist/frostpane.css">
+<link rel="stylesheet" href="node_modules/@frostpane/core/dist/frostpane.css" />
 ```
 
 Or import in your JavaScript/CSS:
@@ -32,9 +32,7 @@ import '@frostpane/core/css';
 
 ```html
 <div class="glass-container">
-  <div class="glass-content">
-    Your content here
-  </div>
+  <div class="glass-content">Your content here</div>
 </div>
 ```
 
@@ -42,9 +40,7 @@ import '@frostpane/core/css';
 
 ```html
 <div class="glass-container glass-container--rounded">
-  <div class="glass-content">
-    Rounded glass effect
-  </div>
+  <div class="glass-content">Rounded glass effect</div>
 </div>
 ```
 
@@ -59,8 +55,13 @@ For the lens distortion effect, include this SVG filter in your HTML:
       <feFuncA type="identity" />
     </feComponentTransfer>
     <feGaussianBlur in="alpha" stdDeviation="50" result="blur" />
-    <feDisplacementMap in="SourceGraphic" in2="blur" scale="50"
-                       xChannelSelector="A" yChannelSelector="A" />
+    <feDisplacementMap
+      in="SourceGraphic"
+      in2="blur"
+      scale="50"
+      xChannelSelector="A"
+      yChannelSelector="A"
+    />
   </filter>
 </svg>
 ```
@@ -80,6 +81,7 @@ All aspects of the glass effect can be customized using CSS custom properties:
 ### Available CSS Custom Properties
 
 #### Colors
+
 - `--fp-bg-color`: Glass background tint (default: `rgba(255, 255, 255, 0.25)`)
 - `--fp-highlight`: Glass highlight/specular color (default: `rgba(255, 255, 255, 0.75)`)
 - `--fp-text`: Text color (default: `#ffffff`)
@@ -87,11 +89,13 @@ All aspects of the glass effect can be customized using CSS custom properties:
 - `--fp-grey`: Secondary text color (default: `#444739`)
 
 #### Border Radius
+
 - `--fp-border-radius`: Default border radius (default: `2rem`)
 - `--fp-border-radius-rounded`: Rounded variant (default: `3rem`)
 - `--fp-border-radius-small`: Small elements (default: `0.5rem`)
 
 #### Shadows
+
 - `--fp-shadow-color-primary`: Primary shadow color (default: `rgba(0, 0, 0, 0.2)`)
 - `--fp-shadow-color-secondary`: Secondary shadow color (default: `rgba(0, 0, 0, 0.1)`)
 - `--fp-shadow-blur-primary`: Primary shadow blur (default: `6px`)
@@ -100,11 +104,13 @@ All aspects of the glass effect can be customized using CSS custom properties:
 - `--fp-shadow-offset-y`: Vertical shadow offset (default: `6px`)
 
 #### Effects
+
 - `--fp-backdrop-blur`: Backdrop blur amount (default: `4px`)
 - `--fp-filter-saturate`: Color saturation (default: `120%`)
 - `--fp-filter-brightness`: Brightness adjustment (default: `1.15`)
 
 #### Transitions
+
 - `--fp-transition-duration`: Main transition duration (default: `0.4s`)
 - `--fp-transition-timing`: Timing function (default: `cubic-bezier(0.175, 0.885, 0.32, 2.2)`)
 - `--fp-transition-fast`: Fast interactions (default: `0.2s`)
@@ -112,12 +118,14 @@ All aspects of the glass effect can be customized using CSS custom properties:
 - `--fp-transition-slow`: Slow interactions (default: `0.3s`)
 
 #### Interactive
+
 - `--fp-hover-scale`: Scale on hover (default: `1.1`)
 - `--fp-active-scale`: Scale on active/click (default: `0.95`)
 
 ## Available Classes
 
 ### Container Classes
+
 - `.glass-container`: Base glass container
 - `.glass-container--rounded`: Rounded corners variant
 - `.glass-container--large`: Large size variant
@@ -125,16 +133,19 @@ All aspects of the glass effect can be customized using CSS custom properties:
 - `.glass-container--small`: Small size variant
 
 ### Content Classes
+
 - `.glass-content`: Content wrapper (required inside glass-container)
 - `.glass-content__link`: Interactive link with hover effects
 
 ### Form Components
+
 - `.glass-input`: Styled input field with glass effect
 - `.glass-button`: Primary button with glass styling
 - `.glass-button--secondary`: Secondary button variant
 - `.glass-button--outline`: Outline button variant
 
 ### Utility Classes
+
 - `.interactive-scale`: Standard interactive scale animation
 - `.interactive-scale--fast`: Fast scale animation
 - `.interactive-scale--slow`: Slow scale animation
@@ -144,7 +155,7 @@ All aspects of the glass effect can be customized using CSS custom properties:
 ### Glass Input
 
 ```html
-<input type="text" class="glass-input" placeholder="Enter text...">
+<input type="text" class="glass-input" placeholder="Enter text..." />
 ```
 
 ### Glass Buttons
@@ -166,4 +177,3 @@ All aspects of the glass effect can be customized using CSS custom properties:
 ## License
 
 MIT
-

@@ -3,22 +3,60 @@ import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import ExampleItem from '../components/ExampleItem.astro';
 import ComponentItem from '../components/ComponentItem.astro';
+import UseCaseItem from '../components/UseCaseItem.astro';
+import TutorialItem from '../components/TutorialItem.astro';
+import BrowserCard from '../components/BrowserCard.astro';
+import CompatibilityNote from '../components/CompatibilityNote.astro';
+import FAQItem from '../components/FAQItem.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import AccessibilityCard from '../components/AccessibilityCard.astro';
+import ApiVariableCard from '../components/ApiVariableCard.astro';
+import BackgroundSwitcher from '../components/BackgroundSwitcher.astro';
+import IntegrationCard from '../components/IntegrationCard.astro';
+import SearchFilter from '../components/SearchFilter.astro';
+import ViewportToggle from '../components/ViewportToggle.astro';
+import PerformanceMetricCard from '../components/PerformanceMetricCard.astro';
+import PerformanceTipCard from '../components/PerformanceTipCard.astro';
+import BestPracticeCard from '../components/BestPracticeCard.astro';
+import TroubleshootingCard from '../components/TroubleshootingCard.astro';
+import ResourceCard from '../components/ResourceCard.astro';
+import ChangelogEntry from '../components/ChangelogEntry.astro';
 import { examples } from '../data/examples';
 import { components } from '../data/components';
+import { useCases } from '../data/useCases';
+import { tutorials } from '../data/tutorials';
+import { browsers, compatibilityNotes, fallbackExample } from '../data/browserSupport';
+import { faqItems } from '../data/faq';
+import { accessibilityFeatures, accessibilityCodeExample } from '../data/accessibility';
+import { playgroundVariables, playgroundPresets } from '../data/playground';
+import { apiCategories, apiVariables } from '../data/apiDocs';
+import { integrations } from '../data/integrations';
+import { performanceMetrics, performanceTips, benchmarkData } from '../data/performance';
+import { bestPractices, designGuidelines } from '../data/bestPractices';
+import { troubleshootingIssues, debuggingTips } from '../data/troubleshooting';
+import { resources, relatedLibraries, communityLinks } from '../data/resources';
+import { changelog, upcomingFeatures } from '../data/changelog';
+
+// Get unique categories for filtering
+const exampleCategories = [...new Set(examples.map((ex) => ex.category))].sort();
+const componentCategories = [...new Set(components.map((comp) => comp.category))].sort();
+const useCaseCategories = [...new Set(useCases.map((uc) => uc.category))].sort();
+const tutorialCategories = [...new Set(tutorials.map((tut) => tut.category))].sort();
 ---
 
 <Layout title="Frostpane - Customizable Frosted Glass Effect Library">
   <Navigation />
+  <BackgroundSwitcher />
 
   <main>
     <!-- HOME SECTION -->
     <section id="home" class="section active">
       <div class="section-header">
-        <img src={`${import.meta.env.BASE_URL}/logo.svg`} alt="Frostpane Logo" class="logo-img">
+        <img src={`${import.meta.env.BASE_URL}/logo.svg`} alt="Frostpane Logo" class="logo-img" />
         <h2 class="tagline">Beautiful frosted glass effects for modern web interfaces</h2>
         <p class="description">
-          Create stunning glassmorphic UI components with customizable blur, transparency, and shadows.
-          Built with pure CSS, fully responsive, and ready to use in any project.
+          Create stunning glassmorphic UI components with customizable blur, transparency, and
+          shadows. Built with pure CSS, fully responsive, and ready to use in any project.
         </p>
       </div>
 
@@ -30,7 +68,8 @@ import { components } from '../data/components';
               <i class="fa-solid fa-wand-magic-sparkles feature-icon" aria-hidden="true"></i>
               <h3 class="feature-title">Easy to Customize</h3>
               <p class="feature-description">
-                Fine-tune every aspect using CSS variables. Adjust blur intensity, colors, shadows, and more.
+                Fine-tune every aspect using CSS variables. Adjust blur intensity, colors, shadows,
+                and more.
               </p>
             </div>
           </div>
@@ -40,7 +79,8 @@ import { components } from '../data/components';
               <i class="fa-solid fa-mobile-screen-button feature-icon" aria-hidden="true"></i>
               <h3 class="feature-title">Fully Responsive</h3>
               <p class="feature-description">
-                Works seamlessly across all devices and screen sizes with built-in responsive utilities.
+                Works seamlessly across all devices and screen sizes with built-in responsive
+                utilities.
               </p>
             </div>
           </div>
@@ -50,7 +90,8 @@ import { components } from '../data/components';
               <i class="fa-solid fa-bolt feature-icon" aria-hidden="true"></i>
               <h3 class="feature-title">Performance First</h3>
               <p class="feature-description">
-                Optimized for smooth animations and GPU-accelerated effects without compromising speed.
+                Optimized for smooth animations and GPU-accelerated effects without compromising
+                speed.
               </p>
             </div>
           </div>
@@ -59,7 +100,9 @@ import { components } from '../data/components';
         <!-- Interactive Demo Components -->
         <div class="demo-components">
           <h3 class="demo-section-title">Interactive Components</h3>
-          <p class="demo-section-subtitle">See Frostpane in action with these interactive examples</p>
+          <p class="demo-section-subtitle">
+            See Frostpane in action with these interactive examples
+          </p>
 
           <div class="demo-grid">
             <!-- Music Player Demo -->
@@ -69,10 +112,15 @@ import { components } from '../data/components';
                 <div class="glass-content">
                   <div class="player">
                     <div class="player__thumb">
-                      <div class="player__img" role="img" aria-label="Album cover for Midnight Dreams"></div>
+                      <div
+                        class="player__img"
+                        role="img"
+                        aria-label="Album cover for Midnight Dreams"
+                      >
+                      </div>
                       <div class="player__legend">
-                        <h3 class="player__legend__title">Midnight Dreams</h3>
-                        <span class="player__legend__sub-title">Luna & The Echoes</span>
+                        <h3 class="player__legend-title">Midnight Dreams</h3>
+                        <span class="player__legend-sub-title">Luna & The Echoes</span>
                       </div>
                     </div>
                     <div class="player__controls">
@@ -148,6 +196,72 @@ import { components } from '../data/components';
         <p>Quick guide to using Frostpane</p>
       </div>
 
+      <div class="glass-container glass-container--rounded" style="margin-bottom: 2rem;">
+        <div class="glass-content glass-content--column">
+          <h2>Quick Start Options</h2>
+          <div class="quick-start-options">
+            <div class="quick-start-option">
+              <h3>
+                <i class="fa-brands fa-npm" aria-hidden="true"></i>
+                Install via npm
+              </h3>
+              <div class="install-command">
+                <code>npm install frostpane</code>
+                <button
+                  class="glass-btn glass-btn--small copy-install-btn"
+                  data-command="npm install frostpane"
+                  aria-label="Copy npm install command"
+                >
+                  <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                  Copy
+                </button>
+              </div>
+            </div>
+
+            <div class="quick-start-option">
+              <h3>
+                <i class="fa-solid fa-link" aria-hidden="true"></i>
+                Use CDN
+              </h3>
+              <div class="install-command">
+                <code>https://cdn.jsdelivr.net/npm/frostpane@latest/dist/frostpane.css</code>
+                <button
+                  class="glass-btn glass-btn--small copy-install-btn"
+                  data-command='<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@latest/dist/frostpane.css">'
+                  aria-label="Copy CDN link"
+                >
+                  <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                  Copy
+                </button>
+              </div>
+            </div>
+
+            <div class="quick-start-option">
+              <h3>
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+                Download Files
+              </h3>
+              <div class="download-buttons">
+                <button
+                  class="glass-btn glass-btn--primary download-css-btn"
+                  aria-label="Download CSS file"
+                >
+                  <i class="fa-solid fa-file-code" aria-hidden="true"></i>
+                  Download CSS
+                </button>
+                <button
+                  class="glass-btn glass-btn--secondary download-template-btn"
+                  aria-label="Download starter template"
+                >
+                  <i class="fa-solid fa-file-code" aria-hidden="true"></i>
+                  Starter Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="getting-started">
         <div class="step">
           <h3>1. Installation</h3>
@@ -185,9 +299,201 @@ import { components } from '../data/components';
   --fp-bg-color: rgba(0, 0, 0, 0.4);
   --fp-backdrop-blur: 12px;
   --fp-border-radius: 1rem;
-}`}></code></pre>
+}`} /></pre>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND SECTION -->
+    <section id="playground" class="section">
+      <div class="section-header">
+        <h1>Interactive Playground</h1>
+        <p>Customize CSS variables in real-time and see the results instantly</p>
+      </div>
+
+      <div class="playground-container">
+        <!-- Presets -->
+        <div class="playground-presets">
+          <h3>Presets</h3>
+          <div class="preset-buttons">
+            {
+              playgroundPresets.map((preset) => (
+                <button class="preset-btn" data-preset={preset.name}>
+                  <strong>{preset.name}</strong>
+                  <span>{preset.description}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="playground-controls">
+          <h3>Customize Variables</h3>
+
+          {
+            ['colors', 'glass', 'transitions'].map((category) => (
+              <div class="control-category">
+                <h4 class="category-title">
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </h4>
+                <div class="controls-grid">
+                  {playgroundVariables
+                    .filter((v) => v.category === category)
+                    .map((variable) => (
+                      <div class="control-item">
+                        <label for={variable.cssVar}>{variable.name}</label>
+                        {variable.type === 'range' ? (
+                          <div class="range-control">
+                            <input
+                              type="range"
+                              id={variable.cssVar}
+                              data-css-var={variable.cssVar}
+                              data-unit={variable.unit}
+                              min={variable.min}
+                              max={variable.max}
+                              step={variable.step}
+                              value={variable.defaultValue}
+                            />
+                            <span class="range-value" data-value-for={variable.cssVar}>
+                              {variable.defaultValue}
+                              {variable.unit}
+                            </span>
+                          </div>
+                        ) : variable.type === 'color' ? (
+                          <input
+                            type="color"
+                            id={variable.cssVar}
+                            data-css-var={variable.cssVar}
+                            value={
+                              variable.defaultValue.startsWith('#')
+                                ? variable.defaultValue
+                                : '#ffffff'
+                            }
+                            class="color-input"
+                          />
+                        ) : null}
+                      </div>
+                    ))}
+                </div>
+              </div>
+            ))
+          }
+
+          <div class="playground-actions">
+            <button id="copy-css-btn">
+              <i class="fa-solid fa-copy" aria-hidden="true"></i>
+              Copy CSS
+            </button>
+            <button id="reset-btn">
+              <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+              Reset to Default
+            </button>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="playground-preview">
+          <h3>Live Preview</h3>
+          <div class="preview-container" id="playground-preview">
+            <div class="glass-container glass-container--rounded">
+              <div class="glass-content">
+                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                <div>
+                  <h4>Glass Effect</h4>
+                  <p>Customize the variables to see changes in real-time</p>
+                </div>
+              </div>
+            </div>
+
+            <button class="glass-button">
+              <i class="fa-solid fa-heart" aria-hidden="true"></i>
+              Button Example
+            </button>
+
+            <div class="glass-card-preview">
+              <h4>Card Title</h4>
+              <p>
+                This is a preview card showing how your customizations affect different components.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API DOCUMENTATION SECTION -->
+    <section id="api" class="section">
+      <div class="section-header">
+        <h1>API Documentation</h1>
+        <p>Complete reference of all CSS custom properties</p>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="api-search-container">
+        <div class="api-search-wrapper">
+          <i class="fa-solid fa-search api-search-icon" aria-hidden="true"></i>
+          <input
+            type="text"
+            id="api-search"
+            class="api-search-input"
+            placeholder="Search variables by name, CSS variable, or description..."
+            aria-label="Search API variables"
+          />
+          <button id="api-search-clear" class="api-search-clear" aria-label="Clear search">
+            <i class="fa-solid fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="api-filters">
+        <button class="api-filter-btn active" data-category="all">
+          <i class="fa-solid fa-list" aria-hidden="true"></i>
+          All Variables
+        </button>
+        {
+          apiCategories.map((category) => (
+            <button class="api-filter-btn" data-category={category.id}>
+              <i class={`fa-solid ${category.icon}`} aria-hidden="true" />
+              {category.name}
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Category Sections -->
+      {
+        apiCategories.map((category) => {
+          const categoryVars = apiVariables.filter((v) => v.category === category.id);
+          if (categoryVars.length === 0) return null;
+
+          return (
+            <div class="api-category-section" data-category={category.id}>
+              <div class="api-category-header">
+                <i class={`fa-solid ${category.icon} api-category-icon`} aria-hidden="true" />
+                <div>
+                  <h2 class="api-category-title">{category.name}</h2>
+                  <p class="api-category-description">{category.description}</p>
+                </div>
+              </div>
+
+              <div class="api-variables-grid">
+                {categoryVars.map((variable) => (
+                  <ApiVariableCard variable={variable} />
+                ))}
+              </div>
+            </div>
+          );
+        })
+      }
+
+      <!-- No Results Message -->
+      <div id="api-no-results" class="api-no-results" style="display: none;">
+        <i class="fa-solid fa-search" aria-hidden="true"></i>
+        <h3>No variables found</h3>
+        <p>Try adjusting your search or filter criteria</p>
       </div>
     </section>
 
@@ -198,8 +504,29 @@ import { components } from '../data/components';
         <p>Explore different glass effect variations</p>
       </div>
 
-      <div class="examples-grid">
-        {examples.map((example) => <ExampleItem {...example} />)}
+      <SearchFilter targetSection="examples" categories={exampleCategories} />
+      <ViewportToggle targetSection="examples" />
+
+      <div class="examples-grid" id="examples-grid">
+        {
+          examples.map((example) => (
+            <div
+              class="example-item-wrapper"
+              data-title={example.title.toLowerCase()}
+              data-description={example.description.toLowerCase()}
+              data-category={example.category}
+              data-tags={example.tags.join(',')}
+            >
+              <ExampleItem {...example} />
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="no-results" id="examples-no-results" style="display: none;">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <h3>No examples found</h3>
+        <p>Try adjusting your search or filter criteria</p>
       </div>
     </section>
 
@@ -210,21 +537,27 @@ import { components } from '../data/components';
         <p>Pre-built component patterns</p>
       </div>
 
-      <div class="components-grid">
+      <SearchFilter targetSection="components" categories={componentCategories} />
+      <ViewportToggle targetSection="components" />
+
+      <div class="components-grid" id="components-grid">
         <!-- Music Player Component -->
         <ComponentItem
           title="Music Player"
           description="A sleek music player widget featuring album artwork, track information, and playback controls. Perfect for music apps and media interfaces."
           htmlCode={components[0].htmlCode}
+          category={components[0].category}
+          tags={components[0].tags}
         >
           <div class="glass-container glass-container--rounded glass-container--large">
             <div class="glass-content">
               <div class="player">
                 <div class="player__thumb">
-                  <div class="player__img" role="img" aria-label="Album cover for Cosmic Journey"></div>
+                  <div class="player__img" role="img" aria-label="Album cover for Cosmic Journey">
+                  </div>
                   <div class="player__legend">
-                    <h3 class="player__legend__title">Cosmic Journey</h3>
-                    <span class="player__legend__sub-title">Stellar Waves</span>
+                    <h3 class="player__legend-title">Cosmic Journey</h3>
+                    <span class="player__legend-sub-title">Stellar Waves</span>
                   </div>
                 </div>
                 <div class="player__controls">
@@ -242,6 +575,8 @@ import { components } from '../data/components';
           title="Navigation Bar"
           description="Elegant horizontal navigation with smooth hover effects. Includes icon and text labels for clear wayfinding in your application."
           htmlCode={components[1].htmlCode}
+          category={components[1].category}
+          tags={components[1].tags}
         >
           <div class="glass-container glass-container--rounded glass-container--medium">
             <div class="glass-content">
@@ -270,6 +605,8 @@ import { components } from '../data/components';
           title="Icon Dock (with Lens Filter)"
           description="macOS-inspired application dock with SVG lens distortion effect. Features smooth hover animations and magnification for an enhanced user experience."
           htmlCode={components[2].htmlCode}
+          category={components[2].category}
+          tags={components[2].tags}
         >
           <div class="glass-container">
             <div class="glass-content">
@@ -297,6 +634,8 @@ import { components } from '../data/components';
           title="Action Buttons"
           description="Versatile glass buttons perfect for search, notifications, settings, and other common actions. Compact design with clear iconography."
           htmlCode={components[3].htmlCode}
+          category={components[3].category}
+          tags={components[3].tags}
         >
           <div class="component-button-group">
             <div class="glass-container glass-container--small">
@@ -319,19 +658,1699 @@ import { components } from '../data/components';
             </div>
           </div>
         </ComponentItem>
+
+        <!-- Form Inputs Component -->
+        <ComponentItem
+          title="Form Inputs"
+          description="Beautiful glass-styled input fields with labels and icons. Perfect for login forms, search bars, and data entry interfaces."
+          htmlCode={components[4].htmlCode}
+          category={components[4].category}
+          tags={components[4].tags}
+        >
+          <div class="glass-form">
+            <div class="glass-form__group">
+              <label class="glass-form__label" for="demo-email">Email</label>
+              <div class="glass-form__input-wrapper">
+                <i class="fa-solid fa-envelope glass-form__icon" aria-hidden="true"></i>
+                <input
+                  type="email"
+                  id="demo-email"
+                  class="glass-form__input"
+                  placeholder="Enter your email"
+                />
+              </div>
+            </div>
+
+            <div class="glass-form__group">
+              <label class="glass-form__label" for="demo-password">Password</label>
+              <div class="glass-form__input-wrapper">
+                <i class="fa-solid fa-lock glass-form__icon" aria-hidden="true"></i>
+                <input
+                  type="password"
+                  id="demo-password"
+                  class="glass-form__input"
+                  placeholder="Enter your password"
+                />
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Textarea Component -->
+        <ComponentItem
+          title="Textarea"
+          description="Glass-styled textarea for longer text input. Ideal for comments, messages, and multi-line content."
+          htmlCode={components[5].htmlCode}
+          category={components[5].category}
+          tags={components[5].tags}
+        >
+          <div class="glass-form">
+            <div class="glass-form__group">
+              <label class="glass-form__label" for="demo-message">Message</label>
+              <textarea
+                id="demo-message"
+                class="glass-form__textarea"
+                placeholder="Write your message here..."
+                rows="5"></textarea>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Select Dropdown Component -->
+        <ComponentItem
+          title="Select Dropdown"
+          description="Elegant dropdown select with glass styling. Great for option selection and form controls."
+          htmlCode={components[6].htmlCode}
+          category={components[6].category}
+          tags={components[6].tags}
+        >
+          <div class="glass-form">
+            <div class="glass-form__group">
+              <label class="glass-form__label" for="demo-country">Country</label>
+              <div class="glass-form__select-wrapper">
+                <i class="fa-solid fa-globe glass-form__icon" aria-hidden="true"></i>
+                <select id="demo-country" class="glass-form__select">
+                  <option value="">Select a country</option>
+                  <option value="us">United States</option>
+                  <option value="uk">United Kingdom</option>
+                  <option value="ca">Canada</option>
+                  <option value="au">Australia</option>
+                </select>
+                <i class="fa-solid fa-chevron-down glass-form__select-arrow" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Checkboxes & Radio Buttons Component -->
+        <ComponentItem
+          title="Checkboxes & Radio Buttons"
+          description="Custom-styled checkboxes and radio buttons with glass effects. Perfect for forms and settings."
+          htmlCode={components[7].htmlCode}
+          category={components[7].category}
+          tags={components[7].tags}
+        >
+          <div class="glass-form">
+            <div class="glass-form__group">
+              <label class="glass-form__label">Preferences</label>
+
+              <label class="glass-form__checkbox">
+                <input type="checkbox" />
+                <span class="glass-form__checkbox-custom"></span>
+                <span class="glass-form__checkbox-label">Email notifications</span>
+              </label>
+
+              <label class="glass-form__checkbox">
+                <input type="checkbox" />
+                <span class="glass-form__checkbox-custom"></span>
+                <span class="glass-form__checkbox-label">SMS notifications</span>
+              </label>
+            </div>
+
+            <div class="glass-form__group">
+              <label class="glass-form__label">Theme</label>
+
+              <label class="glass-form__radio">
+                <input type="radio" name="demo-theme" value="light" />
+                <span class="glass-form__radio-custom"></span>
+                <span class="glass-form__radio-label">Light</span>
+              </label>
+
+              <label class="glass-form__radio">
+                <input type="radio" name="demo-theme" value="dark" />
+                <span class="glass-form__radio-custom"></span>
+                <span class="glass-form__radio-label">Dark</span>
+              </label>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Modal Dialog Component -->
+        <ComponentItem
+          title="Modal Dialog"
+          description="Centered modal with glass backdrop overlay. Perfect for confirmations, alerts, and focused content display."
+          htmlCode={components[8].htmlCode}
+          category={components[8].category}
+          tags={components[8].tags}
+        >
+          <button class="glass-container glass-container--small demo-modal-trigger">
+            <div class="glass-content">
+              <i class="fa-solid fa-window-restore" aria-hidden="true"></i>
+              Open Modal
+            </div>
+          </button>
+
+          <div class="glass-modal" id="demo-modal">
+            <div class="glass-modal__backdrop"></div>
+            <div class="glass-modal__content">
+              <div class="glass-modal__header">
+                <h3 class="glass-modal__title">Welcome!</h3>
+                <button class="glass-modal__close" aria-label="Close modal">
+                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="glass-modal__body">
+                <p>
+                  This is a beautiful glass modal dialog. It features a blurred backdrop and smooth
+                  animations.
+                </p>
+              </div>
+              <div class="glass-modal__footer">
+                <button class="glass-btn glass-btn--secondary">Cancel</button>
+                <button class="glass-btn glass-btn--primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Profile Card Component -->
+        <ComponentItem
+          title="Profile Card"
+          description="Elegant user profile card with avatar, name, bio, and stats. Perfect for team pages and user directories."
+          htmlCode={components[9].htmlCode}
+          category={components[9].category}
+          tags={components[9].tags}
+        >
+          <div class="glass-card glass-card--profile">
+            <div class="glass-card__avatar">
+              <img src="https://i.pravatar.cc/150?img=12" alt="User avatar" />
+            </div>
+            <h3 class="glass-card__name">Alex Johnson</h3>
+            <p class="glass-card__role">Senior Designer</p>
+            <p class="glass-card__bio">
+              Creating beautiful experiences with code and design. Passionate about glassmorphism
+              and modern UI.
+            </p>
+            <div class="glass-card__stats">
+              <div class="glass-card__stat">
+                <span class="glass-card__stat-value">1.2K</span>
+                <span class="glass-card__stat-label">Followers</span>
+              </div>
+              <div class="glass-card__stat">
+                <span class="glass-card__stat-value">342</span>
+                <span class="glass-card__stat-label">Following</span>
+              </div>
+              <div class="glass-card__stat">
+                <span class="glass-card__stat-value">89</span>
+                <span class="glass-card__stat-label">Projects</span>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Product Card Component -->
+        <ComponentItem
+          title="Product Card"
+          description="Modern product showcase card with image, title, price, and action button. Ideal for e-commerce and catalogs."
+          htmlCode={components[10].htmlCode}
+          category={components[10].category}
+          tags={components[10].tags}
+        >
+          <div class="glass-card glass-card--product">
+            <div class="glass-card__image">
+              <img
+                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
+                alt="Premium Headphones"
+              />
+              <span class="glass-card__badge">New</span>
+            </div>
+            <div class="glass-card__content">
+              <h3 class="glass-card__title">Premium Headphones</h3>
+              <p class="glass-card__description">
+                High-quality wireless headphones with noise cancellation and 30-hour battery life.
+              </p>
+              <div class="glass-card__footer">
+                <span class="glass-card__price">$299</span>
+                <button class="glass-card__button">
+                  <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Info Card Component -->
+        <ComponentItem
+          title="Info Card"
+          description="Versatile information card with icon, title, and description. Great for features, services, and content blocks."
+          htmlCode={components[11].htmlCode}
+          category={components[11].category}
+          tags={components[11].tags}
+        >
+          <div class="glass-card glass-card--info">
+            <div class="glass-card__icon">
+              <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+            </div>
+            <h3 class="glass-card__title">Fast Performance</h3>
+            <p class="glass-card__description">
+              Lightning-fast load times and smooth animations powered by GPU acceleration.
+            </p>
+            <a href="#" class="glass-card__link">
+              Learn more
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </ComponentItem>
+
+        <!-- Notification Toasts Component -->
+        <ComponentItem
+          title="Notification Toasts"
+          description="Beautiful toast notifications for success, error, warning, and info messages. Auto-dismissible with smooth animations."
+          htmlCode={components[12].htmlCode}
+          category={components[12].category}
+          tags={components[12].tags}
+        >
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button class="glass-container glass-container--small demo-toast-success">
+              <div class="glass-content">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                Success
+              </div>
+            </button>
+
+            <button class="glass-container glass-container--small demo-toast-error">
+              <div class="glass-content">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                Error
+              </div>
+            </button>
+
+            <button class="glass-container glass-container--small demo-toast-warning">
+              <div class="glass-content">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                Warning
+              </div>
+            </button>
+
+            <button class="glass-container glass-container--small demo-toast-info">
+              <div class="glass-content">
+                <i class="fa-solid fa-info" aria-hidden="true"></i>
+                Info
+              </div>
+            </button>
+          </div>
+        </ComponentItem>
+
+        <!-- Dropdown Menu Component -->
+        <ComponentItem
+          title="Dropdown Menu"
+          description="Elegant dropdown navigation menu with glass effect. Perfect for navigation bars and context menus."
+          htmlCode={components[13].htmlCode}
+          category={components[13].category}
+          tags={components[13].tags}
+        >
+          <div class="glass-dropdown">
+            <button class="glass-dropdown__trigger">
+              <span>Menu</span>
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+
+            <div class="glass-dropdown__menu">
+              <a href="#" class="glass-dropdown__item">
+                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                Dashboard
+              </a>
+              <a href="#" class="glass-dropdown__item">
+                <i class="fa-solid fa-user" aria-hidden="true"></i>
+                Profile
+              </a>
+              <a href="#" class="glass-dropdown__item">
+                <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                Settings
+              </a>
+              <div class="glass-dropdown__divider"></div>
+              <a href="#" class="glass-dropdown__item glass-dropdown__item--danger">
+                <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                Logout
+              </a>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Tabs Component -->
+        <ComponentItem
+          title="Tabs Component"
+          description="Horizontal tab navigation with glass styling and smooth transitions. Perfect for organizing content."
+          htmlCode={components[14].htmlCode}
+          category={components[14].category}
+          tags={components[14].tags}
+        >
+          <div class="glass-tabs" id="demo-tabs">
+            <div class="glass-tabs__nav">
+              <button class="glass-tabs__tab glass-tabs__tab--active" data-tab="tab1">
+                <i class="fa-solid fa-home" aria-hidden="true"></i>
+                Overview
+              </button>
+              <button class="glass-tabs__tab" data-tab="tab2">
+                <i class="fa-solid fa-code" aria-hidden="true"></i>
+                Code
+              </button>
+              <button class="glass-tabs__tab" data-tab="tab3">
+                <i class="fa-solid fa-palette" aria-hidden="true"></i>
+                Design
+              </button>
+            </div>
+
+            <div class="glass-tabs__content">
+              <div class="glass-tabs__panel glass-tabs__panel--active" data-panel="tab1">
+                <h3>Overview</h3>
+                <p>
+                  Welcome to the overview section. This is where you'll find general information.
+                </p>
+              </div>
+              <div class="glass-tabs__panel" data-panel="tab2">
+                <h3>Code</h3>
+                <p>Here you can find code examples and implementation details.</p>
+              </div>
+              <div class="glass-tabs__panel" data-panel="tab3">
+                <h3>Design</h3>
+                <p>Explore design guidelines and visual specifications.</p>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Loading Bar Component -->
+        <ComponentItem
+          title="Loading Bar"
+          description="Linear progress indicator with smooth animation. Perfect for showing upload/download progress or page loading states."
+          htmlCode={components[15].htmlCode}
+          category={components[15].category}
+          tags={components[15].tags}
+        >
+          <div class="glass-container glass-container--rounded glass-container--medium">
+            <div class="glass-content glass-content--column">
+              <h3>Uploading Files...</h3>
+              <div class="glass-progress">
+                <div class="glass-progress__bar" style="width: 65%"></div>
+              </div>
+              <span class="glass-progress__label">65% Complete</span>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Loading Spinner Component -->
+        <ComponentItem
+          title="Loading Spinner"
+          description="Circular loading indicator with glass effect. Use for loading states, async operations, or processing feedback."
+          htmlCode={components[16].htmlCode}
+          category={components[16].category}
+          tags={components[16].tags}
+        >
+          <div class="glass-container glass-container--rounded glass-container--medium">
+            <div class="glass-content glass-content--column">
+              <div class="glass-spinner"></div>
+              <span class="glass-spinner__label">Loading...</span>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Skeleton Screen Component -->
+        <ComponentItem
+          title="Skeleton Screen"
+          description="Placeholder loading state that mimics content structure. Provides better perceived performance during data loading."
+          htmlCode={components[17].htmlCode}
+          category={components[17].category}
+          tags={components[17].tags}
+        >
+          <div class="glass-container glass-container--rounded glass-container--large">
+            <div class="glass-content glass-content--column">
+              <div class="glass-skeleton">
+                <div class="glass-skeleton__avatar"></div>
+                <div class="glass-skeleton__content">
+                  <div class="glass-skeleton__line glass-skeleton__line--title"></div>
+                  <div class="glass-skeleton__line glass-skeleton__line--text"></div>
+                  <div class="glass-skeleton__line glass-skeleton__line--text"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Tooltip Component -->
+        <ComponentItem
+          title="Tooltip"
+          description="Hover tooltips with glass styling and smart positioning. Perfect for providing contextual help and additional information."
+          htmlCode={components[18].htmlCode}
+          category={components[18].category}
+          tags={components[18].tags}
+        >
+          <div style="display: flex; gap: 2rem; flex-wrap: wrap; padding: 3rem;">
+            <div class="glass-tooltip-wrapper">
+              <button class="glass-container glass-container--small">
+                <div class="glass-content">
+                  <i class="fa-solid fa-info-circle" aria-hidden="true"></i>
+                  Hover me
+                </div>
+              </button>
+              <div class="glass-tooltip glass-tooltip--top" role="tooltip">
+                This is a helpful tooltip!
+              </div>
+            </div>
+
+            <div class="glass-tooltip-wrapper">
+              <button class="glass-container glass-container--small">
+                <div class="glass-content">
+                  <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                  Right
+                </div>
+              </button>
+              <div class="glass-tooltip glass-tooltip--right" role="tooltip">
+                Tooltip on the right
+              </div>
+            </div>
+
+            <div class="glass-tooltip-wrapper">
+              <button class="glass-container glass-container--small">
+                <div class="glass-content">
+                  <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+                  Bottom
+                </div>
+              </button>
+              <div class="glass-tooltip glass-tooltip--bottom" role="tooltip">
+                Tooltip at the bottom
+              </div>
+            </div>
+
+            <div class="glass-tooltip-wrapper">
+              <button class="glass-container glass-container--small">
+                <div class="glass-content">
+                  <i class="fa-solid fa-star" aria-hidden="true"></i>
+                  Left
+                </div>
+              </button>
+              <div class="glass-tooltip glass-tooltip--left" role="tooltip">
+                Tooltip on the left
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Sidebar Panel Component -->
+        <ComponentItem
+          title="Sidebar Panel"
+          description="Collapsible side navigation panel with glass effect. Perfect for app navigation, settings panels, and drawer menus."
+          htmlCode={components[19].htmlCode}
+          category={components[19].category}
+          tags={components[19].tags}
+        >
+          <div>
+            <button class="glass-container glass-container--small" onclick="toggleSidebar()">
+              <div class="glass-content">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                Toggle Sidebar
+              </div>
+            </button>
+
+            <div class="glass-sidebar" id="glassSidebar">
+              <div class="glass-sidebar__overlay" onclick="toggleSidebar()"></div>
+              <div class="glass-sidebar__panel">
+                <div class="glass-sidebar__header">
+                  <h3 class="glass-sidebar__title">Navigation</h3>
+                  <button
+                    class="glass-sidebar__close"
+                    onclick="toggleSidebar()"
+                    aria-label="Close sidebar"
+                  >
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                  </button>
+                </div>
+
+                <nav class="glass-sidebar__nav">
+                  <a href="#" class="glass-sidebar__item glass-sidebar__item--active">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                  </a>
+                  <a href="#" class="glass-sidebar__item">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    <span>Analytics</span>
+                  </a>
+                  <a href="#" class="glass-sidebar__item">
+                    <i class="fa-solid fa-users" aria-hidden="true"></i>
+                    <span>Team</span>
+                  </a>
+                  <a href="#" class="glass-sidebar__item">
+                    <i class="fa-solid fa-folder" aria-hidden="true"></i>
+                    <span>Projects</span>
+                  </a>
+                  <a href="#" class="glass-sidebar__item">
+                    <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                    <span>Calendar</span>
+                  </a>
+                  <a href="#" class="glass-sidebar__item">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                    <span>Settings</span>
+                  </a>
+                </nav>
+
+                <div class="glass-sidebar__footer">
+                  <div class="glass-sidebar__user">
+                    <img
+                      src="https://i.pravatar.cc/40?img=5"
+                      alt="User avatar"
+                      class="glass-sidebar__avatar"
+                    />
+                    <div class="glass-sidebar__user-info">
+                      <div class="glass-sidebar__user-name">John Doe</div>
+                      <div class="glass-sidebar__user-email">john@example.com</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+
+        <!-- Badges & Tags Component -->
+        <ComponentItem
+          title="Badges & Tags"
+          description="Small labels and status indicators with glass styling. Perfect for categories, statuses, notifications, and metadata."
+          htmlCode={components[20].htmlCode}
+          category={components[20].category}
+          tags={components[20].tags}
+        >
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            <!-- Status Badges -->
+            <div>
+              <h4 style="margin-bottom: 1rem; color: white;">Status Badges</h4>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <span class="glass-badge glass-badge--success">
+                  <i class="fa-solid fa-check" aria-hidden="true"></i>
+                  Active
+                </span>
+                <span class="glass-badge glass-badge--warning">
+                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                  Pending
+                </span>
+                <span class="glass-badge glass-badge--error">
+                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                  Inactive
+                </span>
+                <span class="glass-badge glass-badge--info">
+                  <i class="fa-solid fa-info" aria-hidden="true"></i>
+                  Draft
+                </span>
+              </div>
+            </div>
+
+            <!-- Category Tags -->
+            <div>
+              <h4 style="margin-bottom: 1rem; color: white;">Category Tags</h4>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <span class="glass-tag">Design</span>
+                <span class="glass-tag">Development</span>
+                <span class="glass-tag">Marketing</span>
+                <span class="glass-tag">Sales</span>
+                <span class="glass-tag">Support</span>
+              </div>
+            </div>
+
+            <!-- Notification Badges -->
+            <div>
+              <h4 style="margin-bottom: 1rem; color: white;">Notification Badges</h4>
+              <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+                <div style="position: relative; display: inline-block;">
+                  <button class="glass-container glass-container--small">
+                    <div class="glass-content">
+                      <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                      Notifications
+                    </div>
+                  </button>
+                  <span class="glass-badge glass-badge--notification" aria-label="5 notifications"
+                    >5</span
+                  >
+                </div>
+
+                <div style="position: relative; display: inline-block;">
+                  <button class="glass-container glass-container--small">
+                    <div class="glass-content">
+                      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                      Messages
+                    </div>
+                  </button>
+                  <span class="glass-badge glass-badge--notification" aria-label="12 messages"
+                    >12</span
+                  >
+                </div>
+
+                <div style="position: relative; display: inline-block;">
+                  <button class="glass-container glass-container--small">
+                    <div class="glass-content">
+                      <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                      Cart
+                    </div>
+                  </button>
+                  <span class="glass-badge glass-badge--notification" aria-label="3 items in cart"
+                    >3</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </ComponentItem>
+      </div>
+
+      <div class="no-results" id="components-no-results" style="display: none;">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <h3>No components found</h3>
+        <p>Try adjusting your search or filter criteria</p>
+      </div>
+    </section>
+
+    <!-- Toast Container -->
+    <div class="glass-toast-container" id="toast-container"></div>
+
+    <!-- USE CASES SECTION -->
+    <section id="use-cases" class="section">
+      <div class="section-header">
+        <h1>Use Cases & Showcase</h1>
+        <p>Real-world applications and complete interface examples</p>
+      </div>
+
+      <SearchFilter targetSection="use-cases" categories={useCaseCategories} />
+      <ViewportToggle targetSection="use-cases" />
+
+      <div class="use-cases-grid" id="use-cases-grid">
+        {
+          useCases.map((useCase) => (
+            <UseCaseItem
+              title={useCase.title}
+              description={useCase.description}
+              icon={useCase.icon}
+              htmlCode={useCase.htmlCode}
+              category={useCase.category}
+              tags={useCase.tags}
+            />
+          ))
+        }
+      </div>
+
+      <div class="no-results" id="use-cases-no-results" style="display: none;">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <h3>No use cases found</h3>
+        <p>Try adjusting your search or filter criteria</p>
+      </div>
+    </section>
+
+    <!-- TUTORIALS SECTION -->
+    <section id="tutorials" class="section">
+      <div class="section-header">
+        <h1>Step-by-Step Tutorials</h1>
+        <p>Learn how to build glass effects with guided, hands-on tutorials</p>
+      </div>
+
+      <SearchFilter targetSection="tutorials" categories={tutorialCategories} />
+
+      <div class="tutorials-list" id="tutorials-grid">
+        {
+          tutorials.map((tutorial) => (
+            <TutorialItem
+              id={tutorial.id}
+              title={tutorial.title}
+              description={tutorial.description}
+              difficulty={tutorial.difficulty}
+              estimatedTime={tutorial.estimatedTime}
+              category={tutorial.category}
+              icon={tutorial.icon}
+              steps={tutorial.steps}
+              finalCode={tutorial.finalCode}
+              tags={tutorial.tags}
+            />
+          ))
+        }
+      </div>
+
+      <div class="no-results" id="tutorials-no-results" style="display: none;">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <h3>No tutorials found</h3>
+        <p>Try adjusting your search or filter criteria</p>
+      </div>
+    </section>
+
+    <!-- INTEGRATIONS SECTION -->
+    <section id="integrations" class="section">
+      <div class="section-header">
+        <h1>Framework Integrations</h1>
+        <p>Use Frostpane with your favorite frameworks and tools</p>
+      </div>
+
+      <div class="integrations-grid">
+        {integrations.map((integration) => <IntegrationCard {...integration} />)}
+      </div>
+    </section>
+
+    <!-- PERFORMANCE SECTION -->
+    <section id="performance" class="section">
+      <div class="section-header">
+        <h1>Performance</h1>
+        <p>Metrics, benchmarks, and optimization tips</p>
+      </div>
+
+      <div class="performance-metrics-grid">
+        {performanceMetrics.map((metric) => <PerformanceMetricCard {...metric} />)}
+      </div>
+
+      <div class="section-subsection">
+        <h2>Benchmark Results</h2>
+        <div class="glass-container glass-container--rounded">
+          <div class="glass-content glass-content--column">
+            <p><strong>Test Environment:</strong> {benchmarkData.testEnvironment}</p>
+            <div class="benchmark-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Scenario</th>
+                    <th>FPS</th>
+                    <th>Paint Time</th>
+                    <th>GPU Memory</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    benchmarkData.scenarios.map((scenario) => (
+                      <tr>
+                        <td>{scenario.name}</td>
+                        <td>{scenario.fps}</td>
+                        <td>{scenario.paintTime}</td>
+                        <td>{scenario.gpuMemory}</td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-subsection">
+        <h2>Optimization Tips</h2>
+        <div class="performance-tips-grid">
+          {performanceTips.map((tip) => <PerformanceTipCard {...tip} />)}
+        </div>
+      </div>
+    </section>
+
+    <!-- BEST PRACTICES SECTION -->
+    <section id="best-practices" class="section">
+      <div class="section-header">
+        <h1>Best Practices</h1>
+        <p>Guidelines for creating effective glass effects</p>
+      </div>
+
+      <div class="glass-container glass-container--rounded" style="margin-bottom: 2rem;">
+        <div class="glass-content glass-content--column">
+          <h2>{designGuidelines.title}</h2>
+          <div class="guidelines-grid">
+            {
+              designGuidelines.sections.map((section) => (
+                <div class="guideline-item">
+                  <h3>{section.name}</h3>
+                  <p>{section.description}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="best-practices-grid">
+        {bestPractices.map((practice) => <BestPracticeCard {...practice} />)}
+      </div>
+    </section>
+
+    <!-- TROUBLESHOOTING SECTION -->
+    <section id="troubleshooting" class="section">
+      <div class="section-header">
+        <h1>Troubleshooting</h1>
+        <p>Solutions to common issues and problems</p>
+      </div>
+
+      <div class="glass-container glass-container--rounded" style="margin-bottom: 2rem;">
+        <div class="glass-content glass-content--column">
+          <h2>Debugging Tips</h2>
+          <div class="debugging-tips-grid">
+            {
+              debuggingTips.map((tip) => (
+                <div class="debugging-tip">
+                  <i class={tip.icon} aria-hidden="true" />
+                  <div>
+                    <h3>{tip.title}</h3>
+                    <p>{tip.description}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="troubleshooting-grid">
+        {troubleshootingIssues.map((issue) => <TroubleshootingCard {...issue} />)}
+      </div>
+    </section>
+
+    <!-- RESOURCES SECTION -->
+    <section id="resources" class="section">
+      <div class="section-header">
+        <h1>Resources & Inspiration</h1>
+        <p>Helpful links, tools, and community resources</p>
+      </div>
+
+      <div class="section-subsection">
+        <h2>External Resources</h2>
+        <div class="resources-grid">
+          {resources.map((resource) => <ResourceCard {...resource} />)}
+        </div>
+      </div>
+
+      <div class="section-subsection">
+        <h2>Related Libraries</h2>
+        <div class="related-libraries-grid">
+          {
+            relatedLibraries.map((library) => (
+              <a
+                href={library.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="glass-container glass-container--rounded related-library-card"
+              >
+                <div class="glass-content">
+                  <h3>{library.name}</h3>
+                  <p>{library.description}</p>
+                  <span class="external-link-icon">
+                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />
+                  </span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="section-subsection">
+        <h2>Community</h2>
+        <div class="community-links-grid">
+          {
+            communityLinks.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="glass-container glass-container--rounded community-link-card"
+              >
+                <div class="glass-content">
+                  <i class={link.icon} aria-hidden="true" />
+                  <div>
+                    <h3>{link.name}</h3>
+                    <p>{link.description}</p>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CHANGELOG SECTION -->
+    <section id="changelog" class="section">
+      <div class="section-header">
+        <h1>Changelog</h1>
+        <p>Version history and release notes</p>
+      </div>
+
+      <div class="glass-container glass-container--rounded" style="margin-bottom: 2rem;">
+        <div class="glass-content glass-content--column">
+          <h2>Upcoming Features</h2>
+          <div class="upcoming-features-grid">
+            {
+              upcomingFeatures.map((feature) => (
+                <div class="upcoming-feature">
+                  <div class="upcoming-feature__header">
+                    <h3>{feature.title}</h3>
+                    <span
+                      class={`glass-badge glass-badge--${feature.status === 'planned' ? 'success' : 'info'}`}
+                    >
+                      {feature.status.charAt(0).toUpperCase() + feature.status.slice(1)}
+                    </span>
+                  </div>
+                  <p>{feature.description}</p>
+                  <span class="upcoming-feature__version">Target: v{feature.version}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="changelog-entries">
+        {changelog.map((entry) => <ChangelogEntry {...entry} />)}
+      </div>
+    </section>
+
+    <!-- BROWSER SUPPORT SECTION -->
+    <section id="browser-support" class="section">
+      <div class="section-header">
+        <h1>Browser Support</h1>
+        <p>Compatibility information for modern browsers</p>
+      </div>
+
+      <div class="browser-grid">
+        {browsers.map((browser) => <BrowserCard {...browser} />)}
+      </div>
+
+      <div class="compatibility-notes">
+        <h2 class="subsection-title">Important Notes</h2>
+        <div class="compat-notes-grid">
+          {compatibilityNotes.map((note) => <CompatibilityNote {...note} />)}
+        </div>
+      </div>
+
+      <div class="fallback-section">
+        <h2 class="subsection-title">Fallback Strategy</h2>
+        <p class="subsection-description">
+          Use CSS @supports to provide fallback styles for browsers that don't support
+          backdrop-filter:
+        </p>
+        <CodeBlock code={fallbackExample} label="CSS" />
+      </div>
+    </section>
+
+    <!-- ACCESSIBILITY SECTION -->
+    <section id="accessibility" class="section">
+      <div class="section-header">
+        <h1>Accessibility</h1>
+        <p>Building inclusive glass effects that work for everyone</p>
+      </div>
+
+      <div class="accessibility-grid">
+        {accessibilityFeatures.map((feature) => <AccessibilityCard {...feature} />)}
+      </div>
+
+      <div class="accessibility-example">
+        <h2 class="subsection-title">Accessibility Best Practices</h2>
+        <p class="subsection-description">
+          Here are some examples of how to implement accessible glass components with proper ARIA
+          attributes and semantic HTML:
+        </p>
+        <CodeBlock code={accessibilityCodeExample} label="HTML" />
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="section">
+      <div class="section-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Common questions and answers about Frostpane</p>
+      </div>
+
+      <div class="faq-grid">
+        {faqItems.map((item) => <FAQItem {...item} />)}
       </div>
     </section>
   </main>
 
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
   <!-- SVG Filter -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
-    <filter id="lensFilter" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+    <filter
+      id="lensFilter"
+      x="0%"
+      y="0%"
+      width="100%"
+      height="100%"
+      filterUnits="objectBoundingBox"
+    >
       <feComponentTransfer in="SourceAlpha" result="alpha">
-        <feFuncA type="identity" />
+        <feFuncA type="identity"></feFuncA>
       </feComponentTransfer>
-      <feGaussianBlur in="alpha" stdDeviation="50" result="blur" />
-      <feDisplacementMap in="SourceGraphic" in2="blur" scale="50" xChannelSelector="A" yChannelSelector="A" />
+      <feGaussianBlur in="alpha" stdDeviation="50" result="blur"></feGaussianBlur>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="blur"
+        scale="50"
+        xChannelSelector="A"
+        yChannelSelector="A"></feDisplacementMap>
     </filter>
   </svg>
-</Layout>
 
+  <script>
+    import {
+      downloadFrostpaneCSS,
+      downloadStarterTemplate,
+      copyToClipboard,
+    } from '../utils/downloadUtils';
+
+    // Download and copy functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      // Download CSS button
+      const downloadCssBtn = document.querySelector('.download-css-btn');
+      downloadCssBtn?.addEventListener('click', () => {
+        downloadFrostpaneCSS();
+      });
+
+      // Download template button
+      const downloadTemplateBtn = document.querySelector('.download-template-btn');
+      downloadTemplateBtn?.addEventListener('click', () => {
+        downloadStarterTemplate();
+      });
+
+      // Copy install command buttons
+      const copyButtons = document.querySelectorAll('.copy-install-btn');
+      copyButtons.forEach((button) => {
+        button.addEventListener('click', async (e) => {
+          const btn = e.currentTarget as HTMLElement;
+          const command = btn.dataset.command;
+          if (command) {
+            const success = await copyToClipboard(command);
+            if (success) {
+              const originalText = btn.innerHTML;
+              btn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Copied!';
+              setTimeout(() => {
+                btn.innerHTML = originalText;
+              }, 2000);
+            }
+          }
+        });
+      });
+    });
+
+    // Modal functionality
+    const modalTrigger = document.querySelector('.demo-modal-trigger');
+    const modal = document.getElementById('demo-modal');
+    const modalBackdrop = modal?.querySelector('.glass-modal__backdrop');
+    const modalClose = modal?.querySelector('.glass-modal__close');
+    const modalCancelBtn = modal?.querySelector('.glass-btn--secondary');
+
+    function openModal() {
+      modal?.classList.add('glass-modal--active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal?.classList.remove('glass-modal--active');
+      document.body.style.overflow = '';
+    }
+
+    modalTrigger?.addEventListener('click', openModal);
+    modalBackdrop?.addEventListener('click', closeModal);
+    modalClose?.addEventListener('click', closeModal);
+    modalCancelBtn?.addEventListener('click', closeModal);
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('glass-modal--active')) {
+        closeModal();
+      }
+    });
+
+    // Toast notification functionality
+    const toastContainer = document.getElementById('toast-container');
+    const toastButtons = {
+      success: document.querySelector('.demo-toast-success'),
+      error: document.querySelector('.demo-toast-error'),
+      warning: document.querySelector('.demo-toast-warning'),
+      info: document.querySelector('.demo-toast-info'),
+    };
+
+    const toastConfig = {
+      success: {
+        message: 'Operation completed successfully!',
+        icon: 'fa-check-circle',
+      },
+      error: {
+        message: 'An error occurred. Please try again.',
+        icon: 'fa-times-circle',
+      },
+      warning: {
+        message: 'Please review your input.',
+        icon: 'fa-exclamation-triangle',
+      },
+      info: {
+        message: 'Here is some useful information.',
+        icon: 'fa-info-circle',
+      },
+    };
+
+    function showToast(type: 'success' | 'error' | 'warning' | 'info') {
+      const config = toastConfig[type];
+      const toast = document.createElement('div');
+      toast.className = `glass-toast glass-toast--${type}`;
+      toast.innerHTML = `
+      <i class="fa-solid ${config.icon} glass-toast__icon" aria-hidden="true"></i>
+      <span class="glass-toast__message">${config.message}</span>
+      <button class="glass-toast__close" aria-label="Close notification">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    `;
+
+      const closeBtn = toast.querySelector('.glass-toast__close');
+      closeBtn?.addEventListener('click', () => toast.remove());
+
+      toastContainer?.appendChild(toast);
+
+      setTimeout(() => toast.classList.add('glass-toast--show'), 10);
+      setTimeout(() => {
+        toast.classList.remove('glass-toast--show');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Add event listeners to toast buttons
+    Object.entries(toastButtons).forEach(([type, button]) => {
+      button?.addEventListener('click', () =>
+        showToast(type as 'success' | 'error' | 'warning' | 'info')
+      );
+    });
+
+    // Scroll to top button functionality
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    const scrollProgress = document.getElementById('scroll-progress');
+
+    function updateScrollElements() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+
+      // Update scroll progress bar
+      if (scrollProgress) {
+        scrollProgress.style.width = `${scrollPercent}%`;
+      }
+
+      // Show/hide scroll to top button
+      if (scrollToTopBtn) {
+        if (scrollTop > 300) {
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          scrollToTopBtn.classList.remove('visible');
+        }
+      }
+    }
+
+    // Scroll to top on button click
+    scrollToTopBtn?.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+
+    // Update on scroll
+    window.addEventListener('scroll', updateScrollElements);
+    // Initial update
+    updateScrollElements();
+
+    // Tabs functionality
+    const tabsContainer = document.getElementById('demo-tabs');
+    const tabs = tabsContainer?.querySelectorAll('.glass-tabs__tab');
+
+    tabs?.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const tabId = (tab as HTMLElement).dataset.tab;
+
+        // Remove active class from all tabs and panels
+        tabsContainer?.querySelectorAll('.glass-tabs__tab').forEach((t) => {
+          t.classList.remove('glass-tabs__tab--active');
+        });
+        tabsContainer?.querySelectorAll('.glass-tabs__panel').forEach((p) => {
+          p.classList.remove('glass-tabs__panel--active');
+        });
+
+        // Add active class to clicked tab and corresponding panel
+        tab.classList.add('glass-tabs__tab--active');
+        const panel = tabsContainer?.querySelector(`.glass-tabs__panel[data-panel="${tabId}"]`);
+        panel?.classList.add('glass-tabs__panel--active');
+      });
+    });
+
+    // Playground functionality
+    const playgroundPreview = document.getElementById('playground-preview');
+    const presetButtons = document.querySelectorAll('.preset-btn');
+    const rangeInputs = document.querySelectorAll('input[type="range"][data-css-var]');
+    const colorInputs = document.querySelectorAll('input[type="color"][data-css-var]');
+    const copyCssBtn = document.getElementById('copy-css-btn');
+    const resetBtn = document.getElementById('reset-btn');
+
+    // Store default values
+    const defaultValues: Record<string, string> = {};
+    rangeInputs.forEach((input) => {
+      const cssVar = (input as HTMLInputElement).dataset.cssVar;
+      if (cssVar) {
+        defaultValues[cssVar] = (input as HTMLInputElement).value;
+      }
+    });
+    colorInputs.forEach((input) => {
+      const cssVar = (input as HTMLInputElement).dataset.cssVar;
+      if (cssVar) {
+        defaultValues[cssVar] = (input as HTMLInputElement).value;
+      }
+    });
+
+    // Update CSS variable
+    function updateCSSVariable(cssVar: string, value: string, unit: string = '') {
+      playgroundPreview?.style.setProperty(cssVar, value + unit);
+    }
+
+    // Update range value display
+    function updateRangeDisplay(input: HTMLInputElement) {
+      const cssVar = input.dataset.cssVar;
+      const unit = input.dataset.unit || '';
+      const valueDisplay = document.querySelector(`[data-value-for="${cssVar}"]`);
+      if (valueDisplay) {
+        valueDisplay.textContent = input.value + unit;
+      }
+    }
+
+    // Range input listeners
+    rangeInputs.forEach((input) => {
+      input.addEventListener('input', () => {
+        const htmlInput = input as HTMLInputElement;
+        const cssVar = htmlInput.dataset.cssVar;
+        const unit = htmlInput.dataset.unit || '';
+        if (cssVar) {
+          updateCSSVariable(cssVar, htmlInput.value, unit);
+          updateRangeDisplay(htmlInput);
+        }
+      });
+    });
+
+    // Color input listeners
+    colorInputs.forEach((input) => {
+      input.addEventListener('input', () => {
+        const htmlInput = input as HTMLInputElement;
+        const cssVar = htmlInput.dataset.cssVar;
+        if (cssVar) {
+          updateCSSVariable(cssVar, htmlInput.value);
+        }
+      });
+    });
+
+    // Preset button listeners
+    presetButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const presetName = (button as HTMLElement).dataset.preset;
+
+        // Remove active class from all presets
+        presetButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Apply preset values (you would need to import the preset data)
+        // For now, we'll just reset to defaults
+        if (presetName === 'Default') {
+          resetToDefaults();
+        }
+      });
+    });
+
+    // Reset to defaults
+    function resetToDefaults() {
+      rangeInputs.forEach((input) => {
+        const htmlInput = input as HTMLInputElement;
+        const cssVar = htmlInput.dataset.cssVar;
+        if (cssVar && defaultValues[cssVar]) {
+          htmlInput.value = defaultValues[cssVar];
+          const unit = htmlInput.dataset.unit || '';
+          updateCSSVariable(cssVar, htmlInput.value, unit);
+          updateRangeDisplay(htmlInput);
+        }
+      });
+
+      colorInputs.forEach((input) => {
+        const htmlInput = input as HTMLInputElement;
+        const cssVar = htmlInput.dataset.cssVar;
+        if (cssVar && defaultValues[cssVar]) {
+          htmlInput.value = defaultValues[cssVar];
+          updateCSSVariable(cssVar, htmlInput.value);
+        }
+      });
+
+      // Remove active class from all presets
+      presetButtons.forEach((btn) => btn.classList.remove('active'));
+      // Add active to Default preset
+      const defaultBtn = document.querySelector('[data-preset="Default"]');
+      defaultBtn?.classList.add('active');
+    }
+
+    // Reset button listener
+    resetBtn?.addEventListener('click', resetToDefaults);
+
+    // Copy CSS button listener
+    copyCssBtn?.addEventListener('click', async () => {
+      const cssText = Array.from(rangeInputs)
+        .map((input) => {
+          const htmlInput = input as HTMLInputElement;
+          const cssVar = htmlInput.dataset.cssVar;
+          const unit = htmlInput.dataset.unit || '';
+          return `  ${cssVar}: ${htmlInput.value}${unit};`;
+        })
+        .concat(
+          Array.from(colorInputs).map((input) => {
+            const htmlInput = input as HTMLInputElement;
+            const cssVar = htmlInput.dataset.cssVar;
+            return `  ${cssVar}: ${htmlInput.value};`;
+          })
+        )
+        .join('\n');
+
+      const fullCss = `:root {\n${cssText}\n}`;
+
+      try {
+        await navigator.clipboard.writeText(fullCss);
+        const originalText = copyCssBtn.innerHTML;
+        copyCssBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        setTimeout(() => {
+          copyCssBtn.innerHTML = originalText;
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy CSS:', err);
+      }
+    });
+
+    // Initialize with defaults
+    resetToDefaults();
+
+    // ========================================================================
+    // API Documentation Search and Filter
+    // ========================================================================
+
+    const apiSearchInput = document.getElementById('api-search') as HTMLInputElement;
+    const apiSearchClear = document.getElementById('api-search-clear') as HTMLButtonElement;
+    const apiFilterBtns = document.querySelectorAll('.api-filter-btn');
+    const apiVariableCards = document.querySelectorAll('.api-variable-card');
+    const apiCategorySections = document.querySelectorAll('.api-category-section');
+    const apiNoResults = document.getElementById('api-no-results');
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function filterApiVariables() {
+      let visibleCount = 0;
+      const categoryCounts = new Map<string, number>();
+
+      apiVariableCards.forEach((card) => {
+        const htmlCard = card as HTMLElement;
+        const category = htmlCard.dataset.category || '';
+        const searchText = htmlCard.dataset.searchText || '';
+
+        // Check if card matches current filter
+        const matchesFilter = currentFilter === 'all' || category === currentFilter;
+
+        // Check if card matches current search
+        const matchesSearch =
+          currentSearch === '' || searchText.toLowerCase().includes(currentSearch.toLowerCase());
+
+        // Show or hide card
+        const isVisible = matchesFilter && matchesSearch;
+        htmlCard.style.display = isVisible ? '' : 'none';
+
+        if (isVisible) {
+          visibleCount++;
+          categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+        }
+      });
+
+      // Show/hide category sections based on visible cards
+      apiCategorySections.forEach((section) => {
+        const htmlSection = section as HTMLElement;
+        const category = htmlSection.dataset.category || '';
+        const count = categoryCounts.get(category) || 0;
+
+        if (currentFilter === 'all') {
+          htmlSection.style.display = count > 0 ? '' : 'none';
+        } else {
+          htmlSection.style.display = category === currentFilter && count > 0 ? '' : 'none';
+        }
+      });
+
+      // Show/hide no results message
+      if (apiNoResults) {
+        apiNoResults.style.display = visibleCount === 0 ? 'flex' : 'none';
+      }
+
+      // Show/hide clear button
+      if (apiSearchClear) {
+        apiSearchClear.style.display = currentSearch ? 'flex' : 'none';
+      }
+    }
+
+    // Search input listener
+    if (apiSearchInput) {
+      apiSearchInput.addEventListener('input', (e) => {
+        currentSearch = (e.target as HTMLInputElement).value;
+        filterApiVariables();
+      });
+    }
+
+    // Clear search button
+    if (apiSearchClear) {
+      apiSearchClear.addEventListener('click', () => {
+        if (apiSearchInput) {
+          apiSearchInput.value = '';
+          currentSearch = '';
+          filterApiVariables();
+          apiSearchInput.focus();
+        }
+      });
+    }
+
+    // Filter button listeners
+    apiFilterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const htmlBtn = btn as HTMLElement;
+        const category = htmlBtn.dataset.category || 'all';
+
+        // Update active state
+        apiFilterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update filter
+        currentFilter = category;
+        filterApiVariables();
+      });
+    });
+
+    // Initialize API filters
+    filterApiVariables();
+
+    // ===== SEARCH & FILTER FUNCTIONALITY =====
+    function initializeSearchFilter(targetSection: string) {
+      const searchFilter = document.querySelector(`.search-filter[data-target="${targetSection}"]`);
+      if (!searchFilter) return;
+
+      const searchInput = searchFilter.querySelector('.search-filter__input') as HTMLInputElement;
+      const clearBtn = searchFilter.querySelector('.search-filter__clear') as HTMLButtonElement;
+      const categorySelect = searchFilter.querySelector(
+        '.search-filter__category .search-filter__select'
+      ) as HTMLSelectElement;
+      const sortSelect = searchFilter.querySelector(
+        '.search-filter__sort .search-filter__select'
+      ) as HTMLSelectElement;
+      const resultsCount = searchFilter.querySelector('.search-filter__count') as HTMLElement;
+
+      const grid = document.getElementById(`${targetSection}-grid`) as HTMLElement;
+      const noResults = document.getElementById(`${targetSection}-no-results`) as HTMLElement;
+
+      if (!searchInput || !grid) return;
+
+      let currentSearch = '';
+      let currentCategory = '';
+      let currentSort = 'default';
+
+      function filterItems() {
+        const items =
+          targetSection === 'examples'
+            ? grid.querySelectorAll('.example-item-wrapper')
+            : targetSection === 'use-cases'
+              ? grid.querySelectorAll('.use-case-item')
+              : targetSection === 'tutorials'
+                ? grid.querySelectorAll('.tutorial-item')
+                : grid.querySelectorAll('.component-item');
+
+        let visibleCount = 0;
+        const itemsArray = Array.from(items);
+
+        // Filter items
+        itemsArray.forEach((item) => {
+          const htmlItem = item as HTMLElement;
+          const title = htmlItem.dataset.title || '';
+          const description = htmlItem.dataset.description || '';
+          const category = htmlItem.dataset.category || '';
+          const tags = htmlItem.dataset.tags || '';
+
+          // Check search match
+          const searchMatch =
+            !currentSearch ||
+            title.includes(currentSearch.toLowerCase()) ||
+            description.includes(currentSearch.toLowerCase()) ||
+            tags.includes(currentSearch.toLowerCase());
+
+          // Check category match
+          const categoryMatch = !currentCategory || category === currentCategory.toLowerCase();
+
+          // Show/hide item
+          if (searchMatch && categoryMatch) {
+            htmlItem.style.display = '';
+            visibleCount++;
+          } else {
+            htmlItem.style.display = 'none';
+          }
+        });
+
+        // Sort items
+        if (currentSort !== 'default') {
+          const sortedItems = itemsArray.sort((a, b) => {
+            const aTitle = (a as HTMLElement).dataset.title || '';
+            const bTitle = (b as HTMLElement).dataset.title || '';
+
+            if (currentSort === 'name-asc') {
+              return aTitle.localeCompare(bTitle);
+            } else if (currentSort === 'name-desc') {
+              return bTitle.localeCompare(aTitle);
+            }
+            return 0;
+          });
+
+          sortedItems.forEach((item) => grid.appendChild(item));
+        }
+
+        // Update results count
+        if (resultsCount) {
+          resultsCount.textContent = `Showing ${visibleCount} of ${items.length} ${targetSection}`;
+        }
+
+        // Show/hide no results message
+        if (noResults) {
+          noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
+        }
+
+        // Show/hide clear button
+        if (clearBtn) {
+          clearBtn.style.display = currentSearch ? 'block' : 'none';
+        }
+      }
+
+      // Search input listener
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearch = (e.target as HTMLInputElement).value;
+          filterItems();
+        });
+      }
+
+      // Clear button listener
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          currentSearch = '';
+          filterItems();
+          searchInput.focus();
+        });
+      }
+
+      // Category select listener
+      if (categorySelect) {
+        categorySelect.addEventListener('change', (e) => {
+          currentCategory = (e.target as HTMLSelectElement).value;
+          filterItems();
+        });
+      }
+
+      // Sort select listener
+      if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+          currentSort = (e.target as HTMLSelectElement).value;
+          filterItems();
+        });
+      }
+
+      // Initialize
+      filterItems();
+    }
+
+    // Initialize search filters for all sections
+    initializeSearchFilter('examples');
+    initializeSearchFilter('components');
+    initializeSearchFilter('use-cases');
+    initializeSearchFilter('tutorials');
+
+    // Viewport Toggle Functionality
+    function initializeViewportToggle(targetSection: string) {
+      const toggle = document.querySelector(
+        `.viewport-toggle[data-target="${targetSection}"]`
+      ) as HTMLElement;
+      if (!toggle) return;
+
+      const buttons = toggle.querySelectorAll('.viewport-toggle__button');
+      const sizeLabel = toggle.querySelector('.viewport-toggle__size') as HTMLElement;
+      const grid = document.getElementById(`${targetSection}-grid`) as HTMLElement;
+
+      if (!buttons.length || !sizeLabel || !grid) return;
+
+      const viewportSizes = {
+        desktop: { width: '100%', label: 'Desktop (1200px)' },
+        tablet: { width: '768px', label: 'Tablet (768px)' },
+        mobile: { width: '375px', label: 'Mobile (375px)' },
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const viewport = button.getAttribute('data-viewport') as keyof typeof viewportSizes;
+          if (!viewport) return;
+
+          // Update active button
+          buttons.forEach((btn) => btn.classList.remove('viewport-toggle__button--active'));
+          button.classList.add('viewport-toggle__button--active');
+
+          // Update size label
+          sizeLabel.textContent = viewportSizes[viewport].label;
+
+          // Update grid width
+          const gridWidth = viewportSizes[viewport].width;
+          if (gridWidth === '100%') {
+            grid.style.maxWidth = '';
+            grid.style.margin = '';
+            grid.style.transition = '';
+          } else {
+            grid.style.maxWidth = gridWidth;
+            grid.style.margin = '0 auto';
+            grid.style.transition = 'max-width 0.3s var(--fp-ease-smooth)';
+          }
+        });
+      });
+    }
+
+    // Initialize viewport toggles for all sections
+    initializeViewportToggle('examples');
+    initializeViewportToggle('components');
+    initializeViewportToggle('use-cases');
+
+    // Tutorial Toggle Functionality
+    document.querySelectorAll('.tutorial-item').forEach((tutorialItem) => {
+      const toggleBtn = tutorialItem.querySelector('.tutorial-item__toggle') as HTMLButtonElement;
+      const content = tutorialItem.querySelector('.tutorial-item__content') as HTMLElement;
+
+      if (toggleBtn && content) {
+        toggleBtn.addEventListener('click', () => {
+          const isOpen = content.style.display !== 'none';
+
+          if (isOpen) {
+            content.style.display = 'none';
+            toggleBtn.classList.remove('active');
+          } else {
+            content.style.display = 'block';
+            toggleBtn.classList.add('active');
+          }
+        });
+      }
+    });
+  </script>
+</Layout>

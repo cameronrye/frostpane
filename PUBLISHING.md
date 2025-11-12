@@ -90,6 +90,7 @@ GitHub Pages is configured to deploy automatically when you push to the `main` b
    - The workflow will deploy automatically
 
 2. **Push to main**:
+
    ```bash
    git push origin main
    ```
@@ -133,6 +134,7 @@ npm version major
 ```
 
 After bumping version:
+
 1. Update CHANGELOG.md
 2. Commit changes
 3. Follow publishing steps above

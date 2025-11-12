@@ -1,0 +1,174 @@
+---
+import { backgrounds } from '../data/backgrounds';
+---
+
+<div class="background-switcher">
+  <button
+    class="background-switcher__toggle"
+    id="bg-switcher-toggle"
+    aria-label="Toggle background switcher"
+  >
+    <i class="fa-solid fa-palette" aria-hidden="true"></i>
+  </button>
+
+  <div class="background-switcher__panel" id="bg-switcher-panel">
+    <div class="background-switcher__header">
+      <h3>Background Themes</h3>
+      <button
+        class="background-switcher__close"
+        id="bg-switcher-close"
+        aria-label="Close background switcher"
+      >
+        <i class="fa-solid fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="background-switcher__categories">
+      <button class="background-switcher__category-btn active" data-category="all"> All </button>
+      <button class="background-switcher__category-btn" data-category="light"> Light </button>
+      <button class="background-switcher__category-btn" data-category="dark"> Dark </button>
+      <button class="background-switcher__category-btn" data-category="colorful"> Colorful </button>
+    </div>
+
+    <div class="background-switcher__grid">
+      {
+        backgrounds.map((bg) => (
+          <button
+            class="background-switcher__option"
+            data-bg-id={bg.id}
+            data-bg-value={bg.value}
+            data-bg-type={bg.type}
+            data-bg-category={bg.category}
+            aria-label={`Set background to ${bg.name}`}
+          >
+            <div
+              class="background-switcher__preview"
+              style={
+                bg.type === 'image'
+                  ? `background: ${bg.value} center/cover;`
+                  : `background: ${bg.value};`
+              }
+            />
+            <div class="background-switcher__info">
+              <span class="background-switcher__name">{bg.name}</span>
+              <span class="background-switcher__type">{bg.type}</span>
+            </div>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('bg-switcher-toggle');
+  const panel = document.getElementById('bg-switcher-panel');
+  const closeBtn = document.getElementById('bg-switcher-close');
+  const options = document.querySelectorAll('.background-switcher__option');
+  const categoryBtns = document.querySelectorAll('.background-switcher__category-btn');
+
+  let currentCategory = 'all';
+
+  // Load saved background from localStorage
+  function loadSavedBackground() {
+    const saved = localStorage.getItem('frostpane-background');
+    if (saved) {
+      try {
+        const { value, type } = JSON.parse(saved);
+        applyBackground(value, type);
+      } catch (e) {
+        console.error('Failed to load saved background:', e);
+      }
+    }
+  }
+
+  // Apply background to body
+  function applyBackground(value: string, type: string) {
+    const body = document.body;
+    if (type === 'image') {
+      body.style.background = `${value} center/cover fixed`;
+    } else {
+      body.style.background = value;
+    }
+
+    // Update active state
+    options.forEach((opt) => {
+      const htmlOpt = opt as HTMLElement;
+      if (htmlOpt.dataset.bgValue === value) {
+        opt.classList.add('active');
+      } else {
+        opt.classList.remove('active');
+      }
+    });
+  }
+
+  // Save background to localStorage
+  function saveBackground(value: string, type: string) {
+    localStorage.setItem('frostpane-background', JSON.stringify({ value, type }));
+  }
+
+  // Toggle panel
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      panel?.classList.toggle('active');
+    });
+  }
+
+  // Close panel
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      panel?.classList.remove('active');
+    });
+  }
+
+  // Close panel when clicking outside
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (
+      !target.closest('.background-switcher__panel') &&
+      !target.closest('.background-switcher__toggle')
+    ) {
+      panel?.classList.remove('active');
+    }
+  });
+
+  // Background option click
+  options.forEach((option) => {
+    option.addEventListener('click', () => {
+      const htmlOption = option as HTMLElement;
+      const value = htmlOption.dataset.bgValue || '';
+      const type = htmlOption.dataset.bgType || 'solid';
+
+      applyBackground(value, type);
+      saveBackground(value, type);
+    });
+  });
+
+  // Category filter
+  categoryBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const htmlBtn = btn as HTMLElement;
+      const category = htmlBtn.dataset.category || 'all';
+
+      // Update active state
+      categoryBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Filter options
+      currentCategory = category;
+      options.forEach((opt) => {
+        const htmlOpt = opt as HTMLElement;
+        const optCategory = htmlOpt.dataset.bgCategory || '';
+
+        if (category === 'all' || optCategory === category) {
+          htmlOpt.style.display = '';
+        } else {
+          htmlOpt.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Initialize
+  loadSavedBackground();
+</script>
