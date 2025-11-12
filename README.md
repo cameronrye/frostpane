@@ -17,19 +17,19 @@
 
 A customizable, modern CSS/SCSS library for creating beautiful frosted glass effects with backdrop blur, highlights, and smooth animations. Perfect for creating frosted glass UI components with macOS-style aesthetics.
 
-**[View Demo](https://cameronrye.github.io/frostpane)** | **[Documentation](#-customization-guide)** | **[Examples](#-usage-examples)**
+**[View Demo](https://cameronrye.github.io/frostpane)** | **[Documentation](#customization-guide)** | **[Examples](#usage-examples)**
 
-## ✨ Features
+## Features
 
-- 🎨 **Highly Customizable** - 30+ CSS custom properties for complete control
-- 🔧 **Framework Agnostic** - Works with any JavaScript framework or vanilla HTML
-- 📦 **Multiple Import Options** - Use SCSS source or compiled CSS
-- 🎭 **Built-in Variants** - Rounded corners, different sizes, and more
-- ⚡ **Performance Optimized** - Efficient transitions and GPU-accelerated effects
-- 🎯 **Zero Dependencies** - Pure CSS/SCSS implementation
-- 📱 **Responsive** - Works seamlessly across all screen sizes
+- **Highly Customizable** - 30+ CSS custom properties for complete control
+- **Framework Agnostic** - Works with any JavaScript framework or vanilla HTML
+- **Multiple Import Options** - Use SCSS source or compiled CSS
+- **Built-in Variants** - Rounded corners, different sizes, and more
+- **Performance Optimized** - Efficient transitions and GPU-accelerated effects
+- **Zero Dependencies** - Pure CSS/SCSS implementation
+- **Responsive** - Works seamlessly across all screen sizes
 
-## 🚀 Quick Start
+## Quick Start
 
 ### For Users (Using the Library)
 
@@ -83,7 +83,7 @@ import 'frostpane/css';
 </div>
 ```
 
-## 🛠️ Development (For Contributors)
+## Development (For Contributors)
 
 ### Prerequisites
 
@@ -136,7 +136,7 @@ npm run build:example
 npm run preview
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 This is a monorepo using npm workspaces with two packages:
 
@@ -167,7 +167,7 @@ frostpane/
 
 The example package depends on the core library via workspace reference, demonstrating real-world usage.
 
-## 📚 Usage Examples
+## Usage Examples
 
 ### Custom Blur Effect
 
@@ -201,7 +201,7 @@ The example package depends on the core library via workspace reference, demonst
 
 ---
 
-## 🎨 Customization Guide
+## Customization Guide
 
 The glass effect is fully customizable using CSS custom properties (CSS variables). Override any of these properties to create your own unique glass effects.
 
@@ -350,7 +350,7 @@ The glass effect is fully customizable using CSS custom properties (CSS variable
 - **Performance** - Specific transition properties prevent unnecessary recalculations
 - **Flexibility** - Mix and match properties for different effects
 
-## 📜 Available Scripts
+## Available Scripts
 
 ### Root Level
 
@@ -377,7 +377,7 @@ npm run build            # Build example site
 npm run preview          # Preview built site
 ```
 
-## 📦 Publishing
+## Publishing
 
 The `frostpane` library can be published to npm:
 
@@ -389,7 +389,7 @@ npm publish
 
 The `prepublishOnly` script ensures the library is built before publishing.
 
-## 🏗️ Monorepo Architecture
+## Monorepo Architecture
 
 This project uses **npm workspaces** for monorepo management, providing:
 
@@ -411,12 +411,12 @@ Root (frostpane-monorepo)
 
 The example package depends on the core library through a workspace reference, which npm automatically resolves to the local package during development.
 
-## 📖 Documentation
+## Documentation
 
 - **Library Documentation**: [packages/frostpane/README.md](packages/frostpane/README.md)
 - **Example Site**: [packages/example/README.md](packages/example/README.md)
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Here's how to get started:
 
@@ -428,10 +428,14 @@ Contributions are welcome! Here's how to get started:
 6. Push to the branch: `git push origin feature/my-feature`
 7. Submit a pull request
 
-## 📄 License
+## License
 
 MIT
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Inspired by modern glassmorphic design trends and macOS UI aesthetics.
+
+---
+
+Made with ❤️ by [Cameron Rye](https://rye.dev/)
