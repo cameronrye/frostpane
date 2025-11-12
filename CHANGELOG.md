@@ -24,14 +24,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Zero runtime dependencies
 
 ### Features
-- 🎨 Highly customizable with 30+ CSS custom properties
-- 🔧 Framework agnostic - works with any JavaScript framework
-- 📦 Multiple import options (SCSS source or compiled CSS)
-- 🎭 Built-in variants and modifiers
-- ⚡ Performance optimized with GPU-accelerated effects
-- 🎯 Zero dependencies
-- 📱 Fully responsive
-- ♿ Accessible with ARIA support and keyboard navigation
+- Highly customizable with 30+ CSS custom properties
+- Framework agnostic - works with any JavaScript framework
+- Multiple import options (SCSS source or compiled CSS)
+- Built-in variants and modifiers
+- Performance optimized with GPU-accelerated effects
+- Zero dependencies
+- Fully responsive
+- Accessible with ARIA support and keyboard navigation
 
 [1.0.0]: https://github.com/cameronrye/frostpane/releases/tag/v1.0.0
 
