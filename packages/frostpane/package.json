@@ -1,5 +1,5 @@
 {
-  "name": "@frostpane/core",
+  "name": "frostpane",
   "version": "1.0.0",
   "description": "A customizable frosted glass effect CSS library with backdrop blur and modern aesthetics",
   "main": "dist/frostpane.css",
@@ -46,7 +46,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cameronrye/frostpane.git",
+    "url": "git+https://github.com/cameronrye/frostpane.git",
     "directory": "packages/frostpane"
   },
   "bugs": {
@@ -57,4 +57,3 @@
     "sass": "^1.93.3"
   }
 }
-

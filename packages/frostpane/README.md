@@ -5,7 +5,7 @@ A customizable frosted glass effect CSS library with extensive customization opt
 ## Installation
 
 ```bash
-npm install @frostpane/core
+npm install frostpane
 ```
 
 ## Usage
@@ -13,19 +13,19 @@ npm install @frostpane/core
 ### Using the compiled CSS
 
 ```html
-<link rel="stylesheet" href="node_modules/@frostpane/core/dist/frostpane.css">
+<link rel="stylesheet" href="node_modules/frostpane/dist/frostpane.css">
 ```
 
 Or import in your JavaScript/CSS:
 
 ```javascript
-import '@frostpane/core/css';
+import 'frostpane/css';
 ```
 
 ### Using the SCSS source
 
 ```scss
-@import '@frostpane/core/scss';
+@import 'frostpane/scss';
 ```
 
 ### Basic HTML Structure
