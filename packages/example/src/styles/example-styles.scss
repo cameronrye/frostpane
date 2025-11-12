@@ -7,6 +7,25 @@
 @use '../../../frostpane/src/frostpane.scss' as *;
 
 // ============================================================================
+// Global Styles - Prevent Horizontal Scrolling
+// ============================================================================
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+// ============================================================================
 // Theme Variables - Light and Dark Mode Support
 // ============================================================================
 
@@ -81,22 +100,45 @@
 
 .main-nav {
   position: fixed;
-  top: 2rem;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
+  max-width: calc(100vw - 2rem);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include breakpoint-sm {
+    top: 2rem;
+    gap: 0.5rem;
+  }
 }
 
 .nav-tab {
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   border: none;
   background: transparent;
   color: var(--theme-text-primary);
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.3s ease;
   border-radius: 0.5rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  @include breakpoint-sm {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
 
   &:hover {
     transform: translateY(-2px);
@@ -120,8 +162,15 @@
 .section {
   display: none;
   min-height: 100vh;
-  padding: 6rem 1rem 4rem;
+  padding: 5rem 0.5rem 2rem;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   animation: fadeIn 0.5s ease-in-out;
+
+  @include breakpoint-sm {
+    padding: 6rem 1rem 4rem;
+  }
 
   &.active {
     display: block;
@@ -142,27 +191,58 @@
 .section-header {
   text-align: center;
   color: var(--theme-text-primary);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   padding: 0 1rem;
+  max-width: 100%;
+
+  @include breakpoint-sm {
+    margin-bottom: 3rem;
+  }
 
   h1 {
-    font-size: 3rem;
-    margin: 0 0 1rem 0;
+    font-size: 2rem;
+    margin: 0 0 0.75rem 0;
     font-weight: 700;
     color: var(--theme-text-primary);
+
+    @include breakpoint-sm {
+      font-size: 2.5rem;
+      margin: 0 0 1rem 0;
+    }
+
+    @include breakpoint-md {
+      font-size: 3rem;
+    }
   }
 
   p {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: var(--theme-text-secondary);
     margin: 0;
+
+    @include breakpoint-sm {
+      font-size: 1.125rem;
+    }
+
+    @include breakpoint-md {
+      font-size: 1.25rem;
+    }
   }
 
   .logo-img {
-    max-width: 400px;
+    max-width: 280px;
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     animation: float 3s ease-in-out infinite;
+
+    @include breakpoint-sm {
+      max-width: 350px;
+      margin-bottom: 1.5rem;
+    }
+
+    @include breakpoint-md {
+      max-width: 400px;
+    }
   }
 
   @keyframes float {
@@ -175,18 +255,40 @@
   }
 
   .tagline {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.75rem 0;
     color: var(--theme-text-primary);
+    padding: 0 0.5rem;
+
+    @include breakpoint-sm {
+      font-size: 1.5rem;
+      margin: 0 0 1rem 0;
+      padding: 0;
+    }
+
+    @include breakpoint-md {
+      font-size: 1.75rem;
+    }
   }
 
   .description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.6;
     max-width: 700px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1.5rem;
     color: var(--theme-text-secondary);
+    padding: 0 0.5rem;
+
+    @include breakpoint-sm {
+      font-size: 1.05rem;
+      margin: 0 auto 2rem;
+      padding: 0;
+    }
+
+    @include breakpoint-md {
+      font-size: 1.1rem;
+    }
   }
 }
 
@@ -242,6 +344,7 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 0 1rem;
+  width: 100%;
 }
 
 .quick-install-label {
@@ -260,9 +363,15 @@
   background: var(--theme-code-bg);
   border: 1px solid var(--theme-border-color);
   border-radius: 0.75rem;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   backdrop-filter: blur(8px);
   transition: border-color 0.2s ease, background 0.2s ease;
+  max-width: 100%;
+  overflow: hidden;
+
+  @include breakpoint-sm {
+    padding: 1rem 1.25rem;
+  }
 
   &:hover {
     border-color: var(--theme-border-color-strong);
@@ -273,8 +382,15 @@
     flex: 1;
     color: var(--theme-code-text);
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include breakpoint-sm {
+      font-size: 1rem;
+    }
   }
 
   .copy-button {
@@ -318,14 +434,16 @@
 .stats-badges {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 0.75rem;
   max-width: 600px;
-  margin: 2.5rem auto 0;
+  margin: 2rem auto 0;
   padding: 0 1rem;
+  width: 100%;
 
   @include breakpoint-sm {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
+    margin: 2.5rem auto 0;
   }
 }
 
@@ -334,12 +452,18 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1.25rem 1rem;
+  padding: 1rem 0.75rem;
   background: var(--theme-surface-overlay);
   border: 1px solid var(--theme-border-color);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
+  min-width: 0;
+
+  @include breakpoint-sm {
+    padding: 1.25rem 1rem;
+    border-radius: 1rem;
+  }
 
   &:hover {
     background: var(--theme-surface-overlay-hover);
@@ -348,10 +472,15 @@
   }
 
   i {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     color: var(--fp-red);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     filter: drop-shadow(0 0 6px rgba(245, 87, 108, 0.3));
+
+    @include breakpoint-sm {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
   }
 }
 
@@ -359,22 +488,36 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  min-width: 0;
+  width: 100%;
 }
 
 .badge-value {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--theme-text-primary);
   line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include breakpoint-sm {
+    font-size: 1.1rem;
+  }
 }
 
 .badge-label {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 500;
   color: var(--theme-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include breakpoint-sm {
+    font-size: 0.75rem;
+  }
 }
 
 // ============================================================================
@@ -383,32 +526,62 @@
 
 .why-frostpane {
   max-width: 1200px;
-  margin: 4rem auto;
+  margin: 3rem auto;
   padding: 0 1rem;
   text-align: center;
+  width: 100%;
+
+  @include breakpoint-sm {
+    margin: 4rem auto;
+  }
 }
 
 .why-frostpane-title {
   color: var(--theme-text-primary);
-  font-size: 2.25rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.5rem 0;
+
+  @include breakpoint-sm {
+    font-size: 2rem;
+    margin: 0 0 0.75rem 0;
+  }
+
+  @include breakpoint-md {
+    font-size: 2.25rem;
+  }
 }
 
 .why-frostpane-subtitle {
   color: var(--theme-text-tertiary);
-  font-size: 1.15rem;
-  margin: 0 0 3rem 0;
+  font-size: 1rem;
+  margin: 0 0 2rem 0;
+  padding: 0 0.5rem;
+
+  @include breakpoint-sm {
+    font-size: 1.1rem;
+    margin: 0 0 2.5rem 0;
+    padding: 0;
+  }
+
+  @include breakpoint-md {
+    font-size: 1.15rem;
+    margin: 0 0 3rem 0;
+  }
 }
 
 .comparison-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
   text-align: left;
 
   @include breakpoint-sm {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @include breakpoint-md {
     gap: 2rem;
   }
 
@@ -418,12 +591,21 @@
 }
 
 .comparison-card {
-  padding: 2rem;
+  padding: 1.5rem;
   background: var(--theme-surface-overlay);
   border: 1px solid var(--theme-border-color);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
+
+  @include breakpoint-sm {
+    padding: 1.75rem;
+    border-radius: 1rem;
+  }
+
+  @include breakpoint-md {
+    padding: 2rem;
+  }
 
   &:hover {
     background: var(--theme-surface-overlay-hover);
@@ -434,9 +616,13 @@
 
   p {
     color: var(--theme-text-tertiary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.6;
     margin: 0;
+
+    @include breakpoint-sm {
+      font-size: 0.95rem;
+    }
   }
 }
 
@@ -444,19 +630,32 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+
+  @include breakpoint-sm {
+    margin-bottom: 1rem;
+  }
 
   i {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     color: var(--fp-red);
     filter: drop-shadow(0 0 6px rgba(245, 87, 108, 0.3));
+    flex-shrink: 0;
+
+    @include breakpoint-sm {
+      font-size: 1.5rem;
+    }
   }
 
   h4 {
     color: var(--theme-text-primary);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     margin: 0;
+
+    @include breakpoint-sm {
+      font-size: 1.1rem;
+    }
   }
 }
 
@@ -468,16 +667,22 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  width: 100%;
 }
 
 .feature-cards {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 4rem;
+  gap: 1rem;
+  margin-bottom: 3rem;
 
   @include breakpoint-sm {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  @include breakpoint-md {
     gap: 2rem;
   }
 
@@ -513,60 +718,110 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 2rem 1.5rem;
-  min-height: 200px;
+  padding: 1.5rem 1rem;
+  min-height: 180px;
+
+  @include breakpoint-sm {
+    padding: 2rem 1.5rem;
+    min-height: 200px;
+  }
 }
 
 .feature-icon {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--fp-red);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   filter: drop-shadow(0 0 8px rgba(245, 87, 108, 0.4));
+
+  @include breakpoint-sm {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .feature-title {
   color: var(--theme-text-primary);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.5rem 0;
+
+  @include breakpoint-sm {
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem 0;
+  }
 }
 
 .feature-description {
   color: var(--theme-text-tertiary);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   margin: 0;
+
+  @include breakpoint-sm {
+    font-size: 0.95rem;
+  }
 }
 
 .demo-components {
-  margin-top: 4rem;
+  margin-top: 3rem;
+
+  @include breakpoint-sm {
+    margin-top: 4rem;
+  }
 }
 
 .demo-section-title {
   color: var(--theme-text-primary);
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
   margin: 0 0 0.5rem 0;
+  padding: 0 0.5rem;
+
+  @include breakpoint-sm {
+    font-size: 1.75rem;
+    padding: 0;
+  }
+
+  @include breakpoint-md {
+    font-size: 2rem;
+  }
 }
 
 .demo-section-subtitle {
   color: var(--theme-text-tertiary);
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-align: center;
-  margin: 0 0 3rem 0;
+  margin: 0 0 2rem 0;
+  padding: 0 0.5rem;
+
+  @include breakpoint-sm {
+    font-size: 1.05rem;
+    margin: 0 0 2.5rem 0;
+    padding: 0;
+  }
+
+  @include breakpoint-md {
+    font-size: 1.1rem;
+    margin: 0 0 3rem 0;
+  }
 }
 
 .demo-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  width: 100%;
 
   @include breakpoint-sm {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  @include breakpoint-md {
     padding: 0 2rem;
   }
 }
@@ -619,13 +874,18 @@
 .examples-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
   padding: 1rem;
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
 
   @include breakpoint-sm {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  @include breakpoint-md {
     padding: 2rem;
   }
 }
@@ -634,43 +894,67 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 0;
 }
 
 .example-title {
   color: var(--theme-text-primary);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
+
+  @include breakpoint-sm {
+    font-size: 1.25rem;
+  }
 }
 
 .example-description {
   color: var(--theme-text-tertiary);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   margin: 0 0 1rem 0;
   line-height: 1.5;
-  min-height: 3em; // Ensure consistent height for descriptions
+  min-height: 3em;
+
+  @include breakpoint-sm {
+    font-size: 0.95rem;
+  }
 }
 
 .example-preview {
-  min-height: 150px;
+  min-height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1; // Allow preview to grow and fill available space
+  flex: 1;
+
+  @include breakpoint-sm {
+    min-height: 150px;
+  }
 }
 
 .example-code {
   position: relative;
   background: var(--theme-code-bg);
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 0.75rem;
   backdrop-filter: blur(10px);
-  margin-top: auto; // Push code block to bottom of component-item
+  margin-top: auto;
   transition: background-color 0.3s ease;
+  overflow: hidden;
+
+  @include breakpoint-sm {
+    padding: 1rem;
+  }
 
   pre {
+    min-height: 120px;
     max-height: 400px;
     overflow-y: auto;
+    overflow-x: auto;
+
+    @include breakpoint-sm {
+      min-height: 150px;
+    }
   }
 }
 
@@ -713,13 +997,20 @@
 pre {
   margin: 0;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 code {
   color: var(--theme-code-text);
   font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.5;
+  word-break: break-all;
+
+  @include breakpoint-sm {
+    font-size: 0.9rem;
+    word-break: normal;
+  }
 }
 
 // ============================================================================
@@ -729,27 +1020,52 @@ code {
 .getting-started {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+  width: 100%;
+
+  @include breakpoint-sm {
+    padding: 1.5rem;
+  }
+
+  @include breakpoint-md {
+    padding: 2rem;
+  }
 }
 
 .step {
   background: var(--theme-surface-overlay);
-  border-radius: 1rem;
-  padding: 2rem;
-  margin-bottom: 2rem;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
   backdrop-filter: blur(10px);
   transition: background-color 0.3s ease;
 
+  @include breakpoint-sm {
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
   h3 {
     color: var(--theme-text-primary);
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.25rem;
+
+    @include breakpoint-sm {
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+    }
   }
 
   p {
     color: var(--theme-text-secondary);
     line-height: 1.6;
     margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+
+    @include breakpoint-sm {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -760,13 +1076,18 @@ code {
 .components-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
   padding: 1rem;
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
 
   @include breakpoint-sm {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @include breakpoint-md {
     padding: 2rem;
     gap: 2.5rem;
   }
@@ -776,6 +1097,7 @@ code {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 0;
 
   // Ensure all items have equal height in grid
   height: 100%;
@@ -784,8 +1106,12 @@ code {
 .component-button-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
   justify-content: center;
+
+  @include breakpoint-sm {
+    gap: 1rem;
+  }
 }
 
 // ============================================================================
@@ -794,8 +1120,8 @@ code {
 
 body {
   margin: 0;
-  padding: 2rem 0;
-  min-height: calc(100vh - 4rem);
+  padding: 1rem 0;
+  min-height: calc(100vh - 2rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -803,6 +1129,13 @@ body {
   font-family: sans-serif;
   position: relative;
   transition: color 0.3s ease;
+  overflow-x: hidden;
+  max-width: 100vw;
+
+  @include breakpoint-sm {
+    padding: 2rem 0;
+    min-height: calc(100vh - 4rem);
+  }
 
   // Animated background using pseudo-element with GPU-accelerated transform
   &::before {
@@ -885,23 +1218,42 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  min-width: 0;
+  gap: 0.5rem;
+
+  @include breakpoint-sm {
+    gap: 1rem;
+  }
 }
 
 .player__thumb {
   display: flex;
   align-items: center;
-  padding-left: var(--fp-space-md);
+  padding-left: var(--fp-space-sm);
+  min-width: 0;
+  flex: 1;
+
+  @include breakpoint-sm {
+    padding-left: var(--fp-space-md);
+  }
 }
 
 .player__img {
-  width: 5rem;
-  height: 5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: var(--fp-border-radius-small);
-  margin-right: var(--fp-space-md);
+  margin-right: var(--fp-space-sm);
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   transition: transform var(--fp-transition-medium) ease-out,
               outline-offset 0.2s ease;
   cursor: pointer;
+  flex-shrink: 0;
+
+  @include breakpoint-sm {
+    width: 5rem;
+    height: 5rem;
+    margin-right: var(--fp-space-md);
+  }
 
   &:hover {
     transform: scale(var(--fp-hover-scale));
@@ -920,50 +1272,77 @@ body {
 
 .player__legend {
   color: var(--fp-text-on-glass);
-  max-width: 200px;
+  max-width: 120px;
   min-width: 0;
+  flex: 1;
+
+  @include breakpoint-sm {
+    max-width: 200px;
+  }
 }
 
 .player__legend__title {
   margin: 0;
-  font-size: var(--fp-text-base);
+  font-size: var(--fp-text-sm);
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @include breakpoint-sm {
+    font-size: var(--fp-text-base);
+  }
 }
 
 .player__legend__sub-title {
   margin: 0;
-  font-size: var(--fp-text-sm);
+  font-size: var(--fp-text-xs);
   color: var(--fp-text-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @include breakpoint-sm {
+    font-size: var(--fp-text-sm);
+  }
 }
 
 .player__controls {
   display: flex;
   align-items: center;
-  gap: var(--fp-content-gap);
+  gap: 0.25rem;
+  flex-shrink: 0;
+
+  @include breakpoint-sm {
+    gap: var(--fp-content-gap);
+  }
 }
 
 .player__control-btn {
   background: transparent;
   border: none;
   color: var(--fp-text-on-glass);
-  font-size: var(--fp-icon-sm);
+  font-size: 1.25rem;
   cursor: pointer;
   transition: transform var(--fp-transition-fast) ease-out,
               outline-offset 0.2s ease;
-  padding: var(--fp-space-xs);
+  padding: 0.25rem;
   border-radius: var(--fp-border-radius-small);
   display: flex;
   align-items: center;
   justify-content: center;
 
-  i {
+  @include breakpoint-sm {
     font-size: var(--fp-icon-sm);
+    padding: var(--fp-space-xs);
+  }
+
+  i {
+    font-size: 1.25rem;
+
+    @include breakpoint-sm {
+      font-size: var(--fp-icon-sm);
+    }
   }
 
   &:hover {
@@ -1021,7 +1400,6 @@ body {
 
 .glass-item--active {
   position: relative;
-  background: rgba(251, 66, 104, 0.2);
   color: var(--fp-red);
   padding: var(--fp-space-sm) var(--fp-space-lg);
 }
@@ -1047,26 +1425,44 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 3rem 2rem 2rem;
-  margin-top: 4rem;
+  padding: 2rem 1rem 1.5rem;
+  margin-top: 3rem;
   background: var(--theme-footer-bg);
   border-top: 1px solid var(--theme-border-color);
   backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 100vw;
+
+  @include breakpoint-sm {
+    padding: 2.5rem 1.5rem 2rem;
+    margin-top: 3.5rem;
+  }
+
+  @include breakpoint-md {
+    padding: 3rem 2rem 2rem;
+    margin-top: 4rem;
+  }
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .footer-links {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 
   @include breakpoint-sm {
     grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @include breakpoint-md {
     gap: 3rem;
   }
 }
