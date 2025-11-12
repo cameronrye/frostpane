@@ -1,10 +1,31 @@
 ---
+import { codeToHtml } from 'shiki';
+
 interface Props {
   code: string;
   label?: string;
+  lang?: string;
 }
 
-const { code, label = "HTML" } = Astro.props;
+const { code, label = "HTML", lang = "html" } = Astro.props;
+
+// Map label to language if lang not explicitly provided
+const languageMap: Record<string, string> = {
+  'HTML': 'html',
+  'CSS': 'css',
+  'JavaScript': 'javascript',
+  'TypeScript': 'typescript',
+  'JSON': 'json',
+  'Bash': 'bash',
+};
+
+const detectedLang = languageMap[label] || lang;
+
+// Generate syntax-highlighted HTML at build time
+const highlightedCode = await codeToHtml(code, {
+  lang: detectedLang,
+  theme: 'github-dark-dimmed',
+});
 ---
 
 <div class="example-code">
@@ -14,7 +35,7 @@ const { code, label = "HTML" } = Astro.props;
       <i class="fa-solid fa-copy"></i> Copy
     </button>
   </div>
-  <pre><code>{code}</code></pre>
+  <div class="shiki-wrapper" set:html={highlightedCode} />
 </div>
 
 <script>
@@ -22,13 +43,13 @@ const { code, label = "HTML" } = Astro.props;
     btn.addEventListener('click', async (e) => {
       const button = e.currentTarget as HTMLElement;
       const code = button.getAttribute('data-code');
-      
+
       if (code) {
         try {
           await navigator.clipboard.writeText(code);
           button.classList.add('copied');
           button.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-          
+
           setTimeout(() => {
             button.classList.remove('copied');
             button.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import ExampleItem from '../components/ExampleItem.astro';
 import ComponentItem from '../components/ComponentItem.astro';
+import CodeBlock from '../components/CodeBlock.astro';
 import { examples } from '../data/examples';
 import { components } from '../data/components';
 ---
@@ -269,41 +270,33 @@ import { components } from '../data/components';
         <div class="step">
           <h3>1. Installation</h3>
           <p>Install Frostpane via npm:</p>
-          <div class="example-code">
-            <pre><code>npm install frostpane</code></pre>
-          </div>
+          <CodeBlock code="npm install frostpane" label="Bash" />
         </div>
 
         <div class="step">
           <h3>2. Import the CSS</h3>
           <p>Add Frostpane to your project:</p>
-          <div class="example-code">
-            <pre><code>&lt;link rel="stylesheet" href="node_modules/frostpane/dist/frostpane.css"&gt;</code></pre>
-          </div>
+          <CodeBlock code={`<link rel="stylesheet" href="node_modules/frostpane/dist/frostpane.css">`} label="HTML" />
         </div>
 
         <div class="step">
           <h3>3. Use the Components</h3>
           <p>Start building with glass containers:</p>
-          <div class="example-code">
-            <pre><code>&lt;div class="glass-container glass-container--rounded"&gt;
-  &lt;div class="glass-content"&gt;
+          <CodeBlock code={`<div class="glass-container glass-container--rounded">
+  <div class="glass-content">
     Your content here
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-          </div>
+  </div>
+</div>`} label="HTML" />
         </div>
 
         <div class="step">
           <h3>4. Customize with CSS Variables</h3>
           <p>Override default styles using CSS custom properties:</p>
-          <div class="example-code">
-            <pre><code set:html={`.my-glass {
+          <CodeBlock code={`.my-glass {
   --fp-bg-color: rgba(0, 0, 0, 0.4);
   --fp-backdrop-blur: 12px;
   --fp-border-radius: 1rem;
-}`}></code></pre>
-          </div>
+}`} label="CSS" />
         </div>
       </div>
     </section>

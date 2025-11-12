@@ -958,6 +958,39 @@ html, body {
   }
 }
 
+// Shiki syntax highlighting overrides
+.shiki-wrapper {
+  pre {
+    margin: 0;
+    padding: 0;
+    background: transparent !important;
+    min-height: 120px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+
+    @include breakpoint-sm {
+      min-height: 150px;
+    }
+  }
+
+  code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    background: transparent !important;
+
+    @include breakpoint-sm {
+      font-size: 0.9rem;
+    }
+  }
+
+  // Ensure syntax highlighting colors are visible on glass background
+  .shiki {
+    background: transparent !important;
+  }
+}
+
 .code-header {
   display: flex;
   justify-content: space-between;
