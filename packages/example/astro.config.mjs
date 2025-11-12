@@ -18,13 +18,13 @@ export default defineConfig({
   // Build configuration
   build: {
     // Assets directory within dist
-    assets: 'assets',
+    assets: 'assets'
   },
 
   // Development server configuration
   server: {
     port: 5173,
-    host: true,
+    host: true
   },
 
   // Vite configuration for compatibility
@@ -33,8 +33,9 @@ export default defineConfig({
       preprocessorOptions: {
         scss: {
           // Additional SCSS options if needed
-        },
-      },
-    },
-  },
+        }
+      }
+    }
+  }
 });
+

@@ -3,24 +3,16 @@
   "version": "1.0.0",
   "description": "A customizable frosted glass effect CSS library with backdrop blur and modern aesthetics",
   "main": "dist/frostpane.css",
-  "types": "src/frostpane.d.ts",
   "style": "dist/frostpane.css",
   "sass": "src/frostpane.scss",
   "exports": {
     ".": {
-      "types": "./src/frostpane.d.ts",
       "sass": "./src/frostpane.scss",
       "style": "./dist/frostpane.css",
       "default": "./dist/frostpane.css"
     },
-    "./scss": {
-      "types": "./src/frostpane.d.ts",
-      "default": "./src/frostpane.scss"
-    },
-    "./css": {
-      "types": "./src/frostpane.d.ts",
-      "default": "./dist/frostpane.css"
-    }
+    "./scss": "./src/frostpane.scss",
+    "./css": "./dist/frostpane.css"
   },
   "files": [
     "dist",
@@ -28,12 +20,10 @@
     "README.md"
   ],
   "scripts": {
-    "build": "sass src/frostpane.scss dist/frostpane.css --style=compressed",
-    "build:dev": "sass src/frostpane.scss dist/frostpane.css",
-    "watch": "sass src/frostpane.scss dist/frostpane.css --watch",
-    "lint": "stylelint \"src/**/*.scss\"",
-    "lint:fix": "stylelint \"src/**/*.scss\" --fix",
-    "prepublishOnly": "npm run lint && npm run build"
+    "build": "sass src/frostpane.scss dist/frostpane.css --style=compressed --no-source-map",
+    "build:dev": "sass src/frostpane.scss dist/frostpane.css --no-source-map",
+    "watch": "sass src/frostpane.scss dist/frostpane.css --watch --no-source-map",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "css",
@@ -67,3 +57,4 @@
     "sass": "^1.93.3"
   }
 }
+

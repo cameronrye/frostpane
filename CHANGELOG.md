@@ -8,7 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-11-11
 
 ### Added
-
 - Initial release of Frostpane
 - Core frosted glass effect with backdrop blur
 - Customizable CSS custom properties (30+ variables)
@@ -25,7 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Zero runtime dependencies
 
 ### Features
-
 - 🎨 Highly customizable with 30+ CSS custom properties
 - 🔧 Framework agnostic - works with any JavaScript framework
 - 📦 Multiple import options (SCSS source or compiled CSS)
@@ -36,3 +34,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ♿ Accessible with ARIA support and keyboard navigation
 
 [1.0.0]: https://github.com/cameronrye/frostpane/releases/tag/v1.0.0
+

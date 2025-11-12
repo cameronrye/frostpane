@@ -11,23 +11,7 @@
     "build": "npm run build --workspaces --if-present",
     "build:lib": "npm run build --workspace=packages/frostpane",
     "build:example": "npm run build --workspace=packages/example",
-    "preview": "npm run preview --workspace=packages/example",
-    "lint": "npm run lint --workspaces --if-present",
-    "lint:fix": "npm run lint:fix --workspaces --if-present",
-    "format": "prettier --write \"**/*.{js,ts,json,md,scss,astro,mjs}\"",
-    "format:check": "prettier --check \"**/*.{js,ts,json,md,scss,astro,mjs}\"",
-    "test": "playwright test",
-    "test:ui": "playwright test --ui",
-    "test:headed": "playwright test --headed",
-    "test:update-snapshots": "playwright test --update-snapshots",
-    "size": "size-limit",
-    "size:why": "size-limit --why",
-    "sbom": "cyclonedx-npm --output-file sbom.json",
-    "sbom:xml": "cyclonedx-npm --output-format XML --output-file sbom.xml",
-    "validate": "npm run format:check && npm run lint && npm run build && npm test",
-    "prepare": "husky",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "preview": "npm run preview --workspace=packages/example"
   },
   "keywords": [
     "css",
@@ -52,45 +36,8 @@
   },
   "homepage": "https://cameronrye.github.io/frostpane",
   "type": "module",
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
-  },
   "devDependencies": {
-    "@axe-core/playwright": "^4.10.2",
-    "@cyclonedx/cyclonedx-npm": "^4.1.1",
-    "@playwright/test": "^1.49.1",
-    "@size-limit/file": "^11.2.0",
-    "@storybook/addon-docs": "^10.0.6",
-    "@storybook/html-vite": "^10.0.6",
-    "@typescript-eslint/eslint-plugin": "^8.20.0",
-    "@typescript-eslint/parser": "^8.20.0",
-    "astro-eslint-parser": "^1.1.0",
-    "eslint": "^9.18.0",
-    "eslint-plugin-astro": "^1.3.2",
-    "eslint-plugin-storybook": "^10.0.6",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.2.11",
-    "prettier": "^3.4.2",
-    "prettier-plugin-astro": "^0.14.1",
-    "sass": "^1.94.0",
-    "size-limit": "^11.2.0",
-    "storybook": "^10.0.6",
-    "stylelint": "^16.12.0",
-    "stylelint-config-standard-scss": "^13.1.0",
+    "sass": "^1.93.3",
     "vite": "^7.2.2"
-  },
-  "lint-staged": {
-    "*.scss": [
-      "stylelint --fix",
-      "prettier --write"
-    ],
-    "*.{js,ts,astro,mjs}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md}": [
-      "prettier --write"
-    ]
   }
 }

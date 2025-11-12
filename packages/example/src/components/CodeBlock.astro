@@ -4,7 +4,7 @@ interface Props {
   label?: string;
 }
 
-const { code, label = 'HTML' } = Astro.props;
+const { code, label = "HTML" } = Astro.props;
 ---
 
 <div class="example-code">
@@ -18,17 +18,17 @@ const { code, label = 'HTML' } = Astro.props;
 </div>
 
 <script>
-  document.querySelectorAll('.copy-btn').forEach((btn) => {
+  document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', async (e) => {
       const button = e.currentTarget as HTMLElement;
       const code = button.getAttribute('data-code');
-
+      
       if (code) {
         try {
           await navigator.clipboard.writeText(code);
           button.classList.add('copied');
           button.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-
+          
           setTimeout(() => {
             button.classList.remove('copied');
             button.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
@@ -40,3 +40,4 @@ const { code, label = 'HTML' } = Astro.props;
     });
   });
 </script>
+

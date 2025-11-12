@@ -55,3 +55,4 @@ import '@frostpane/core/scss';
 ```
 
 This demonstrates how consumers of the library would use it in their own projects.
+

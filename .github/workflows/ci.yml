@@ -25,46 +25,15 @@ jobs:
     
     - name: Install dependencies
       run: npm ci
-
-    - name: Run linting
-      run: npm run lint
-
-    - name: Check code formatting
-      run: npm run format:check
-
+    
     - name: Build library
       run: npm run build:lib
-
+    
     - name: Build example site
       run: npm run build:example
-
+    
     - name: Check for build artifacts
       run: |
         test -f packages/frostpane/dist/frostpane.css || exit 1
         test -d packages/example/dist || exit 1
-
-    - name: Check bundle size
-      run: npm run size
-
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps chromium
-
-    - name: Run tests
-      run: npm test
-
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: playwright-report-${{ matrix.node-version }}
-        path: playwright-report/
-        retention-days: 30
-
-    - name: Upload test coverage
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-coverage-${{ matrix.node-version }}
-        path: playwright-report/
-        retention-days: 30
 

@@ -11,7 +11,6 @@ By participating in this project, you agree to maintain a respectful and inclusi
 ### Reporting Bugs
 
 If you find a bug, please create an issue on GitHub with:
-
 - A clear, descriptive title
 - Steps to reproduce the issue
 - Expected behavior vs. actual behavior
@@ -21,7 +20,6 @@ If you find a bug, please create an issue on GitHub with:
 ### Suggesting Features
 
 We welcome feature suggestions! Please create an issue with:
-
 - A clear description of the feature
 - Use cases and benefits
 - Any implementation ideas you have
@@ -29,13 +27,11 @@ We welcome feature suggestions! Please create an issue with:
 ### Submitting Pull Requests
 
 1. **Fork the repository** and create your branch from `main`
-
    ```bash
    git checkout -b feature/my-feature
    ```
 
 2. **Set up your development environment**
-
    ```bash
    npm install
    npm run dev
@@ -47,7 +43,6 @@ We welcome feature suggestions! Please create an issue with:
    - Follow the existing code style and conventions
 
 4. **Build and test**
-
    ```bash
    npm run build
    ```
@@ -116,7 +111,6 @@ npm run preview
 ### CSS Custom Properties
 
 When adding new features:
-
 - Use CSS custom properties (variables) for customization
 - Follow the `--fp-*` naming convention
 - Document new properties in the README
@@ -136,3 +130,4 @@ Feel free to open an issue for any questions about contributing!
 ## License
 
 By contributing to Frostpane, you agree that your contributions will be licensed under the MIT License.
+

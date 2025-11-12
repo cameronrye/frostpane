@@ -5,20 +5,12 @@ interface Props {
   title: string;
   description: string;
   htmlCode: string;
-  category?: string;
-  tags?: string[];
 }
 
-const { title, description, htmlCode, category, tags } = Astro.props;
+const { title, description, htmlCode } = Astro.props;
 ---
 
-<div
-  class="component-item"
-  data-title={title.toLowerCase()}
-  data-description={description.toLowerCase()}
-  data-category={category}
-  data-tags={tags?.join(',') || ''}
->
+<div class="component-item">
   <h3 class="example-title">{title}</h3>
   <p class="example-description">{description}</p>
   <div class="example-preview">
@@ -26,3 +18,4 @@ const { title, description, htmlCode, category, tags } = Astro.props;
   </div>
   <CodeBlock code={htmlCode} label="HTML" />
 </div>
+
