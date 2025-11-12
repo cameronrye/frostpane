@@ -71,7 +71,7 @@ We welcome feature suggestions! Please create an issue with:
 ```
 frostpane/
 ├── packages/
-│   ├── frostpane/             # @frostpane/core - The publishable library
+│   ├── frostpane/             # frostpane - The publishable library
 │   │   ├── src/
 │   │   │   └── frostpane.scss # Main library file
 │   │   ├── dist/              # Compiled CSS (generated)

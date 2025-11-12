@@ -45,23 +45,23 @@ ls -la package/
 
 ```bash
 # Still in packages/frostpane directory
-npm publish --access public
+npm publish
 
 # Or for a beta release
-npm publish --access public --tag beta
+npm publish --tag beta
 ```
 
 ### 4. Verify the Publication
 
 ```bash
 # Check on npm
-npm view @frostpane/core
+npm view frostpane
 
 # Test installation
 mkdir test-install
 cd test-install
 npm init -y
-npm install @frostpane/core
+npm install frostpane
 ```
 
 ### 5. Create GitHub Release
@@ -142,7 +142,7 @@ After bumping version:
 ### npm publish fails with 403
 
 - Ensure you're logged in: `npm whoami`
-- Check package name isn't taken: `npm view @frostpane/core`
+- Check package name isn't taken: `npm view frostpane`
 - Verify you have publish rights
 
 ### GitHub Pages not updating

@@ -51,7 +51,7 @@ This example site shows:
 The example imports the Frostpane library as a dependency:
 
 ```javascript
-import '@frostpane/core/scss';
+import 'frostpane/scss';
 ```
 
 This demonstrates how consumers of the library would use it in their own projects.

@@ -6,8 +6,8 @@
 
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/@frostpane/core.svg?style=flat-square)](https://www.npmjs.com/package/@frostpane/core)
-[![npm downloads](https://img.shields.io/npm/dm/@frostpane/core.svg?style=flat-square)](https://www.npmjs.com/package/@frostpane/core)
+[![npm version](https://img.shields.io/npm/v/frostpane.svg?style=flat-square)](https://www.npmjs.com/package/frostpane)
+[![npm downloads](https://img.shields.io/npm/dm/frostpane.svg?style=flat-square)](https://www.npmjs.com/package/frostpane)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![CI](https://img.shields.io/github/actions/workflow/status/cameronrye/frostpane/ci.yml?branch=main&style=flat-square)](https://github.com/cameronrye/frostpane/actions)
 
@@ -36,7 +36,7 @@ A customizable, modern CSS/SCSS library for creating beautiful frosted glass eff
 #### Installation
 
 ```bash
-npm install @frostpane/core
+npm install frostpane
 ```
 
 #### Basic Usage
@@ -44,19 +44,19 @@ npm install @frostpane/core
 **Option 1: Import SCSS (Recommended for customization)**
 
 ```javascript
-import '@frostpane/core/scss';
+import 'frostpane/scss';
 ```
 
 **Option 2: Import Compiled CSS**
 
 ```javascript
-import '@frostpane/core/css';
+import 'frostpane/css';
 ```
 
 **Option 3: Link in HTML**
 
 ```html
-<link rel="stylesheet" href="node_modules/@frostpane/core/dist/frostpane.css">
+<link rel="stylesheet" href="node_modules/frostpane/dist/frostpane.css">
 ```
 
 #### HTML Structure
@@ -143,14 +143,14 @@ This is a monorepo using npm workspaces with two packages:
 ```
 frostpane/
 ├── packages/
-│   ├── frostpane/             # @frostpane/core - The publishable library
+│   ├── frostpane/             # frostpane - The publishable library
 │   │   ├── src/
 │   │   │   └── frostpane.scss
 │   │   ├── dist/
 │   │   │   └── frostpane.css
 │   │   ├── package.json
 │   │   └── README.md
-│   └── example/               # @frostpane/example - Example site
+│   └── example/               # Example site
 │       ├── index.html
 │       ├── main.js
 │       ├── vite.config.js
@@ -162,8 +162,8 @@ frostpane/
 
 ### Package Overview
 
-- **@frostpane/core** - The standalone, publishable CSS/SCSS library
-- **@frostpane/example** - Example site that showcases the library (private, not published)
+- **frostpane** - The standalone, publishable CSS/SCSS library
+- **example** - Example site that showcases the library (private, not published)
 
 The example package depends on the core library via workspace reference, demonstrating real-world usage.
 
@@ -379,12 +379,12 @@ npm run preview          # Preview built site
 
 ## 📦 Publishing
 
-The `@frostpane/core` library can be published to npm:
+The `frostpane` library can be published to npm:
 
 ```bash
 cd packages/frostpane
 npm run build
-npm publish --access public
+npm publish
 ```
 
 The `prepublishOnly` script ensures the library is built before publishing.
@@ -402,10 +402,10 @@ This project uses **npm workspaces** for monorepo management, providing:
 
 ```
 Root (frostpane-monorepo)
-├── @frostpane/core
+├── frostpane
 │   └── devDependencies: sass
-└── @frostpane/example
-    ├── dependencies: @frostpane/core (workspace:*)
+└── example
+    ├── dependencies: frostpane (workspace:*)
     └── devDependencies: vite
 ```
 

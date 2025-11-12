@@ -10,7 +10,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@frostpane/core": "*"
+    "frostpane": "*"
   },
   "devDependencies": {
     "astro": "^5.15.5",
