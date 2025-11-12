@@ -37,7 +37,7 @@ npm publish --dry-run
 
 # Check the package contents
 npm pack
-tar -xvzf frostpane-core-*.tgz
+tar -xvzf frostpane-*.tgz
 ls -la package/
 ```
 
