@@ -1,9 +1,9 @@
 # Dependencies
 node_modules
-package-lock.json
 
 # Build outputs
 dist
+!packages/frostpane/dist
 *.css.map
 .astro
 .cache
@@ -33,13 +33,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
-*storybook.log
-storybook-static
-
-# Testing
-playwright-report
-test-results
 
 # Security
 sbom.json

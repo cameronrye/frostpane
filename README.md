@@ -87,7 +87,7 @@ import 'frostpane/css';
 
 ### Prerequisites
 
-- Node.js (v16 or higher recommended)
+- Node.js (v18 or higher recommended)
 - npm (v7 or higher for workspace support)
 
 ### Setup

@@ -11,7 +11,8 @@
     "build": "npm run build --workspaces --if-present",
     "build:lib": "npm run build --workspace=packages/frostpane",
     "build:example": "npm run build --workspace=packages/example",
-    "preview": "npm run preview --workspace=packages/example"
+    "preview": "npm run preview --workspace=packages/example",
+    "version": "npm run build"
   },
   "keywords": [
     "css",
