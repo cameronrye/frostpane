@@ -97,12 +97,17 @@ jobs:
         if: ${{ !inputs.dry_run }}
         id: push
         run: |
-          git push --follow-tags origin main
-          echo "✅ Changes pushed to remote"
-        continue-on-error: true
+          if git push --follow-tags origin main; then
+            echo "✅ Changes pushed to remote"
+            echo "success=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Push failed"
+            echo "success=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
 
       - name: Rollback on push failure
-        if: ${{ !inputs.dry_run && steps.push.outcome == 'failure' }}
+        if: ${{ !inputs.dry_run && failure() && steps.push.outputs.success == 'false' }}
         run: |
           echo "❌ Push failed, rolling back..."
           git tag -d ${{ steps.version.outputs.new_version }}
@@ -114,12 +119,17 @@ jobs:
         id: publish
         run: |
           cd packages/frostpane
-          npm publish --provenance --access public
-          echo "✅ Published to npm"
-        continue-on-error: true
+          if npm publish --provenance --access public; then
+            echo "✅ Published to npm"
+            echo "success=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ npm publish failed"
+            echo "success=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
 
       - name: Rollback on publish failure
-        if: ${{ !inputs.dry_run && steps.publish.outcome == 'failure' }}
+        if: ${{ !inputs.dry_run && failure() && steps.publish.outputs.success == 'false' }}
         run: |
           echo "❌ npm publish failed, rolling back..."
           git push origin :refs/tags/${{ steps.version.outputs.new_version }}
