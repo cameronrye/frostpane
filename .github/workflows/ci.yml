@@ -43,6 +43,15 @@ jobs:
 
     - name: Check for build artifacts
       run: |
-        test -f packages/frostpane/dist/frostpane.css || exit 1
-        test -d packages/example/dist || exit 1
+        echo "Checking library build artifacts..."
+        test -f packages/frostpane/dist/frostpane.css || (echo "❌ frostpane.css not found" && exit 1)
+        test -f packages/frostpane/dist/frostpane-core.css || (echo "❌ frostpane-core.css not found" && exit 1)
+        echo "✅ Library artifacts present"
+
+        echo "Checking example site build artifacts..."
+        test -d packages/example/dist || (echo "❌ Example dist directory not found" && exit 1)
+        test -f packages/example/dist/index.html || (echo "❌ index.html not found" && exit 1)
+        test -d packages/example/dist/assets || (echo "❌ assets directory not found" && exit 1)
+        ls packages/example/dist/assets/*.css >/dev/null 2>&1 || (echo "❌ No CSS files found in assets" && exit 1)
+        echo "✅ Example site artifacts present"
 
