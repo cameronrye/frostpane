@@ -16,8 +16,14 @@ describe('Package Configuration', () => {
     assert.strictEqual(pkg.name, 'frostpane', 'Package name should be "frostpane"');
   });
 
-  it('should have version 1.1.0', () => {
-    assert.strictEqual(pkg.version, '1.1.0', 'Version should be 1.1.0');
+  it('should have valid semantic version', () => {
+    assert.ok(pkg.version, 'Should have a version');
+    // Check for semantic versioning format (e.g., 1.2.3, 1.2.3-beta.1, etc.)
+    const semverRegex = /^\d+\.\d+\.\d+(-[a-zA-Z0-9.-]+)?$/;
+    assert.ok(
+      semverRegex.test(pkg.version),
+      `Version should follow semantic versioning format, got: ${pkg.version}`
+    );
   });
 
   it('should have description', () => {
