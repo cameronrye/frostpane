@@ -1,0 +1,45 @@
+// ============================================================================
+// Frostpane Glass Content
+// Content wrapper classes (shared between full and core versions)
+// ============================================================================
+
+.glass-content {
+  position: relative;
+  z-index: 2; // Above ::before (0) and ::after (1)
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: space-around;
+  padding: var(--fp-content-padding-y) var(--fp-content-padding-x);
+  gap: var(--fp-content-gap);
+  flex-wrap: wrap;
+}
+
+.glass-content__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform var(--fp-transition-fast, 0.2s) ease-out,
+              outline-offset 0.2s ease;
+
+  i {
+    font-size: var(--fp-icon-xl, 4rem);
+    color: var(--fp-content-text, #fff);
+  }
+
+  &:hover {
+    transform: scale(var(--fp-hover-scale, 1.1));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fp-glass-highlight);
+    outline-offset: 4px;
+    transform: scale(var(--fp-hover-scale, 1.1));
+  }
+
+  &:active {
+    transform: scale(var(--fp-active-scale, 0.95));
+  }
+}
+

@@ -1,0 +1,231 @@
+// ============================================================================
+// Frostpane Glass Variants
+// Component variants: .glass-card, .glass-modal, .glass-nav, .glass-panel
+// (shared between full and core versions)
+// ============================================================================
+
+.glass-card {
+  // Card variant - optimized for content cards
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: transparent;
+  border-radius: var(--fp-glass-border-radius);
+  overflow: hidden;
+  padding: var(--fp-space-lg, 1.5rem);
+  gap: var(--fp-space-md, 1rem);
+  max-width: 400px;
+  box-shadow: var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-offset-y) * 1.3) calc(var(--fp-glass-shadow-blur-primary) * 1.3) var(--fp-glass-shadow-color-primary),
+              var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) calc(var(--fp-glass-shadow-blur-secondary) * 1.3) var(--fp-glass-shadow-color-secondary);
+  color: inherit;
+  transition: transform var(--fp-transition-duration) var(--fp-transition-timing),
+              box-shadow var(--fp-transition-duration) var(--fp-transition-timing);
+
+  // Slightly more blur for cards
+  --fp-glass-blur: 6px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      background: var(--fp-glass-bg);
+      opacity: 0.9;
+    }
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+      -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+      backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+      filter: url("#lensFilter");
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 1;
+    background: var(--fp-glass-bg);
+    box-shadow: inset var(--fp-glass-inset-highlight-offset) var(--fp-glass-inset-highlight-offset) var(--fp-glass-inset-highlight-blur) var(--fp-glass-highlight),
+                inset 0 0 var(--fp-glass-inset-glow-blur) var(--fp-glass-highlight);
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.glass-modal {
+  // Modal variant - stronger effect for overlays
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border-radius: var(--fp-glass-border-radius);
+  overflow: hidden;
+  padding: var(--fp-space-xl, 2rem);
+  gap: var(--fp-space-lg, 1.5rem);
+  max-width: 600px;
+  box-shadow: var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-offset-y) * 3) calc(var(--fp-glass-shadow-blur-primary) * 2) var(--fp-glass-shadow-color-primary),
+              var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) calc(var(--fp-glass-shadow-blur-secondary) * 2) var(--fp-glass-shadow-color-secondary);
+  color: inherit;
+  transition: transform var(--fp-transition-duration) var(--fp-transition-timing),
+              opacity var(--fp-transition-duration) var(--fp-transition-timing);
+
+  // Stronger effect for modals
+  --fp-glass-bg: rgba(255, 255, 255, 0.35);
+  --fp-glass-blur: 8px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      background: var(--fp-glass-bg);
+      opacity: 0.9;
+    }
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+      -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+      backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+      filter: url("#lensFilter");
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 1;
+    background: var(--fp-glass-bg);
+    box-shadow: inset var(--fp-glass-inset-highlight-offset) var(--fp-glass-inset-highlight-offset) var(--fp-glass-inset-highlight-blur) var(--fp-glass-highlight),
+                inset 0 0 var(--fp-glass-inset-glow-blur) var(--fp-glass-highlight);
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.glass-nav {
+  // Navigation variant - subtle effect for nav bars
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: var(--fp-glass-border-radius-small);
+  overflow: hidden;
+  padding: var(--fp-space-sm, 0.5rem) var(--fp-space-lg, 1.5rem);
+  gap: var(--fp-space-lg, 1.5rem);
+  box-shadow: var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-offset-y) * 0.3) calc(var(--fp-glass-shadow-blur-primary) * 0.5) var(--fp-glass-shadow-color-primary);
+  color: inherit;
+  transition: transform var(--fp-transition-duration) var(--fp-transition-timing);
+
+  // Subtle effect for navigation
+  --fp-glass-bg: rgba(255, 255, 255, 0.2);
+  --fp-glass-blur: 3px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      background: var(--fp-glass-bg);
+      opacity: 0.9;
+    }
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+      -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+      backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+      filter: url("#lensFilter");
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 1;
+    background: var(--fp-glass-bg);
+    box-shadow: inset var(--fp-glass-inset-highlight-offset) var(--fp-glass-inset-highlight-offset) var(--fp-glass-inset-highlight-blur) var(--fp-glass-highlight),
+                inset 0 0 var(--fp-glass-inset-glow-blur) var(--fp-glass-highlight);
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.glass-panel {
+  // Panel variant - subtle background panel
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-radius: var(--fp-glass-border-radius);
+  overflow: hidden;
+  padding: var(--fp-space-xl, 2rem);
+  gap: var(--fp-space-lg, 1.5rem);
+  box-shadow: var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) var(--fp-glass-shadow-blur-primary) var(--fp-glass-shadow-color-primary);
+  color: inherit;
+
+  // Very subtle background
+  --fp-glass-bg: rgba(255, 255, 255, 0.15);
+  --fp-glass-blur: 2px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      background: var(--fp-glass-bg);
+      opacity: 0.9;
+    }
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+      -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+      backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+      filter: url("#lensFilter");
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 1;
+    background: var(--fp-glass-bg);
+    box-shadow: inset var(--fp-glass-inset-highlight-offset) var(--fp-glass-inset-highlight-offset) var(--fp-glass-inset-highlight-blur) var(--fp-glass-highlight),
+                inset 0 0 var(--fp-glass-inset-glow-blur) var(--fp-glass-highlight);
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}

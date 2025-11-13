@@ -1,0 +1,4 @@
+{
+  "packages/frostpane/src/**/*.scss": ["stylelint --fix"],
+  "*.{js,json,md}": ["prettier --write"]
+}

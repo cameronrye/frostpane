@@ -79,14 +79,10 @@ export const components: Component[] = [
 </div>
 
 <!-- Required SVG Filter -->
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<svg aria-hidden="true" width="0" height="0" style="position: absolute;">
   <filter id="lensFilter">
-    <feComponentTransfer in="SourceAlpha" result="alpha">
-      <feFuncA type="identity" />
-    </feComponentTransfer>
-    <feGaussianBlur in="alpha" stdDeviation="50" result="blur" />
-    <feDisplacementMap in="SourceGraphic" in2="blur" scale="50"
-                       xChannelSelector="A" yChannelSelector="A" />
+    <feGaussianBlur stdDeviation="0.6"/>
+    <feColorMatrix type="saturate" values="1.2"/>
   </filter>
 </svg>`
   },

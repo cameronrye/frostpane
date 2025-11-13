@@ -14,29 +14,34 @@ const navItems = [
 </nav>
 
 <script>
-  function showSection(sectionId: string) {
+  function showSection(sectionId: string, updateHash: boolean = true) {
     // Hide all sections
     document.querySelectorAll('.section').forEach(section => {
       section.classList.remove('active');
     });
-    
+
     // Show selected section
     const targetSection = document.getElementById(sectionId);
     if (targetSection) {
       targetSection.classList.add('active');
     }
-    
+
     // Update active nav tab
     document.querySelectorAll('.nav-tab').forEach(tab => {
       tab.classList.remove('active');
     });
-    
+
     const activeTab = document.querySelector(`[data-section="${sectionId}"]`);
     if (activeTab) {
       activeTab.classList.add('active');
     }
+
+    // Update URL hash
+    if (updateHash) {
+      history.pushState(null, '', `#${sectionId}`);
+    }
   }
-  
+
   // Add event listeners to nav tabs
   document.querySelectorAll('.nav-tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
@@ -46,6 +51,24 @@ const navItems = [
         showSection(sectionId);
       }
     });
+  });
+
+  // Handle initial hash on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.slice(1); // Remove the # symbol
+    if (hash && document.getElementById(hash)) {
+      showSection(hash, false);
+    }
+  });
+
+  // Handle browser back/forward buttons
+  window.addEventListener('popstate', () => {
+    const hash = window.location.hash.slice(1);
+    if (hash && document.getElementById(hash)) {
+      showSection(hash, false);
+    } else {
+      showSection('home', false);
+    }
   });
 </script>
 

@@ -38,7 +38,7 @@ We welcome feature suggestions! Please create an issue with:
    ```
 
 3. **Make your changes**
-   - Edit `packages/frostpane/src/frostpane.scss` for library changes
+   - Edit `packages/frostpane/src/frostpane.scss` or `packages/frostpane/src/frostpane-core.scss` for library changes
    - Test your changes in the example site (runs automatically with `npm run dev`)
    - Follow the existing code style and conventions
 
@@ -73,11 +73,15 @@ frostpane/
 ├── packages/
 │   ├── frostpane/             # frostpane - The publishable library
 │   │   ├── src/
-│   │   │   └── frostpane.scss # Main library file
+│   │   │   ├── frostpane.scss      # Full library file
+│   │   │   └── frostpane-core.scss # Core library file (minimal)
 │   │   ├── dist/              # Compiled CSS (generated)
 │   │   └── package.json
-│   └── example/               # Example site
+│   └── example/               # Example site (Astro)
 │       ├── src/
+│       │   ├── pages/
+│       │   ├── components/
+│       │   └── layouts/
 │       └── package.json
 └── package.json               # Root workspace configuration
 ```
@@ -103,10 +107,10 @@ npm run preview
 
 ### Making Changes to the Library
 
-1. Edit `packages/frostpane/src/frostpane.scss`
+1. Edit `packages/frostpane/src/frostpane.scss` (full version) or `packages/frostpane/src/frostpane-core.scss` (core version)
 2. Changes automatically reload in the example site during development
 3. Build the library before committing: `npm run build:lib`
-4. The compiled CSS will be in `packages/frostpane/dist/frostpane.css`
+4. The compiled CSS will be in `packages/frostpane/dist/` directory
 
 ### CSS Custom Properties
 

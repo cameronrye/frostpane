@@ -1,0 +1,107 @@
+// ============================================================================
+// Frostpane Utility Classes
+// Spacing, typography, and color utilities (full version only)
+// ============================================================================
+
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Interactive Scale Utilities
+// ============================================================================
+
+// Interactive scale animation for hover/active states
+.interactive-scale {
+  @include interactive-scale(var(--fp-transition-medium));
+}
+
+// Fast variant
+.interactive-scale--fast {
+  @include interactive-scale(var(--fp-transition-fast));
+}
+
+// Slow variant
+.interactive-scale--slow {
+  @include interactive-scale(var(--fp-transition-slow));
+}
+
+// ============================================================================
+// Spacing Utilities
+// ============================================================================
+
+// Padding utilities
+.fp-p-xs { padding: var(--fp-space-xs); }
+.fp-p-sm { padding: var(--fp-space-sm); }
+.fp-p-md { padding: var(--fp-space-md); }
+.fp-p-lg { padding: var(--fp-space-lg); }
+.fp-p-xl { padding: var(--fp-space-xl); }
+.fp-p-2xl { padding: var(--fp-space-2xl); }
+
+// Margin utilities
+.fp-m-xs { margin: var(--fp-space-xs); }
+.fp-m-sm { margin: var(--fp-space-sm); }
+.fp-m-md { margin: var(--fp-space-md); }
+.fp-m-lg { margin: var(--fp-space-lg); }
+.fp-m-xl { margin: var(--fp-space-xl); }
+.fp-m-2xl { margin: var(--fp-space-2xl); }
+
+// Gap utilities
+.fp-gap-xs { gap: var(--fp-space-xs); }
+.fp-gap-sm { gap: var(--fp-space-sm); }
+.fp-gap-md { gap: var(--fp-space-md); }
+.fp-gap-lg { gap: var(--fp-space-lg); }
+.fp-gap-xl { gap: var(--fp-space-xl); }
+.fp-gap-2xl { gap: var(--fp-space-2xl); }
+
+// ============================================================================
+// Typography Utilities
+// ============================================================================
+
+// Font size utilities
+.fp-text-xs { font-size: var(--fp-text-xs); }
+.fp-text-sm { font-size: var(--fp-text-sm); }
+.fp-text-base { font-size: var(--fp-text-base); }
+.fp-text-lg { font-size: var(--fp-text-lg); }
+.fp-text-xl { font-size: var(--fp-text-xl); }
+.fp-text-2xl { font-size: var(--fp-text-2xl); }
+.fp-text-3xl { font-size: var(--fp-text-3xl); }
+.fp-text-4xl { font-size: var(--fp-text-4xl); }
+
+// Font family utilities
+.fp-font-sans { font-family: var(--fp-font-sans); }
+.fp-font-serif { font-family: var(--fp-font-serif); }
+.fp-font-mono { font-family: var(--fp-font-mono); }
+
+// Font weight utilities
+.fp-font-light { font-weight: var(--fp-font-light); }
+.fp-font-normal { font-weight: var(--fp-font-normal); }
+.fp-font-medium { font-weight: var(--fp-font-medium); }
+.fp-font-semibold { font-weight: var(--fp-font-semibold); }
+.fp-font-bold { font-weight: var(--fp-font-bold); }
+
+// Line height utilities
+.fp-leading-tight { line-height: var(--fp-leading-tight); }
+.fp-leading-normal { line-height: var(--fp-leading-normal); }
+.fp-leading-relaxed { line-height: var(--fp-leading-relaxed); }
+
+// ============================================================================
+// Color Utilities
+// ============================================================================
+
+// Text color utilities
+.fp-text-primary { color: var(--fp-color-primary); }
+.fp-text-secondary { color: var(--fp-color-secondary); }
+.fp-text-success { color: var(--fp-color-success); }
+.fp-text-warning { color: var(--fp-color-warning); }
+.fp-text-error { color: var(--fp-color-error); }
+.fp-text-info { color: var(--fp-color-info); }
+.fp-text-neutral { color: var(--fp-color-neutral); }
+
+// Background color utilities
+.fp-bg-primary { background-color: var(--fp-color-primary); }
+.fp-bg-secondary { background-color: var(--fp-color-secondary); }
+.fp-bg-success { background-color: var(--fp-color-success); }
+.fp-bg-warning { background-color: var(--fp-color-warning); }
+.fp-bg-error { background-color: var(--fp-color-error); }
+.fp-bg-info { background-color: var(--fp-color-info); }
+.fp-bg-neutral { background-color: var(--fp-color-neutral); }
+

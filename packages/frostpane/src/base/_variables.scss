@@ -1,0 +1,157 @@
+// ============================================================================
+// Frostpane Variables - Full Version
+// All CSS custom properties for extensive customization
+// ============================================================================
+
+:root {
+  // ============================================================================
+  // Glass Effect Variables
+  // ============================================================================
+
+  // Glass background and effects
+  --fp-glass-bg: rgba(255, 255, 255, 0.25);
+  --fp-glass-highlight: rgba(255, 255, 255, 0.75);
+  --fp-glass-blur: 4px;
+
+  // Glass border radius
+  --fp-glass-border-radius: 2rem;
+  --fp-glass-border-radius-rounded: 3rem;
+  --fp-glass-border-radius-small: 0.5rem;
+
+  // Glass shadows
+  --fp-glass-shadow-color-primary: rgba(0, 0, 0, 0.2);
+  --fp-glass-shadow-color-secondary: rgba(0, 0, 0, 0.1);
+  --fp-glass-shadow-blur-primary: 6px;
+  --fp-glass-shadow-blur-secondary: 20px;
+  --fp-glass-shadow-offset-x: 0;
+  --fp-glass-shadow-offset-y: 6px;
+
+  // Glass filter effects
+  --fp-glass-saturate: 120%;
+  --fp-glass-brightness: 1.15;
+
+  // Glass inset highlights
+  --fp-glass-inset-highlight-offset: 1px;
+  --fp-glass-inset-highlight-blur: 0;
+  --fp-glass-inset-glow-blur: 5px;
+
+  // ============================================================================
+  // Content & Utility Variables
+  // ============================================================================
+
+  // Content colors
+  --fp-content-text: #fff;
+  --fp-content-text-secondary: rgba(255, 255, 255, 0.85);
+  --fp-content-text-muted: rgba(0, 0, 0, 0.6);
+
+  // Accent colors
+  --fp-accent-primary: #fb4268;
+  --fp-accent-secondary: #444739;
+
+  // Semantic colors
+  --fp-color-primary: #667eea;
+  --fp-color-primary-light: #818cf8;
+  --fp-color-primary-dark: #4f46e5;
+  --fp-color-secondary: #fb4268;
+  --fp-color-secondary-light: #fc5c7d;
+  --fp-color-secondary-dark: #e91e63;
+  --fp-color-success: #4caf50;
+  --fp-color-success-light: #66bb6a;
+  --fp-color-success-dark: #388e3c;
+  --fp-color-warning: #ff9800;
+  --fp-color-warning-light: #ffa726;
+  --fp-color-warning-dark: #f57c00;
+  --fp-color-error: #f44336;
+  --fp-color-error-light: #ef5350;
+  --fp-color-error-dark: #d32f2f;
+  --fp-color-info: #2196f3;
+  --fp-color-info-light: #42a5f5;
+  --fp-color-info-dark: #1976d2;
+  --fp-color-neutral: #9e9e9e;
+  --fp-color-neutral-light: #bdbdbd;
+  --fp-color-neutral-dark: #757575;
+
+  // Spacing scale (8px base)
+  --fp-space-xs: 0.25rem;   // 4px
+  --fp-space-sm: 0.5rem;    // 8px
+  --fp-space-md: 1rem;      // 16px
+  --fp-space-lg: 1.5rem;    // 24px
+  --fp-space-xl: 2rem;      // 32px
+  --fp-space-2xl: 3rem;     // 48px
+
+  // Typography scale
+  --fp-text-xs: 0.75rem;    // 12px
+  --fp-text-sm: 0.875rem;   // 14px
+  --fp-text-base: 1rem;     // 16px
+  --fp-text-lg: 1.125rem;   // 18px
+  --fp-text-xl: 1.25rem;    // 20px
+  --fp-text-2xl: 1.5rem;    // 24px
+  --fp-text-3xl: 2rem;      // 32px
+  --fp-text-4xl: 3rem;      // 48px
+
+  // Font family stack
+  --fp-font-sans: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  --fp-font-serif: georgia, cambria, "Times New Roman", times, serif;
+  --fp-font-mono: "SF Mono", monaco, "Cascadia Code", "Roboto Mono", consolas, "Courier New", monospace;
+
+  // Line height scale
+  --fp-leading-none: 1;
+  --fp-leading-tight: 1.25;
+  --fp-leading-snug: 1.375;
+  --fp-leading-normal: 1.5;
+  --fp-leading-relaxed: 1.625;
+  --fp-leading-loose: 2;
+
+  // Font weight scale
+  --fp-font-thin: 100;
+  --fp-font-extralight: 200;
+  --fp-font-light: 300;
+  --fp-font-normal: 400;
+  --fp-font-medium: 500;
+  --fp-font-semibold: 600;
+  --fp-font-bold: 700;
+  --fp-font-extrabold: 800;
+  --fp-font-black: 900;
+
+  // Icon sizes
+  --fp-icon-sm: 1.5rem;     // 24px
+  --fp-icon-md: 2rem;       // 32px
+  --fp-icon-lg: 3rem;       // 48px
+  --fp-icon-xl: 4rem;       // 64px
+
+  // ============================================================================
+  // Transition & Animation Variables
+  // ============================================================================
+
+  // Easing functions
+  --fp-ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);      // Material Design
+  --fp-ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);  // Subtle bounce
+  --fp-ease-spring: cubic-bezier(0.175, 0.885, 0.32, 2.2);    // Strong bounce
+
+  // Transition durations
+  --fp-transition-fast: 0.2s;
+  --fp-transition-medium: 0.25s;
+  --fp-transition-slow: 0.3s;
+  --fp-transition-duration: 0.4s;
+  --fp-transition-timing: var(--fp-ease-smooth);
+
+  // Interactive states
+  --fp-hover-scale: 1.1;
+  --fp-active-scale: 0.95;
+
+  // ============================================================================
+  // Content Layout Variables
+  // ============================================================================
+
+  // Content spacing (using spacing scale)
+  --fp-content-padding-x: var(--fp-space-lg);
+  --fp-content-padding-y: var(--fp-space-sm);
+  --fp-content-gap: var(--fp-space-md);
+
+  // Breakpoints
+  --fp-breakpoint-sm: 640px;
+  --fp-breakpoint-md: 768px;
+  --fp-breakpoint-lg: 1024px;
+  --fp-breakpoint-xl: 1280px;
+}
+
