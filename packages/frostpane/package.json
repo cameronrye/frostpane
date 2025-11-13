@@ -29,15 +29,17 @@
     "README.md"
   ],
   "scripts": {
-    "build": "npm run build:full && npm run build:core",
-    "build:full": "npm run build:full:min && npm run build:full:unmin",
-    "build:core": "npm run build:core:min && npm run build:core:unmin",
-    "build:full:min": "sass src/frostpane.scss dist/frostpane.css --style=compressed --no-source-map",
-    "build:full:unmin": "sass src/frostpane.scss dist/frostpane.unminified.css --style=expanded --no-source-map",
-    "build:core:min": "sass src/frostpane-core.scss dist/frostpane-core.css --style=compressed --no-source-map",
-    "build:core:unmin": "sass src/frostpane-core.scss dist/frostpane-core.unminified.css --style=expanded --no-source-map",
-    "watch": "sass src/frostpane.scss dist/frostpane.css --watch --no-source-map",
-    "watch:core": "sass src/frostpane-core.scss dist/frostpane-core.css --watch --no-source-map",
+    "build": "npm-run-all --parallel build:full build:core",
+    "build:full": "npm-run-all --parallel build:full:min build:full:unmin",
+    "build:core": "npm-run-all --parallel build:core:min build:core:unmin",
+    "build:full:min": "sass src/frostpane.scss dist/frostpane.tmp.css --style=compressed && postcss dist/frostpane.tmp.css -o dist/frostpane.css && rm dist/frostpane.tmp.css",
+    "build:full:unmin": "sass src/frostpane.scss dist/frostpane.unminified.tmp.css --style=expanded && postcss dist/frostpane.unminified.tmp.css -o dist/frostpane.unminified.css --no-map && rm dist/frostpane.unminified.tmp.css",
+    "build:core:min": "sass src/frostpane-core.scss dist/frostpane-core.tmp.css --style=compressed && postcss dist/frostpane-core.tmp.css -o dist/frostpane-core.css && rm dist/frostpane-core.tmp.css",
+    "build:core:unmin": "sass src/frostpane-core.scss dist/frostpane-core.unminified.tmp.css --style=expanded && postcss dist/frostpane-core.unminified.tmp.css -o dist/frostpane-core.unminified.css --no-map && rm dist/frostpane-core.unminified.tmp.css",
+    "watch": "sass src/frostpane.scss dist/frostpane.css --watch",
+    "watch:core": "sass src/frostpane-core.scss dist/frostpane-core.css --watch",
+    "lint": "stylelint \"src/**/*.scss\"",
+    "lint:fix": "stylelint \"src/**/*.scss\" --fix",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -69,6 +71,13 @@
   },
   "homepage": "https://cameronrye.github.io/frostpane",
   "devDependencies": {
-    "sass": "^1.93.3"
+    "autoprefixer": "10.4.22",
+    "cssnano": "7.1.2",
+    "npm-run-all": "4.1.5",
+    "postcss": "8.5.6",
+    "postcss-cli": "11.0.1",
+    "sass": "1.94.0",
+    "stylelint": "16.25.0",
+    "stylelint-config-standard-scss": "16.0.0"
   }
 }

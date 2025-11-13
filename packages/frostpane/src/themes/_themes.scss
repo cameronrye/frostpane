@@ -1,0 +1,37 @@
+// ============================================================================
+// Frostpane Themes
+// Dark mode and theme support (shared between full and core versions)
+// ============================================================================
+
+// Automatic dark mode based on system preference
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fp-glass-bg: rgba(0, 0, 0, 0.3);
+    --fp-glass-highlight: rgba(255, 255, 255, 0.15);
+    --fp-glass-shadow-color-primary: rgba(0, 0, 0, 0.4);
+    --fp-glass-shadow-color-secondary: rgba(0, 0, 0, 0.2);
+    --fp-content-text: #fff;
+    --fp-content-text-secondary: rgba(255, 255, 255, 0.85);
+  }
+}
+
+// Explicit dark theme via data attribute
+[data-theme="dark"] {
+  --fp-glass-bg: rgba(0, 0, 0, 0.3);
+  --fp-glass-highlight: rgba(255, 255, 255, 0.15);
+  --fp-glass-shadow-color-primary: rgba(0, 0, 0, 0.4);
+  --fp-glass-shadow-color-secondary: rgba(0, 0, 0, 0.2);
+  --fp-content-text: #fff;
+  --fp-content-text-secondary: rgba(255, 255, 255, 0.85);
+}
+
+// Explicit light theme via data attribute
+[data-theme="light"] {
+  --fp-glass-bg: rgba(255, 255, 255, 0.25);
+  --fp-glass-highlight: rgba(255, 255, 255, 0.75);
+  --fp-glass-shadow-color-primary: rgba(0, 0, 0, 0.2);
+  --fp-glass-shadow-color-secondary: rgba(0, 0, 0, 0.1);
+  --fp-content-text: #fff;
+  --fp-content-text-secondary: rgba(255, 255, 255, 0.85);
+}
+

@@ -1,0 +1,53 @@
+// ============================================================================
+// Frostpane Core Variables - Minimal Version
+// Essential CSS custom properties for the core glass effect
+// ============================================================================
+
+:root {
+  // ============================================================================
+  // Glass Effect Variables
+  // ============================================================================
+  
+  // Glass background and effects
+  --fp-glass-bg: rgba(255, 255, 255, 0.25);
+  --fp-glass-highlight: rgba(255, 255, 255, 0.75);
+  --fp-glass-blur: 4px;
+  
+  // Glass border radius
+  --fp-glass-border-radius: 2rem;
+  --fp-glass-border-radius-rounded: 3rem;
+  --fp-glass-border-radius-small: 0.5rem;
+  
+  // Glass shadows
+  --fp-glass-shadow-color-primary: rgba(0, 0, 0, 0.2);
+  --fp-glass-shadow-color-secondary: rgba(0, 0, 0, 0.1);
+  --fp-glass-shadow-blur-primary: 6px;
+  --fp-glass-shadow-blur-secondary: 20px;
+  --fp-glass-shadow-offset-x: 0;
+  --fp-glass-shadow-offset-y: 6px;
+  
+  // Glass filter effects
+  --fp-glass-saturate: 120%;
+  --fp-glass-brightness: 1.15;
+  
+  // Glass inset highlights
+  --fp-glass-inset-highlight-offset: 1px;
+  --fp-glass-inset-highlight-blur: 0;
+  --fp-glass-inset-glow-blur: 5px;
+  
+  // ============================================================================
+  // Minimal Content Variables (for .glass class)
+  // ============================================================================
+  
+  --fp-content-padding-x: 1.5rem;
+  --fp-content-padding-y: 0.5rem;
+  --fp-content-gap: 1rem;
+  
+  // ============================================================================
+  // Transition Variables
+  // ============================================================================
+  
+  --fp-transition-duration: 0.4s;
+  --fp-transition-timing: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+

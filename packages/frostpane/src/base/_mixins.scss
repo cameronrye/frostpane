@@ -1,0 +1,59 @@
+// ============================================================================
+// Frostpane Mixins
+// Reusable mixins for the full version
+// ============================================================================
+
+// Interactive scale mixin
+@mixin interactive-scale($speed: var(--fp-transition-medium)) {
+  cursor: pointer;
+  transition: transform $speed ease-out,
+              outline-offset 0.2s ease;
+
+  &:hover {
+    transform: scale(var(--fp-hover-scale));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fp-glass-highlight);
+    outline-offset: 4px;
+    transform: scale(var(--fp-hover-scale));
+  }
+
+  &:active {
+    transform: scale(var(--fp-active-scale));
+  }
+}
+
+// Focus visible mixin
+@mixin focus-visible($color: var(--fp-glass-highlight), $offset: 2px) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: $offset;
+  }
+}
+
+// Responsive breakpoint mixins
+@mixin breakpoint-sm {
+  @media (width >= 640px) {
+    @content;
+  }
+}
+
+@mixin breakpoint-md {
+  @media (width >= 768px) {
+    @content;
+  }
+}
+
+@mixin breakpoint-lg {
+  @media (width >= 1024px) {
+    @content;
+  }
+}
+
+@mixin breakpoint-xl {
+  @media (width >= 1280px) {
+    @content;
+  }
+}
+

@@ -46,7 +46,7 @@
   "homepage": "https://cameronrye.github.io/frostpane",
   "type": "module",
   "devDependencies": {
-    "sass": "^1.93.3",
+    "sass": "1.94.0",
     "standard-version": "9.5.0",
     "vite": "^7.2.2"
   }

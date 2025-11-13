@@ -1,0 +1,102 @@
+// ============================================================================
+// Frostpane Form Components
+// Form input and button components (full version only)
+// ============================================================================
+
+.glass-input {
+  width: 100%;
+  padding: var(--fp-space-sm) var(--fp-space-md);
+  border-radius: var(--fp-glass-border-radius-small);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--fp-content-text);
+  font-size: var(--fp-text-base);
+  font-family: inherit;
+  transition: border-color 0.2s ease,
+              background 0.2s ease,
+              outline-offset 0.2s ease;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  &:focus {
+    outline: 2px solid var(--fp-glass-highlight);
+    outline-offset: 0;
+    border-color: var(--fp-glass-highlight);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.glass-button {
+  padding: var(--fp-space-sm) var(--fp-space-lg);
+  border-radius: var(--fp-glass-border-radius-small);
+  border: none;
+  background: var(--fp-accent-primary);
+  color: var(--fp-content-text);
+  font-size: var(--fp-text-base);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease,
+              opacity 0.2s ease,
+              outline-offset 0.2s ease,
+              box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fp-glass-highlight);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+// Button variants
+.glass-button--secondary {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.glass-button--outline {
+  background: transparent;
+  border: 2px solid var(--fp-glass-highlight);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
