@@ -109,10 +109,8 @@ jobs:
         id: publish
         run: |
           cd packages/frostpane
-          npm publish
+          npm publish --provenance --access public
           echo "✅ Published to npm"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         continue-on-error: true
 
       - name: Rollback on publish failure
