@@ -6,14 +6,14 @@ A customizable frosted glass effect CSS library with extensive customization opt
 
 ## Features
 
-- 🎨 **Highly Customizable** - 30+ CSS custom properties for complete control
-- 🌓 **Dark Mode Built-in** - Automatic dark mode support via `prefers-color-scheme`
-- 🎯 **Multiple APIs** - Choose between verbose or concise class syntax
-- 📦 **Core & Full Versions** - Use minimal core or full version with utilities
-- 🎭 **Component Variants** - Pre-built variants for cards, modals, navigation, and more
-- ⚡ **Zero Dependencies** - Pure CSS/SCSS implementation
-- 🔧 **Framework Agnostic** - Works with any JavaScript framework or vanilla HTML
-- ♿ **Accessible** - Respects `prefers-reduced-motion`
+- **Highly Customizable** - 30+ CSS custom properties for complete control
+- **Dark Mode Built-in** - Automatic dark mode support via `prefers-color-scheme`
+- **Multiple APIs** - Choose between verbose or concise class syntax
+- **Core & Full Versions** - Use minimal core or full version with utilities
+- **Component Variants** - Pre-built variants for cards, modals, navigation, and more
+- **Zero Dependencies** - Pure CSS/SCSS implementation
+- **Framework Agnostic** - Works with any JavaScript framework or vanilla HTML
+- **Accessible** - Respects `prefers-reduced-motion`
 
 ## Installation
 
@@ -150,12 +150,15 @@ import 'frostpane/css/core';
 
 **What's included in Core:**
 
-- ✅ Glass effect (`.glass-container`, `.glass-content`, `.glass`)
-- ✅ Component variants (`.glass-card`, `.glass-modal`, `.glass-nav`, `.glass-panel`)
-- ✅ Dark mode support
-- ✅ Accessibility features
-- ❌ Utility classes (spacing, typography, colors)
-- ❌ Form components (`.glass-input`, `.glass-button`)
+- Glass effect (`.glass-container`, `.glass-content`, `.glass`)
+- Component variants (`.glass-card`, `.glass-modal`, `.glass-nav`, `.glass-panel`)
+- Dark mode support
+- Accessibility features
+
+**Not included in Core:**
+
+- Utility classes (spacing, typography, colors)
+- Form components (`.glass-input`, `.glass-button`)
 
 ## Customization
 
@@ -386,4 +389,8 @@ This filter is optional and only needed if you want the lens distortion effect o
 ## License
 
 MIT
+
+---
+
+Made with ❤️ by Cameron Rye
 
