@@ -71,6 +71,11 @@ jobs:
       - name: Build library
         run: npm run build:lib
 
+      - name: Run tests
+        run: |
+          cd packages/frostpane
+          npm test
+
       - name: Verify build artifacts
         run: |
           echo "Checking build artifacts..."
@@ -117,6 +122,8 @@ jobs:
       - name: Publish to npm
         if: ${{ !inputs.dry_run }}
         id: publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd packages/frostpane
           if npm publish --provenance --access public; then
