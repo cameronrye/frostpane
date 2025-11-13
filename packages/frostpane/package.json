@@ -1,6 +1,6 @@
 {
   "name": "frostpane",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "description": "A customizable frosted glass effect CSS library with backdrop blur and modern aesthetics",
   "main": "dist/frostpane.css",
   "style": "dist/frostpane.css",
