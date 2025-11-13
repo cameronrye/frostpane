@@ -1,6 +1,6 @@
 {
   "name": "frostpane",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A customizable frosted glass effect CSS library with backdrop blur and modern aesthetics",
   "main": "dist/frostpane.css",
   "style": "dist/frostpane.css",
@@ -11,8 +11,17 @@
       "style": "./dist/frostpane.css",
       "default": "./dist/frostpane.css"
     },
+    "./core": {
+      "sass": "./src/frostpane-core.scss",
+      "style": "./dist/frostpane-core.css",
+      "default": "./dist/frostpane-core.css"
+    },
     "./scss": "./src/frostpane.scss",
-    "./css": "./dist/frostpane.css"
+    "./scss/core": "./src/frostpane-core.scss",
+    "./css": "./dist/frostpane.css",
+    "./css/core": "./dist/frostpane-core.css",
+    "./css/unminified": "./dist/frostpane.unminified.css",
+    "./css/core/unminified": "./dist/frostpane-core.unminified.css"
   },
   "files": [
     "dist",
@@ -20,9 +29,15 @@
     "README.md"
   ],
   "scripts": {
-    "build": "sass src/frostpane.scss dist/frostpane.css --style=compressed --no-source-map",
-    "build:dev": "sass src/frostpane.scss dist/frostpane.css --no-source-map",
+    "build": "npm run build:full && npm run build:core",
+    "build:full": "npm run build:full:min && npm run build:full:unmin",
+    "build:core": "npm run build:core:min && npm run build:core:unmin",
+    "build:full:min": "sass src/frostpane.scss dist/frostpane.css --style=compressed --no-source-map",
+    "build:full:unmin": "sass src/frostpane.scss dist/frostpane.unminified.css --style=expanded --no-source-map",
+    "build:core:min": "sass src/frostpane-core.scss dist/frostpane-core.css --style=compressed --no-source-map",
+    "build:core:unmin": "sass src/frostpane-core.scss dist/frostpane-core.unminified.css --style=expanded --no-source-map",
     "watch": "sass src/frostpane.scss dist/frostpane.css --watch --no-source-map",
+    "watch:core": "sass src/frostpane-core.scss dist/frostpane-core.css --watch --no-source-map",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
