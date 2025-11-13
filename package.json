@@ -12,6 +12,11 @@
     "build:lib": "npm run build --workspace=packages/frostpane",
     "build:example": "npm run build --workspace=packages/example",
     "preview": "npm run preview --workspace=packages/example",
+    "test": "npm run test --workspace=packages/frostpane",
+    "test:watch": "npm run test:watch --workspace=packages/frostpane",
+    "lint": "npm run lint --workspace=packages/frostpane",
+    "lint:fix": "npm run lint:fix --workspace=packages/frostpane",
+    "prepare": "husky",
     "version": "npm run build",
     "validate-versions": "node scripts/validate-versions.cjs",
     "release": "standard-version",
@@ -46,6 +51,11 @@
   "homepage": "https://cameronrye.github.io/frostpane",
   "type": "module",
   "devDependencies": {
+    "@commitlint/cli": "20.1.0",
+    "@commitlint/config-conventional": "20.0.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.2.6",
+    "prettier": "3.6.2",
     "sass": "1.94.0",
     "standard-version": "9.5.0",
     "vite": "^7.2.2"

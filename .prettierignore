@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+.astro
+*.min.css
+*.min.js
+package-lock.json
+CHANGELOG.md
+

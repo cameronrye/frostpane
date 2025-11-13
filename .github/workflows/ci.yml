@@ -29,12 +29,18 @@ jobs:
     - name: Validate versions
       run: npm run validate-versions
 
+    - name: Lint library
+      run: npm run lint
+
     - name: Build library
       run: npm run build:lib
-    
+
+    - name: Run tests
+      run: npm test
+
     - name: Build example site
       run: npm run build:example
-    
+
     - name: Check for build artifacts
       run: |
         test -f packages/frostpane/dist/frostpane.css || exit 1

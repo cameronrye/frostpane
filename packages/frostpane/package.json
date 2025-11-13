@@ -32,15 +32,18 @@
     "build": "npm-run-all --parallel build:full build:core",
     "build:full": "npm-run-all --parallel build:full:min build:full:unmin",
     "build:core": "npm-run-all --parallel build:core:min build:core:unmin",
-    "build:full:min": "sass src/frostpane.scss dist/frostpane.tmp.css --style=compressed && postcss dist/frostpane.tmp.css -o dist/frostpane.css && rm dist/frostpane.tmp.css",
-    "build:full:unmin": "sass src/frostpane.scss dist/frostpane.unminified.tmp.css --style=expanded && postcss dist/frostpane.unminified.tmp.css -o dist/frostpane.unminified.css --no-map && rm dist/frostpane.unminified.tmp.css",
-    "build:core:min": "sass src/frostpane-core.scss dist/frostpane-core.tmp.css --style=compressed && postcss dist/frostpane-core.tmp.css -o dist/frostpane-core.css && rm dist/frostpane-core.tmp.css",
-    "build:core:unmin": "sass src/frostpane-core.scss dist/frostpane-core.unminified.tmp.css --style=expanded && postcss dist/frostpane-core.unminified.tmp.css -o dist/frostpane-core.unminified.css --no-map && rm dist/frostpane-core.unminified.tmp.css",
+    "build:full:min": "sass src/frostpane.scss dist/frostpane.tmp.css --style=compressed && postcss dist/frostpane.tmp.css -o dist/frostpane.css && rm -f dist/frostpane.tmp.css*",
+    "build:full:unmin": "sass src/frostpane.scss dist/frostpane.unminified.tmp.css --style=expanded && postcss dist/frostpane.unminified.tmp.css -o dist/frostpane.unminified.css --no-map && rm -f dist/frostpane.unminified.tmp.css*",
+    "build:core:min": "sass src/frostpane-core.scss dist/frostpane-core.tmp.css --style=compressed && postcss dist/frostpane-core.tmp.css -o dist/frostpane-core.css && rm -f dist/frostpane-core.tmp.css*",
+    "build:core:unmin": "sass src/frostpane-core.scss dist/frostpane-core.unminified.tmp.css --style=expanded && postcss dist/frostpane-core.unminified.tmp.css -o dist/frostpane-core.unminified.css --no-map && rm -f dist/frostpane-core.unminified.tmp.css*",
     "watch": "sass src/frostpane.scss dist/frostpane.css --watch",
     "watch:core": "sass src/frostpane-core.scss dist/frostpane-core.css --watch",
+    "test": "node --test test/*.test.js",
+    "test:watch": "node --test --watch test/*.test.js",
     "lint": "stylelint \"src/**/*.scss\"",
     "lint:fix": "stylelint \"src/**/*.scss\" --fix",
-    "prepublishOnly": "npm run build"
+    "pretest": "npm run build",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "css",
