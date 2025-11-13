@@ -14,11 +14,11 @@ export const examples: Example[] = [
     icon: "fa-solid fa-moon",
     label: "Dark Mode",
     cssCode: `.dark-glass {
-  --fp-bg-color: rgba(0, 0, 0, 0.4);
-  --fp-highlight: rgba(255, 255, 255, 0.3);
-  --fp-backdrop-blur: 8px;
+  --fp-glass-bg: rgba(0, 0, 0, 0.4);
+  --fp-glass-highlight: rgba(255, 255, 255, 0.3);
+  --fp-glass-blur: 8px;
 }`,
-    customStyles: "--fp-bg-color: rgba(0, 0, 0, 0.4); --fp-highlight: rgba(255, 255, 255, 0.3); --fp-backdrop-blur: 8px;"
+    customStyles: "--fp-glass-bg: rgba(0, 0, 0, 0.4); --fp-glass-highlight: rgba(255, 255, 255, 0.3); --fp-glass-blur: 8px;"
   },
   {
     title: "Strong Blur",
@@ -26,10 +26,10 @@ export const examples: Example[] = [
     icon: "fa-solid fa-eye-dropper",
     label: "Enhanced Blur",
     cssCode: `.strong-blur {
-  --fp-backdrop-blur: 12px;
-  --fp-filter-saturate: 150%;
+  --fp-glass-blur: 12px;
+  --fp-glass-saturate: 150%;
 }`,
-    customStyles: "--fp-backdrop-blur: 12px; --fp-filter-saturate: 150%;"
+    customStyles: "--fp-glass-blur: 12px; --fp-glass-saturate: 150%;"
   },
   {
     title: "Elevated Shadow",
@@ -37,11 +37,11 @@ export const examples: Example[] = [
     icon: "fa-solid fa-layer-group",
     label: "Floating Effect",
     cssCode: `.elevated-glass {
-  --fp-shadow-offset-y: 12px;
-  --fp-shadow-blur-primary: 12px;
-  --fp-shadow-blur-secondary: 30px;
+  --fp-glass-shadow-offset-y: 12px;
+  --fp-glass-shadow-blur-primary: 12px;
+  --fp-glass-shadow-blur-secondary: 30px;
 }`,
-    customStyles: "--fp-shadow-offset-y: 12px; --fp-shadow-blur-primary: 12px; --fp-shadow-blur-secondary: 30px;"
+    customStyles: "--fp-glass-shadow-offset-y: 12px; --fp-glass-shadow-blur-primary: 12px; --fp-glass-shadow-blur-secondary: 30px;"
   },
   {
     title: "Minimal Glass",
@@ -49,11 +49,11 @@ export const examples: Example[] = [
     icon: "fa-solid fa-feather",
     label: "Subtle Effect",
     cssCode: `.minimal-glass {
-  --fp-backdrop-blur: 2px;
-  --fp-bg-color: rgba(255, 255, 255, 0.15);
-  --fp-shadow-blur-primary: 4px;
+  --fp-glass-blur: 2px;
+  --fp-glass-bg: rgba(255, 255, 255, 0.15);
+  --fp-glass-shadow-blur-primary: 4px;
 }`,
-    customStyles: "--fp-backdrop-blur: 2px; --fp-bg-color: rgba(255, 255, 255, 0.15); --fp-shadow-blur-primary: 4px;"
+    customStyles: "--fp-glass-blur: 2px; --fp-glass-bg: rgba(255, 255, 255, 0.15); --fp-glass-shadow-blur-primary: 4px;"
   },
   {
     title: "Colored Glass",
@@ -61,11 +61,11 @@ export const examples: Example[] = [
     icon: "fa-solid fa-palette",
     label: "Blue Tint",
     cssCode: `.colored-glass {
-  --fp-bg-color: rgba(102, 126, 234, 0.3);
-  --fp-highlight: rgba(255, 255, 255, 0.5);
-  --fp-filter-saturate: 140%;
+  --fp-glass-bg: rgba(102, 126, 234, 0.3);
+  --fp-glass-highlight: rgba(255, 255, 255, 0.5);
+  --fp-glass-saturate: 140%;
 }`,
-    customStyles: "--fp-bg-color: rgba(102, 126, 234, 0.3); --fp-highlight: rgba(255, 255, 255, 0.5); --fp-filter-saturate: 140%;"
+    customStyles: "--fp-glass-bg: rgba(102, 126, 234, 0.3); --fp-glass-highlight: rgba(255, 255, 255, 0.5); --fp-glass-saturate: 140%;"
   },
   {
     title: "Frosted Glass",
@@ -73,11 +73,11 @@ export const examples: Example[] = [
     icon: "fa-solid fa-snowflake",
     label: "Heavy Frost",
     cssCode: `.frosted-glass {
-  --fp-backdrop-blur: 16px;
-  --fp-bg-color: rgba(255, 255, 255, 0.35);
-  --fp-filter-brightness: 1.2;
+  --fp-glass-blur: 16px;
+  --fp-glass-bg: rgba(255, 255, 255, 0.35);
+  --fp-glass-brightness: 1.2;
 }`,
-    customStyles: "--fp-backdrop-blur: 16px; --fp-bg-color: rgba(255, 255, 255, 0.35); --fp-filter-brightness: 1.2;"
+    customStyles: "--fp-glass-blur: 16px; --fp-glass-bg: rgba(255, 255, 255, 0.35); --fp-glass-brightness: 1.2;"
   },
   {
     title: "Sharp Corners",
@@ -85,11 +85,11 @@ export const examples: Example[] = [
     icon: "fa-solid fa-square",
     label: "Angular Design",
     cssCode: `.sharp-glass {
-  --fp-border-radius: 0.5rem;
-  --fp-backdrop-blur: 6px;
-  --fp-shadow-blur-primary: 8px;
+  --fp-glass-border-radius: 0.5rem;
+  --fp-glass-blur: 6px;
+  --fp-glass-shadow-blur-primary: 8px;
 }`,
-    customStyles: "--fp-border-radius: 0.5rem; --fp-backdrop-blur: 6px; --fp-shadow-blur-primary: 8px;"
+    customStyles: "--fp-glass-border-radius: 0.5rem; --fp-glass-blur: 6px; --fp-glass-shadow-blur-primary: 8px;"
   },
   {
     title: "Pill Shape",
@@ -97,10 +97,10 @@ export const examples: Example[] = [
     icon: "fa-solid fa-capsules",
     label: "Rounded Pill",
     cssCode: `.pill-glass {
-  --fp-border-radius: 50px;
-  --fp-backdrop-blur: 6px;
+  --fp-glass-border-radius: 50px;
+  --fp-glass-blur: 6px;
 }`,
-    customStyles: "--fp-border-radius: 50px; --fp-backdrop-blur: 6px;"
+    customStyles: "--fp-glass-border-radius: 50px; --fp-glass-blur: 6px;"
   },
   {
     title: "Snappy Animations",
@@ -110,9 +110,8 @@ export const examples: Example[] = [
     cssCode: `.snappy-glass {
   --fp-transition-duration: 0.15s;
   --fp-transition-timing: ease-out;
-  --fp-hover-scale: 1.05;
 }`,
-    customStyles: ""
+    customStyles: "--fp-transition-duration: 0.15s; --fp-transition-timing: ease-out;"
   }
 ];
 

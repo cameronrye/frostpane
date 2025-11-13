@@ -1,6 +1,5 @@
 {
   "name": "@frostpane/example",
-  "version": "1.0.0",
   "description": "Example site for the Frostpane library",
   "private": true,
   "type": "module",

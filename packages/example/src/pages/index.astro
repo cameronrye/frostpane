@@ -6,6 +6,9 @@ import ComponentItem from '../components/ComponentItem.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 import { examples } from '../data/examples';
 import { components } from '../data/components';
+import pkg from '../../../frostpane/package.json';
+
+const version = pkg.version;
 ---
 
 <Layout title="Frostpane - Customizable Frosted Glass Effect Library">
@@ -50,7 +53,7 @@ import { components } from '../data/components';
           <div class="badge">
             <i class="fa-solid fa-cube" aria-hidden="true"></i>
             <div class="badge-content">
-              <div class="badge-value">v1.0.0</div>
+              <div class="badge-value">v{version}</div>
               <div class="badge-label">Latest Version</div>
             </div>
           </div>
@@ -207,23 +210,23 @@ import { components } from '../data/components';
             <div class="demo-item">
               <div class="demo-item-label">Navigation Bar</div>
               <div class="glass-container glass-container--rounded glass-container--medium">
-                <div class="glass-content demo-nav">
-                  <button class="glass-item glass-item--active demo-nav-item" data-nav="home">
+                <div class="glass-content">
+                  <div class="glass-item glass-item--active demo-nav-item" data-nav="home">
                     <i class="fa-solid fa-house" aria-hidden="true"></i>
                     Home
-                  </button>
-                  <button class="glass-item demo-nav-item" data-nav="explore">
+                  </div>
+                  <div class="glass-item demo-nav-item" data-nav="explore">
                     <i class="fa-solid fa-compass" aria-hidden="true"></i>
                     Explore
-                  </button>
-                  <button class="glass-item demo-nav-item" data-nav="favorites">
+                  </div>
+                  <div class="glass-item demo-nav-item" data-nav="favorites">
                     <i class="fa-solid fa-heart" aria-hidden="true"></i>
                     Favorites
-                  </button>
-                  <button class="glass-item demo-nav-item" data-nav="profile">
+                  </div>
+                  <div class="glass-item demo-nav-item" data-nav="profile">
                     <i class="fa-solid fa-user" aria-hidden="true"></i>
                     Profile
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -267,36 +270,204 @@ import { components } from '../data/components';
       </div>
 
       <div class="getting-started">
-        <div class="step">
-          <h3>1. Installation</h3>
-          <p>Install Frostpane via npm:</p>
-          <CodeBlock code="npm install frostpane" label="Bash" />
+        <!-- CDN USAGE (RECOMMENDED) -->
+        <div class="installation-method">
+          <h2 class="method-title">
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+            Quick Start with CDN (Recommended)
+          </h2>
+          <p class="method-description">
+            The fastest way to get started! Just add a single line to your HTML and you're ready to go.
+          </p>
+
+          <div class="step">
+            <h3>Complete HTML Example</h3>
+            <p>Copy and paste this complete example to get started instantly:</p>
+            <CodeBlock code={`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frostpane Demo</title>
+
+  <!-- Frostpane CSS from jsDelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1/dist/frostpane.css">
+</head>
+<body>
+  <div class="glass-container glass-container--rounded">
+    <div class="glass-content">
+      <h1>Hello, Frostpane!</h1>
+      <p>Beautiful frosted glass effects with zero configuration.</p>
+    </div>
+  </div>
+</body>
+</html>`} label="HTML" />
+          </div>
+
+          <div class="step">
+            <h3>CDN Options</h3>
+            <p>Choose your preferred CDN provider:</p>
+
+            <div class="cdn-option">
+              <h4>
+                <i class="fa-solid fa-star" aria-hidden="true"></i>
+                jsDelivr (Recommended)
+              </h4>
+              <p>Fast, reliable, and automatically serves the latest version.</p>
+              <CodeBlock code={`<!-- Latest version (automatically updates to newest 1.x release) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1/dist/frostpane.css">
+
+<!-- Specific version (locked to 1.1.0) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1.1.0/dist/frostpane.css">
+
+<!-- Core version (minimal, no utility classes) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1/dist/frostpane-core.css">
+
+<!-- Unminified (for development/debugging) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1/dist/frostpane.unminified.css">`} label="HTML" />
+            </div>
+
+            <div class="cdn-option">
+              <h4>
+                <i class="fa-solid fa-box" aria-hidden="true"></i>
+                unpkg
+              </h4>
+              <p>Simple and straightforward CDN for npm packages.</p>
+              <CodeBlock code={`<!-- Latest version -->
+<link rel="stylesheet" href="https://unpkg.com/frostpane@1/dist/frostpane.css">
+
+<!-- Specific version -->
+<link rel="stylesheet" href="https://unpkg.com/frostpane@1.1.0/dist/frostpane.css">
+
+<!-- Core version -->
+<link rel="stylesheet" href="https://unpkg.com/frostpane@1/dist/frostpane-core.css">`} label="HTML" />
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Available File Variants</h3>
+            <p>Choose the right build for your needs:</p>
+            <ul class="variant-list">
+              <li>
+                <strong>frostpane.css</strong> - Full version with all components and utilities (minified, ~8KB)
+              </li>
+              <li>
+                <strong>frostpane-core.css</strong> - Core version with base styles only (minified, ~4KB)
+              </li>
+              <li>
+                <strong>frostpane.unminified.css</strong> - Full version, unminified for debugging
+              </li>
+              <li>
+                <strong>frostpane-core.unminified.css</strong> - Core version, unminified for debugging
+              </li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>Version Pinning Best Practices</h3>
+            <ul class="best-practices-list">
+              <li>
+                <strong>@1</strong> - Automatically gets the latest 1.x version (recommended for most projects)
+              </li>
+              <li>
+                <strong>@1.1.0</strong> - Locks to a specific version (use for production stability)
+              </li>
+              <li>
+                <strong>@latest</strong> - Always gets the newest version (may include breaking changes)
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="step">
-          <h3>2. Import the CSS</h3>
-          <p>Add Frostpane to your project:</p>
-          <CodeBlock code={`<link rel="stylesheet" href="node_modules/frostpane/dist/frostpane.css">`} label="HTML" />
+        <!-- NPM INSTALLATION -->
+        <div class="installation-method">
+          <h2 class="method-title">
+            <i class="fa-brands fa-npm" aria-hidden="true"></i>
+            Installation via npm
+          </h2>
+          <p class="method-description">
+            For projects using a build system or package manager.
+          </p>
+
+          <div class="step">
+            <h3>1. Install the Package</h3>
+            <p>Install Frostpane via npm:</p>
+            <CodeBlock code="npm install frostpane" label="Bash" />
+          </div>
+
+          <div class="step">
+            <h3>2. Import the CSS</h3>
+            <p>Add Frostpane to your project:</p>
+            <CodeBlock code={`<!-- In your HTML -->
+<link rel="stylesheet" href="node_modules/frostpane/dist/frostpane.css">
+
+<!-- Or import in your JavaScript/CSS -->
+import 'frostpane/css';
+
+/* Or in your CSS/SCSS */
+@import 'frostpane/css';`} label="HTML/JS/CSS" />
+          </div>
+
+          <div class="step">
+            <h3>3. Using SCSS Source Files</h3>
+            <p>For advanced customization, import the SCSS source:</p>
+            <CodeBlock code={`// Import full version
+@use 'frostpane/scss' as frostpane;
+
+// Import core version only
+@use 'frostpane/scss/core' as frostpane;
+
+// Override variables before importing
+@use 'frostpane/scss' as frostpane with (
+  $fp-bg-color: rgba(0, 0, 0, 0.4),
+  $fp-backdrop-blur: 12px
+);`} label="SCSS" />
+          </div>
         </div>
 
-        <div class="step">
-          <h3>3. Use the Components</h3>
-          <p>Start building with glass containers:</p>
-          <CodeBlock code={`<div class="glass-container glass-container--rounded">
+        <!-- USAGE EXAMPLES -->
+        <div class="installation-method">
+          <h2 class="method-title">
+            <i class="fa-solid fa-code" aria-hidden="true"></i>
+            Basic Usage
+          </h2>
+
+          <div class="step">
+            <h3>Create Glass Containers</h3>
+            <p>Start building with glass containers:</p>
+            <CodeBlock code={`<div class="glass-container glass-container--rounded">
   <div class="glass-content">
     Your content here
   </div>
 </div>`} label="HTML" />
-        </div>
+          </div>
 
-        <div class="step">
-          <h3>4. Customize with CSS Variables</h3>
-          <p>Override default styles using CSS custom properties:</p>
-          <CodeBlock code={`.my-glass {
+          <div class="step">
+            <h3>Customize with CSS Variables</h3>
+            <p>Override default styles using CSS custom properties:</p>
+            <CodeBlock code={`.my-glass {
   --fp-bg-color: rgba(0, 0, 0, 0.4);
   --fp-backdrop-blur: 12px;
   --fp-border-radius: 1rem;
 }`} label="CSS" />
+          </div>
+
+          <div class="step">
+            <h3>Use Modifier Classes</h3>
+            <p>Apply pre-built variations:</p>
+            <CodeBlock code={`<!-- Different sizes -->
+<div class="glass-container glass-container--small">Small</div>
+<div class="glass-container glass-container--medium">Medium</div>
+<div class="glass-container glass-container--large">Large</div>
+
+<!-- Different shapes -->
+<div class="glass-container glass-container--rounded">Rounded</div>
+<div class="glass-container glass-container--pill">Pill</div>
+
+<!-- Interactive states -->
+<div class="glass-item glass-item--active">Active Item</div>
+<div class="glass-item glass-item--hover">Hover Effect</div>`} label="HTML" />
+          </div>
         </div>
       </div>
     </section>
@@ -434,13 +605,10 @@ import { components } from '../data/components';
   </main>
 
   <!-- SVG Filter -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
-    <filter id="lensFilter" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
-      <feComponentTransfer in="SourceAlpha" result="alpha">
-        <feFuncA type="identity" />
-      </feComponentTransfer>
-      <feGaussianBlur in="alpha" stdDeviation="50" result="blur" />
-      <feDisplacementMap in="SourceGraphic" in2="blur" scale="50" xChannelSelector="A" yChannelSelector="A" />
+  <svg aria-hidden="true" width="0" height="0" style="position: absolute;">
+    <filter id="lensFilter">
+      <feGaussianBlur stdDeviation="0.6"/>
+      <feColorMatrix type="saturate" values="1.2"/>
     </filter>
   </svg>
 

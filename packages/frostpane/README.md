@@ -20,17 +20,19 @@ A customizable frosted glass effect CSS library with extensive customization opt
 ### Option 1: CDN (Quickest)
 
 ```html
-<!-- Full version (minified) -->
-<link rel="stylesheet" href="https://unpkg.com/frostpane@1.1.0/dist/frostpane.css">
+<!-- Full version (minified) - automatically gets latest 1.x version -->
+<link rel="stylesheet" href="https://unpkg.com/frostpane@1/dist/frostpane.css">
 
 <!-- Core version (minimal, just glass effect) -->
-<link rel="stylesheet" href="https://unpkg.com/frostpane@1.1.0/dist/frostpane-core.css">
+<link rel="stylesheet" href="https://unpkg.com/frostpane@1/dist/frostpane-core.css">
 
 <!-- Unminified (for reference) -->
-<link rel="stylesheet" href="https://unpkg.com/frostpane@1.1.0/dist/frostpane.unminified.css">
+<link rel="stylesheet" href="https://unpkg.com/frostpane@1/dist/frostpane.unminified.css">
 
 <!-- Or use jsdelivr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1.1.0/dist/frostpane.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1/dist/frostpane.css">
+
+<!-- For a specific version, use @1.1.0 instead of @1 -->
 ```
 
 ### Option 2: npm

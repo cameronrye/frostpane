@@ -1,5 +1,5 @@
 /*!
- * Frostpane Core v1.0.0
+ * Frostpane Core v1.1.0
  * Minimal glass effect library - just the essentials
  * Copyright (c) 2025 Cameron Rye
  * Licensed under MIT (https://github.com/cameronrye/frostpane/blob/main/LICENSE)
@@ -68,7 +68,7 @@
   border-radius: var(--fp-glass-border-radius);
   overflow: hidden;
   flex: 1 1 auto;
-  box-shadow: var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) var(--fp-glass-shadow-blur-primary) var(--fp-glass-shadow-color-primary), var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-blur-secondary) var(--fp-glass-shadow-color-secondary);
+  box-shadow: var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) var(--fp-glass-shadow-blur-primary) var(--fp-glass-shadow-color-primary), var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) var(--fp-glass-shadow-blur-secondary) var(--fp-glass-shadow-color-secondary);
   color: inherit;
   transition: transform var(--fp-transition-duration) var(--fp-transition-timing), opacity var(--fp-transition-duration) var(--fp-transition-timing), box-shadow var(--fp-transition-duration) var(--fp-transition-timing);
 }
@@ -78,17 +78,19 @@
   inset: 0;
   border-radius: inherit;
   z-index: 0;
+  pointer-events: none;
 }
-@supports not (backdrop-filter: blur(1px)) {
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass-container::before {
     background: var(--fp-glass-bg);
     opacity: 0.9;
   }
 }
-@supports (backdrop-filter: blur(1px)) {
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .glass-container::before {
-    backdrop-filter: blur(var(--fp-glass-blur));
-    filter: url(#lensFilter) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    filter: url(#lensFilter);
   }
 }
 .glass-container::after {
@@ -125,7 +127,7 @@
   background: transparent;
   border-radius: var(--fp-glass-border-radius);
   overflow: hidden;
-  box-shadow: var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) var(--fp-glass-shadow-blur-primary) var(--fp-glass-shadow-color-primary), var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-blur-secondary) var(--fp-glass-shadow-color-secondary);
+  box-shadow: var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) var(--fp-glass-shadow-blur-primary) var(--fp-glass-shadow-color-primary), var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) var(--fp-glass-shadow-blur-secondary) var(--fp-glass-shadow-color-secondary);
   color: inherit;
   padding: var(--fp-content-padding-y) var(--fp-content-padding-x);
   gap: var(--fp-content-gap);
@@ -137,17 +139,19 @@
   inset: 0;
   border-radius: inherit;
   z-index: 0;
+  pointer-events: none;
 }
-@supports not (backdrop-filter: blur(1px)) {
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass::before {
     background: var(--fp-glass-bg);
     opacity: 0.9;
   }
 }
-@supports (backdrop-filter: blur(1px)) {
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .glass::before {
-    backdrop-filter: blur(var(--fp-glass-blur));
-    filter: url(#lensFilter) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    filter: url(#lensFilter);
   }
 }
 .glass::after {
@@ -201,7 +205,7 @@
   padding: 1.5rem;
   gap: 1rem;
   max-width: 400px;
-  box-shadow: var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-offset-y) * 1.3) calc(var(--fp-glass-shadow-blur-primary) * 1.3) var(--fp-glass-shadow-color-primary), var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-blur-secondary) * 1.3) var(--fp-glass-shadow-color-secondary);
+  box-shadow: var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-offset-y) * 1.3) calc(var(--fp-glass-shadow-blur-primary) * 1.3) var(--fp-glass-shadow-color-primary), var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) calc(var(--fp-glass-shadow-blur-secondary) * 1.3) var(--fp-glass-shadow-color-secondary);
   color: inherit;
   transition: transform var(--fp-transition-duration) var(--fp-transition-timing), box-shadow var(--fp-transition-duration) var(--fp-transition-timing);
   --fp-glass-blur: 6px;
@@ -212,17 +216,19 @@
   inset: 0;
   border-radius: inherit;
   z-index: 0;
+  pointer-events: none;
 }
-@supports not (backdrop-filter: blur(1px)) {
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass-card::before {
     background: var(--fp-glass-bg);
     opacity: 0.9;
   }
 }
-@supports (backdrop-filter: blur(1px)) {
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .glass-card::before {
-    backdrop-filter: blur(var(--fp-glass-blur));
-    filter: url(#lensFilter) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    filter: url(#lensFilter);
   }
 }
 .glass-card::after {
@@ -250,7 +256,7 @@
   padding: 2rem;
   gap: 1.5rem;
   max-width: 600px;
-  box-shadow: var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-offset-y) * 3) calc(var(--fp-glass-shadow-blur-primary) * 2) var(--fp-glass-shadow-color-primary), var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-blur-secondary) * 2) var(--fp-glass-shadow-color-secondary);
+  box-shadow: var(--fp-glass-shadow-offset-x) calc(var(--fp-glass-shadow-offset-y) * 3) calc(var(--fp-glass-shadow-blur-primary) * 2) var(--fp-glass-shadow-color-primary), var(--fp-glass-shadow-offset-x) var(--fp-glass-shadow-offset-y) calc(var(--fp-glass-shadow-blur-secondary) * 2) var(--fp-glass-shadow-color-secondary);
   color: inherit;
   transition: transform var(--fp-transition-duration) var(--fp-transition-timing), opacity var(--fp-transition-duration) var(--fp-transition-timing);
   --fp-glass-bg: rgba(255, 255, 255, 0.35);
@@ -262,17 +268,19 @@
   inset: 0;
   border-radius: inherit;
   z-index: 0;
+  pointer-events: none;
 }
-@supports not (backdrop-filter: blur(1px)) {
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass-modal::before {
     background: var(--fp-glass-bg);
     opacity: 0.9;
   }
 }
-@supports (backdrop-filter: blur(1px)) {
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .glass-modal::before {
-    backdrop-filter: blur(var(--fp-glass-blur));
-    filter: url(#lensFilter) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    filter: url(#lensFilter);
   }
 }
 .glass-modal::after {
@@ -310,17 +318,19 @@
   inset: 0;
   border-radius: inherit;
   z-index: 0;
+  pointer-events: none;
 }
-@supports not (backdrop-filter: blur(1px)) {
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass-nav::before {
     background: var(--fp-glass-bg);
     opacity: 0.9;
   }
 }
-@supports (backdrop-filter: blur(1px)) {
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .glass-nav::before {
-    backdrop-filter: blur(var(--fp-glass-blur));
-    filter: url(#lensFilter) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    filter: url(#lensFilter);
   }
 }
 .glass-nav::after {
@@ -357,17 +367,19 @@
   inset: 0;
   border-radius: inherit;
   z-index: 0;
+  pointer-events: none;
 }
-@supports not (backdrop-filter: blur(1px)) {
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass-panel::before {
     background: var(--fp-glass-bg);
     opacity: 0.9;
   }
 }
-@supports (backdrop-filter: blur(1px)) {
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .glass-panel::before {
-    backdrop-filter: blur(var(--fp-glass-blur));
-    filter: url(#lensFilter) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    -webkit-backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    backdrop-filter: blur(var(--fp-glass-blur)) saturate(var(--fp-glass-saturate)) brightness(var(--fp-glass-brightness));
+    filter: url(#lensFilter);
   }
 }
 .glass-panel::after {

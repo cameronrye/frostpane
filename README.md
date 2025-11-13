@@ -113,11 +113,11 @@ Open http://localhost:5173 in your browser. Changes to the library or example si
 ### Making Changes
 
 **To modify the library:**
-- Edit `packages/frostpane/src/frostpane.scss`
+- Edit `packages/frostpane/src/frostpane.scss` or `packages/frostpane/src/frostpane-core.scss`
 - Changes automatically reload in the example site (no rebuild needed)
 
 **To modify the example site:**
-- Edit `packages/example/index.html` or other example files
+- Edit `packages/example/src/pages/index.astro` or other Astro component files
 - Changes automatically reload in the browser
 
 ### Building
@@ -145,15 +145,21 @@ frostpane/
 ├── packages/
 │   ├── frostpane/             # frostpane - The publishable library
 │   │   ├── src/
-│   │   │   └── frostpane.scss
+│   │   │   ├── frostpane.scss
+│   │   │   └── frostpane-core.scss
 │   │   ├── dist/
-│   │   │   └── frostpane.css
+│   │   │   ├── frostpane.css
+│   │   │   └── frostpane-core.css
 │   │   ├── package.json
 │   │   └── README.md
-│   └── example/               # Example site
-│       ├── index.html
-│       ├── main.js
-│       ├── vite.config.js
+│   └── example/               # Example site (Astro)
+│       ├── src/
+│       │   ├── pages/
+│       │   │   └── index.astro
+│       │   ├── components/
+│       │   ├── layouts/
+│       │   └── styles/
+│       ├── astro.config.mjs
 │       ├── package.json
 │       └── README.md
 ├── package.json               # Root workspace configuration
@@ -415,6 +421,7 @@ The example package depends on the core library through a workspace reference, w
 
 - **Library Documentation**: [packages/frostpane/README.md](packages/frostpane/README.md)
 - **Example Site**: [packages/example/README.md](packages/example/README.md)
+- **Publishing & Versioning Guide**: [PUBLISHING.md](PUBLISHING.md)
 
 ## Contributing
 
@@ -424,9 +431,11 @@ Contributions are welcome! Here's how to get started:
 2. Create a feature branch: `git checkout -b feature/my-feature`
 3. Make your changes
 4. Test your changes: `npm run dev` and `npm run build`
-5. Commit your changes: `git commit -am 'Add new feature'`
+5. Commit your changes using [conventional commits](https://www.conventionalcommits.org/): `git commit -m 'feat: add new feature'`
 6. Push to the branch: `git push origin feature/my-feature`
 7. Submit a pull request
+
+**Note:** We use [Semantic Versioning](https://semver.org/) and [Conventional Commits](https://www.conventionalcommits.org/) for automated changelog generation. Please format your commit messages accordingly.
 
 ## License
 
