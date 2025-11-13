@@ -119,6 +119,16 @@ jobs:
           git reset --hard HEAD~1
           exit 1
 
+      - name: Trigger GitHub Pages deployment
+        if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🚀 Triggering GitHub Pages deployment with updated version..."
+          gh workflow run deploy-pages.yml --ref main
+          echo "✅ GitHub Pages deployment triggered"
+          echo "⏳ The site will be updated with version ${{ steps.version.outputs.new_version }} shortly"
+
       - name: Publish to npm
         if: ${{ !inputs.dry_run }}
         id: publish
@@ -154,11 +164,11 @@ jobs:
           VERSION="${{ steps.version.outputs.version_number }}"
 
           # Get changelog content between the latest version and the previous one
-          CHANGELOG=$(awk "/## \[$VERSION\]/,/## \[/" CHANGELOG.md | sed '$d' | tail -n +2)
+          CHANGELOG=$(awk "/## \[$VERSION\]/,/## \[/" docs/CHANGELOG.md | sed '$d' | tail -n +2)
 
           # If extraction failed, use a default message
           if [ -z "$CHANGELOG" ]; then
-            CHANGELOG="See [CHANGELOG.md](https://github.com/cameronrye/frostpane/blob/main/CHANGELOG.md) for details."
+            CHANGELOG="See [CHANGELOG.md](https://github.com/cameronrye/frostpane/blob/main/docs/CHANGELOG.md) for details."
           fi
 
           # Save to file for multiline output
@@ -194,6 +204,7 @@ jobs:
           echo "🔍 DRY RUN COMPLETE"
           echo "Version would be bumped to: ${{ steps.version.outputs.new_version }}"
           echo "Changes would be committed and tagged"
+          echo "GitHub Pages deployment would be triggered"
           echo "Package would be published to npm"
           echo "GitHub release would be created"
           echo ""

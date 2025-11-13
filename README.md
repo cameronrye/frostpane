@@ -154,7 +154,7 @@ npm run lint
 npm run lint:fix
 ```
 
-For detailed testing procedures, see [TESTING.md](TESTING.md).
+For detailed testing procedures, see [TESTING.md](docs/TESTING.md).
 
 ## Project Structure
 
@@ -456,7 +456,11 @@ The example package depends on the core library through a workspace reference, w
 
 - **Library Documentation**: [packages/frostpane/README.md](packages/frostpane/README.md)
 - **Example Site**: [packages/example/README.md](packages/example/README.md)
-- **Publishing & Versioning Guide**: [PUBLISHING.md](PUBLISHING.md)
+- **Publishing & Versioning Guide**: [docs/PUBLISHING.md](docs/PUBLISHING.md)
+- **Testing Guide**: [docs/TESTING.md](docs/TESTING.md)
+- **Contributing Guide**: [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
+- **Security Policy**: [docs/SECURITY.md](docs/SECURITY.md)
+- **Changelog**: [docs/CHANGELOG.md](docs/CHANGELOG.md)
 
 ## Contributing
 

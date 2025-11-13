@@ -2,7 +2,7 @@
 
 This guide covers how to publish the Frostpane library to npm and deploy the example site to GitHub Pages.
 
-> **⚡ Quick Start:** For most releases, use the [automated GitHub Actions workflow](#automated-release-recommended).
+> **Quick Start:** For most releases, use the [automated GitHub Actions workflow](#automated-release-recommended).
 
 ## Semantic Versioning
 
@@ -31,6 +31,7 @@ perf: optimize blur performance
 **Format:** `<type>: <description>`
 
 **Types:**
+
 - `feat`: New feature (triggers MINOR bump)
 - `fix`: Bug fix (triggers PATCH bump)
 - `feat!` or `BREAKING CHANGE`: Breaking change (triggers MAJOR bump)
@@ -53,25 +54,29 @@ The easiest way to release is using the GitHub Actions workflow:
 7. **Click "Run workflow"**
 
 The workflow automatically:
-- ✅ Bumps version using standard-version
-- ✅ Generates/updates CHANGELOG.md from conventional commits
-- ✅ Validates version consistency
-- ✅ Builds the library and example site
-- ✅ Verifies build artifacts
-- ✅ Commits and tags
-- ✅ Pushes to GitHub (with automatic rollback on failure)
-- ✅ Publishes to npm (with automatic rollback on failure)
-- ✅ Creates GitHub release with extracted changelog
+
+- Bumps version using standard-version
+- Generates/updates CHANGELOG.md from conventional commits
+- Validates version consistency
+- Builds the library and example site
+- Verifies build artifacts
+- Commits and tags
+- Pushes to GitHub (with automatic rollback on failure)
+- Triggers GitHub Pages deployment with updated version
+- Publishes to npm (with automatic rollback on failure)
+- Creates GitHub release with extracted changelog
 
 **Requirements:**
+
 - `NPM_TOKEN` secret configured in repository settings
 - Commits follow [conventional commit format](https://www.conventionalcommits.org/)
 
 **New Features:**
-- 🎯 **Dry Run Mode**: Test without publishing
-- 🎯 **Pre-release Support**: Create beta/alpha versions
-- 🎯 **Automatic Rollback**: Reverts on failure
-- 🎯 **Automatic Changelog**: Generated from commits
+
+- **Dry Run Mode**: Test without publishing
+- **Pre-release Support**: Create beta/alpha versions
+- **Automatic Rollback**: Reverts on failure
+- **Automatic Changelog**: Generated from commits
 
 ---
 
@@ -166,6 +171,7 @@ GitHub Pages is configured to deploy automatically when you push to the `main` b
    - The workflow will deploy automatically
 
 2. **Push to main**:
+
    ```bash
    git push origin main
    ```
@@ -217,6 +223,7 @@ npm run release:alpha  # 1.0.0 → 1.0.1-alpha.0
 ```
 
 This will:
+
 - ✅ Bump version in package.json files
 - ✅ Generate/update CHANGELOG.md from conventional commits
 - ✅ Validate version consistency
@@ -224,6 +231,7 @@ This will:
 - ✅ Create git tag
 
 Then push and publish:
+
 ```bash
 git push --follow-tags origin main
 cd packages/frostpane
@@ -247,6 +255,7 @@ The version in `packages/frostpane/package.json` is the source of truth.
 ### Automatic Synchronization
 
 Package versions are kept in sync:
+
 - `packages/frostpane/package.json` (published package) - **source of truth**
 - `package.json` (monorepo root) - synced by standard-version
 - `packages/example/package.json` - **no version field** (uses `"frostpane": "*"`)
@@ -255,6 +264,7 @@ Package versions are kept in sync:
 
 **Example Site:**
 The example site dynamically imports the version:
+
 ```astro
 import pkg from '../../../frostpane/package.json';
 const version = pkg.version;
@@ -262,12 +272,14 @@ const version = pkg.version;
 
 **Documentation:**
 README uses `@1` (major version) for CDN links:
+
 ```html
 <!-- Automatically gets latest 1.x version -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1/dist/frostpane.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frostpane@1/dist/frostpane.css" />
 ```
 
 Benefits:
+
 - Users automatically get bug fixes and new features
 - No need to update documentation for every release
 - Users can still pin to specific versions if needed (e.g., `@1.2.3`)
@@ -275,11 +287,13 @@ Benefits:
 ### Validation
 
 Version consistency is validated automatically:
-- ✅ On every CI build (via GitHub Actions)
-- ✅ After version bump (via standard-version postbump hook)
-- ✅ Before publishing (in release workflow)
+
+- On every CI build (via GitHub Actions)
+- After version bump (via standard-version postbump hook)
+- Before publishing (in release workflow)
 
 **Manual validation:**
+
 ```bash
 npm run validate-versions
 ```
@@ -295,16 +309,19 @@ This checks that `packages/frostpane/package.json` and `package.json` have match
 Test the release process without actually publishing:
 
 **Via GitHub Actions:**
+
 1. Go to Actions → Release workflow
 2. Enable "Dry run" checkbox
 3. Run the workflow
 
 **Via CLI:**
+
 ```bash
 npm run release:dry-run
 ```
 
 This will:
+
 - Bump versions locally
 - Generate changelog
 - Build artifacts
@@ -316,21 +333,25 @@ This will:
 Create beta or alpha releases for testing:
 
 **Via GitHub Actions:**
+
 1. Select "beta" or "alpha" as version type
 2. Run workflow
 
 **Via CLI:**
+
 ```bash
 npm run release:beta   # Creates 1.0.1-beta.0
 npm run release:alpha  # Creates 1.0.1-alpha.0
 ```
 
 Pre-releases are:
+
 - Tagged as pre-release on GitHub
 - Published with `beta` or `alpha` tag on npm
 - Not marked as "latest" on npm
 
 **Install pre-releases:**
+
 ```bash
 npm install frostpane@beta
 npm install frostpane@alpha
@@ -342,11 +363,13 @@ npm install frostpane@1.2.3-beta.0  # Specific version
 The release workflow includes automatic rollback:
 
 **On Push Failure:**
+
 - Deletes the git tag
 - Resets to previous commit
 - Exits with error
 
 **On Publish Failure:**
+
 - Deletes remote git tag
 - Reverts the commit
 - Pushes revert to GitHub
@@ -371,6 +394,8 @@ You'll need to manually deprecate the npm package if it was published before the
 - Verify Pages is enabled in Settings
 - Ensure workflow has proper permissions
 - Check astro.config.mjs has correct base path
+
+**Note:** The release workflow automatically triggers the GitHub Pages deployment after pushing version changes. This ensures the deployed site always displays the correct version number. If the version on the site doesn't match the npm package version, check that the "Deploy to GitHub Pages" workflow ran successfully after the release.
 
 ### Build fails
 
@@ -397,12 +422,14 @@ The workflow includes automatic rollback on push/publish failures.
 ```
 
 This script will:
+
 1. Delete the tag locally and remotely
 2. Revert the release commit
 3. Push changes to GitHub
 4. Provide instructions for deprecating the npm package
 
 **Manual rollback steps:**
+
 ```bash
 # Delete the tag locally and remotely
 git tag -d v1.2.3
@@ -422,6 +449,7 @@ gh release delete v1.2.3 --yes
 ## Checklist Before Publishing
 
 ### For Automated Release (GitHub Actions)
+
 - [ ] All changes committed and pushed
 - [ ] Commits follow conventional commit format
 - [ ] Build passes locally: `npm run build`
@@ -430,6 +458,7 @@ gh release delete v1.2.3 --yes
 - [ ] Consider running with "Dry run" enabled first
 
 ### For Manual Release
+
 - [ ] All changes committed and pushed
 - [ ] Commits follow conventional commit format
 - [ ] Version bumped: `npm run release`
@@ -484,32 +513,38 @@ The versioning and release workflow uses these configuration files:
 The versioning workflow was completely modernized with these improvements:
 
 **1. Single, Consistent Workflow**
+
 - GitHub Actions and local releases now use the same tool (standard-version)
 - No more conflicting approaches
 - Reduced maintenance burden
 
 **2. Automatic Changelog Generation**
+
 - CHANGELOG.md is now auto-generated from conventional commits
 - No manual updates needed before release
 - Consistent format across releases
 
 **3. Smart Versioning**
+
 - README uses `@1` (major version) for CDN links - no updates needed
 - Example site dynamically imports version - no updates needed
 - Only 2 package.json files need version syncing (down from 3)
 
 **4. Error Handling & Rollback**
+
 - Automatic rollback on push failure
 - Automatic rollback on publish failure
 - Manual rollback script for edge cases
 - Build artifact verification
 
 **5. Pre-release Support**
+
 - Beta and alpha releases supported
 - Proper npm tagging (not marked as "latest")
 - GitHub pre-release flag
 
 **6. Dry Run Mode**
+
 - Test releases without publishing
 - Preview changelog and version changes
 - Verify build artifacts
@@ -517,6 +552,7 @@ The versioning workflow was completely modernized with these improvements:
 ### Removed Legacy Code
 
 The following legacy components were removed:
+
 - ❌ `scripts/version-updater.cjs` - Custom version updater (no longer needed)
 - ❌ `detect-indent`, `detect-newline`, `stringify-package` dependencies (unused)
 - ❌ Manual sed-based version updates in GitHub Actions

@@ -36,4 +36,3 @@ Please include the following information in your report:
 - We will coordinate with you on the disclosure timeline
 
 Thank you for helping keep Frostpane and its users safe!
-
