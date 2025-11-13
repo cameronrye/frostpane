@@ -1,27 +1,9 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
 
-## [1.2.0](https://github.com/cameronrye/frostpane/compare/v1.1.0...v1.2.0) (2025-11-13)
-
-
-### Features
-
-* better publishing ([82b6b14](https://github.com/cameronrye/frostpane/commit/82b6b147137ad4bf55b68758fa4c0785a4bb0afc))
-* comprehensive homepage improvements ([be4359d](https://github.com/cameronrye/frostpane/commit/be4359d78b5efdc1cac232c25e78dbdd05d2523e))
-* improve css ([3b90837](https://github.com/cameronrye/frostpane/commit/3b90837365c941df45815083c6b96345532ddad1))
-* syntax highlighting ([c8a5ba1](https://github.com/cameronrye/frostpane/commit/c8a5ba1bf03d837eae95b54e8dbedbd67b06095f))
-* upgrade dependencies ([21a5810](https://github.com/cameronrye/frostpane/commit/21a58104080f4e875d9afd0887ba2cd19c01ea41))
-
-
-### Bug Fixes
-
-* enhance build verification in CI and release workflows ([edfe28a](https://github.com/cameronrye/frostpane/commit/edfe28aa9221a925f8f7a76762aa2883c69d3d17))
-
-
-### Documentation
-
-* remove emoji from features list, add footer ([f5dd993](https://github.com/cameronrye/frostpane/commit/f5dd9937d3528e210d42056fcbdfa981ea992210))
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.1.0] - 2025-01-13
 
@@ -65,3 +47,4 @@ All notable changes to this project will be documented in this file. See [standa
 
 [1.1.0]: https://github.com/cameronrye/frostpane/releases/tag/v1.1.0
 [1.0.0]: https://github.com/cameronrye/frostpane/releases/tag/v1.0.0
+
