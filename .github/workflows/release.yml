@@ -85,7 +85,12 @@ jobs:
 
       - name: Verify example build
         run: |
-          test -d packages/example/dist || (echo "❌ Example dist not found" && exit 1)
+          echo "Checking example site build artifacts..."
+          test -d packages/example/dist || (echo "❌ Example dist directory not found" && exit 1)
+          test -f packages/example/dist/index.html || (echo "❌ index.html not found" && exit 1)
+          test -d packages/example/dist/assets || (echo "❌ assets directory not found" && exit 1)
+          # Verify at least one CSS file exists in assets
+          ls packages/example/dist/assets/*.css >/dev/null 2>&1 || (echo "❌ No CSS files found in assets" && exit 1)
           echo "✅ Example site built successfully"
 
       - name: Push changes
