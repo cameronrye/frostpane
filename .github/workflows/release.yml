@@ -102,7 +102,7 @@ jobs:
         continue-on-error: true
 
       - name: Rollback on push failure
-        if: steps.push.outcome == 'failure'
+        if: ${{ !inputs.dry_run && steps.push.outcome == 'failure' }}
         run: |
           echo "❌ Push failed, rolling back..."
           git tag -d ${{ steps.version.outputs.new_version }}
@@ -119,7 +119,7 @@ jobs:
         continue-on-error: true
 
       - name: Rollback on publish failure
-        if: steps.publish.outcome == 'failure'
+        if: ${{ !inputs.dry_run && steps.publish.outcome == 'failure' }}
         run: |
           echo "❌ npm publish failed, rolling back..."
           git push origin :refs/tags/${{ steps.version.outputs.new_version }}
